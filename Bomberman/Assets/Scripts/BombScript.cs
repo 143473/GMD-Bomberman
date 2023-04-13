@@ -5,18 +5,16 @@ using UnityEngine;
 public class BombScript : MonoBehaviour
 {
 
-    public float delay = 80000f;
+    public float delay = 3f;
     private bool hasExploted;
     public float radius = 5f;
     public float force = 500;
-//    public GameObject explosionEffect;
-    // Start is called before the first frame update
+
     void Start()
     {
       
     }
 
-    // Update is called once per frame
     void Update()
     {
         delay -= Time.deltaTime;
@@ -26,9 +24,6 @@ public class BombScript : MonoBehaviour
     }
 
     void Explode(){
-       //show effect
-     //  Instantiate(explosionEffect, transform.position, transform.rotation);
-     //destroy
       Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
       foreach(Collider nearbyWall in colliders){
       Rigidbody rb = nearbyWall.GetComponent<Rigidbody>();
@@ -37,7 +32,7 @@ public class BombScript : MonoBehaviour
       }
       Destructible wall = nearbyWall.GetComponent<Destructible>();
        if (wall != null){
-      wall.DestroyWall();
+      wall.DestroyObject();
       }
       }
       hasExploted = true;
