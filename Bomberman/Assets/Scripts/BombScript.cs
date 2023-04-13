@@ -6,7 +6,7 @@ public class BombScript : MonoBehaviour
 {
 
     public float delay = 3f;
-    private bool hasExploted;
+    private bool hasExploded;
     public float radius = 5f;
     public float force = 500;
 
@@ -25,17 +25,17 @@ public class BombScript : MonoBehaviour
 
     void Explode(){
       Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
-      foreach(Collider nearbyWall in colliders){
-      Rigidbody rb = nearbyWall.GetComponent<Rigidbody>();
-      if(rb != null){
-      rb.AddExplosionForce(force, transform.position, radius);
+      foreach(Collider nearbyWall in colliders) {
+        Rigidbody rb = nearbyWall.GetComponent<Rigidbody>();
+        if(rb != null) {
+          rb.AddExplosionForce(force, transform.position, radius);
+        }
+        Destructible wall = nearbyWall.GetComponent<Destructible>();
+        if (wall != null) {
+          wall.DestroyObject();
+        }
       }
-      Destructible wall = nearbyWall.GetComponent<Destructible>();
-       if (wall != null){
-      wall.DestroyObject();
-      }
-      }
-      hasExploted = true;
+      hasExploded = true;
       Destroy(gameObject);
     }
 }
