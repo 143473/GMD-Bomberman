@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class BombScript : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class BombScript : MonoBehaviour
     private bool hasExploded;
     public float radius = 5f;
     public float force = 500;
+    public BoxCollider bc;
 
     void Start()
     {
@@ -18,9 +20,15 @@ public class BombScript : MonoBehaviour
     void Update()
     {
         delay -= Time.deltaTime;
-        if (delay <= 0f && !hasExploted) {
-        Explode();
-      }
+        if (delay <= 0f && !hasExploded) {
+          Explode();
+        }
+        if (!bc.enabled) {
+           Collider[] colliders = Physics.OverlapSphere(transform.position, 0.5f);
+           if (!colliders.Any(c => c.GetComponent<BombermanCharacterController>() != null)) {
+             bc.enabled = true;
+           }
+        }
     }
 
     void Explode(){
