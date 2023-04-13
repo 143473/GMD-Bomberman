@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1544173598485269430}
   - component: {fileID: 2357172328944113239}
   m_Layer: 0
-  m_Name: DistroyableCubeWall
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

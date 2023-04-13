@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 800f7e7217165b546abb535b2b2e6bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 9
+  delay: 4
   radius: 3
   force: 500
   bc: {fileID: -2207314737726681699}
