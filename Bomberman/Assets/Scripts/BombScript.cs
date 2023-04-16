@@ -9,9 +9,9 @@ public class BombScript : MonoBehaviour
     public float delay = 3f;
     private bool hasExploded;
     public BoxCollider bc;
-    public int blast = 1;
+    public int blast = 3;
 
-    Vector3 halfExtent = new Vector3(0.5f, 0, 0.5f);
+    Vector3 halfExtent = new Vector3(0.25f, 0, 0.25f);
 
     void Start()
     {
@@ -31,7 +31,6 @@ public class BombScript : MonoBehaviour
            }
         }
     }
-  
     void Explode()
     {
       CheckCell(transform.position);
@@ -50,7 +49,7 @@ public class BombScript : MonoBehaviour
       for (int i = 1; i < blast + 1; i++)
       {
         //offset from the bomb position to look up the other cells 
-        Vector3 offset = direction * (i * 1.25f);
+        Vector3 offset = direction * (i * 1f);
         //we need to consider the bomb position as well
         Vector3 cellPosition = transform.position + offset;
 
@@ -76,7 +75,6 @@ public class BombScript : MonoBehaviour
           destructible.DestroyObject();
         }
       }
-
       return colliders.Length > 0;
     }
 }
