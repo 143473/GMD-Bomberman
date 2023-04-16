@@ -24,6 +24,6 @@ public class ThrowBomb : MonoBehaviour
 
 	float ToGrid(float pos)
 	{
-		return Mathf.Round(pos / 1.25f) * 1.25f;
+		return Mathf.Round(pos);
 	}
 }

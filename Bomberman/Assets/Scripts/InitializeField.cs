@@ -14,7 +14,7 @@ public class InitializeField : MonoBehaviour
     {
         PlaceBomberman();
         
-        for (int i = 0; i < 70; i++)
+        for (int i = 0; i < 60; i++)
         {
             PlaceWall();
         }
@@ -27,14 +27,8 @@ public class InitializeField : MonoBehaviour
     
     float GetRandomPos()
     {
-        return ToGrid(Random.Range(-8.75f, 8.75f));
+        return Mathf.Round(Random.Range(-8f, 8f));
     }
-
-    float ToGrid(float pos)
-    {
-        return Mathf.Round(pos / 1.25f) * 1.25f;
-    }
-
     void PlaceWall()
     {
         var vect = GetRandomVect();
@@ -49,7 +43,6 @@ public class InitializeField : MonoBehaviour
             }
         }
     }
-
     void PlaceBomberman()
     {
         Vector3 vect;
