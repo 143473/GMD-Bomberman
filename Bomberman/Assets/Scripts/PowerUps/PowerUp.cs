@@ -6,7 +6,8 @@ using Random = UnityEngine.Random;
 
 public class PowerUp : MonoBehaviour
 {
-    [SerializeField] private float availabilityInSeconds = 10;
+    [SerializeField] 
+    private float availabilityInSeconds = 10;
     private static GameObject[] _powerUps;
     // Start is called before the first frame update
     void Start()
