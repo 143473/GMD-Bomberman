@@ -1,5 +1,8 @@
 
-public interface IPowerUp
+namespace PowerUps.Interfaces
 {
-    void ApplyEffect(BombermanStats bombermanStats);
+    public interface IPowerUp
+    {
+        void ApplyEffect(BombermanStats bombermanStats);
+    }
 }

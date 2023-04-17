@@ -1,6 +1,6 @@
-using UnityEngine;
+using PowerUps.Interfaces;
 
-public class Kick : MonoBehaviour, IPowerUp
+public class Kick : IPowerUp
 {
     public void ApplyEffect(BombermanStats bombermanStats)
     {

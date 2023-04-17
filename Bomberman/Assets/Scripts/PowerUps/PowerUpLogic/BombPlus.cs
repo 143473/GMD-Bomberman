@@ -1,9 +1,12 @@
-using UnityEngine;
+using PowerUps.Interfaces;
 
-public class BombPlus : MonoBehaviour, IPowerUp
+namespace PowerUps.PowerUpLogic
 {
-    public void ApplyEffect(BombermanStats bombermanStats)
+    public class BombPlus : IPowerUp
     {
-        bombermanStats.Bombs++;
+        public void ApplyEffect(BombermanStats bombermanStats)
+        {
+            bombermanStats.Bombs++;
+        }
     }
 }

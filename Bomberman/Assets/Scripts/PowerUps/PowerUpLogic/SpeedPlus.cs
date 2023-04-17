@@ -1,5 +1,6 @@
+using PowerUps.Interfaces;
 using UnityEngine;
-public class SpeedPlus : MonoBehaviour,IPowerUp
+public class SpeedPlus : IPowerUp
 {
     public void ApplyEffect(BombermanStats bombermanStats)
     {
