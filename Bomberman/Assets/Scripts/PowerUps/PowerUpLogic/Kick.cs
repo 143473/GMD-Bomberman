@@ -1,5 +1,3 @@
-using DefaultNamespace;
-using PowerUps.Interfaces;
 using UnityEngine;
 
 public class Kick : MonoBehaviour, IPowerUp
