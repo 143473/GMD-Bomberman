@@ -22,12 +22,12 @@ public class InitializeField : MonoBehaviour
 
     Vector3 GetRandomVect()
     {
-        return new Vector3(GetRandomPos(), 0.5f, GetRandomPos());
+        return new Vector3(GetRandomPos(1f,15f), 0.5f, GetRandomPos(-7f, 7f));
     }
     
-    float GetRandomPos()
+    float GetRandomPos(float from, float to)
     {
-        return Mathf.Round(Random.Range(-8f, 8f));
+        return Mathf.Round(Random.Range(from, to));
     }
     void PlaceWall()
     {
