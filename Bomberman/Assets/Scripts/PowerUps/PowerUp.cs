@@ -14,13 +14,12 @@ public class PowerUp : MonoBehaviour
     {
         _powerUps = Resources.LoadAll<GameObject>("PowerUps");
         SpawnRandomPowerUp();
-        Destroy(gameObject, availabilityInSeconds);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Destroy(gameObject, availabilityInSeconds);
     }
 
     void SpawnRandomPowerUp()
