@@ -32,7 +32,7 @@ public class BombScript : MonoBehaviour
            }
         }
     }
-    void Explode()
+    public void Explode()
     {
       CheckCell(transform.position);
       
