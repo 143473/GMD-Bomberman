@@ -9,9 +9,10 @@ public class BombScript : MonoBehaviour
     public float delay = 3f;
     private bool hasExploded;
     public BoxCollider bc;
-    public int blast = 3;
+    public int blast = 1; 
+    private Vector3 halfExtent = new Vector3(0.25f, 0, 0.25f);
+    public GameObject flamePrefab;
 
-    Vector3 halfExtent = new Vector3(0.25f, 0, 0.25f);
 
     void Start()
     {
@@ -21,7 +22,7 @@ public class BombScript : MonoBehaviour
     void Update()
     {
         delay -= Time.deltaTime;
-        if (delay <= 0f && !hasExploded) {
+        if (delay <= 0f) {
          Explode();
         }
         if (!bc.enabled) {
@@ -48,9 +49,7 @@ public class BombScript : MonoBehaviour
     {
       for (int i = 1; i < blast + 1; i++)
       {
-        //offset from the bomb position to look up the other cells 
         Vector3 offset = direction * (i * 1f);
-        //we need to consider the bomb position as well
         Vector3 cellPosition = transform.position + offset;
 
         if (CheckCell(cellPosition))
@@ -62,15 +61,12 @@ public class BombScript : MonoBehaviour
 
     bool CheckCell(Vector3 cellPosition)
     {
-      //check the colliders in the cell 
       Collider[] colliders = Physics.OverlapBox(cellPosition, halfExtent, Quaternion.identity);
-      Debug.Log($"Pos {transform.position} Cell {cellPosition} Colliders {colliders.Length}");
-
       foreach (Collider collider in colliders)
       {
         Debug.Log($"Collider {collider.transform.position}");
           
-        Destructible destructible = collider.GetComponent<Destructible>();
+        OnDestroy destructible = collider.GetComponent<OnDestroy>();
         if (destructible != null) {
           destructible.DestroyObject();
         }
