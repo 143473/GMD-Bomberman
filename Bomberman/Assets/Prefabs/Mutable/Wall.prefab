@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 2767260829247428199}
   - component: {fileID: 1544173598485269430}
   - component: {fileID: 2357172328944113239}
-  - component: {fileID: 3426469899448161665}
+  - component: {fileID: -8775601982649947643}
+  - component: {fileID: -1672838918811866557}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -128,7 +129,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f58d5e7fbf7b0614ab1f01c65dc4178a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3426469899448161665
+--- !u!114 &-8775601982649947643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4069603936090275850}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32bf4f6b149249aca7377a03c7021609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-1672838918811866557
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,5 +153,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91dacff237459b240ab1d8f6b311fef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chancePercentage: 50
+  chanceToSpawn: 100
   powerUpContainer: {fileID: 3006669219832770483, guid: 4edb2d48bef37fa4bb97b3ad39a2da96, type: 3}

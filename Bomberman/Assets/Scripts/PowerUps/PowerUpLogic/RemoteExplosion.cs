@@ -1,13 +1,16 @@
 using PowerUps.Interfaces;
 using UnityEngine;
 
-namespace PowerUps.PowerUpLogic
+
+public class RemoteExplosion : MonoBehaviour, IPowerUp
 {
-    public class RemoteExplosion: IPowerUp
+    void Start()
     {
-        public void ApplyEffect(BombermanStats bombermanStats)
-        {
-            bombermanStats.RemoteExplosion = true;
-        }
+    }
+
+    public void ApplyEffect(BombermanStats bombermanStats)
+    {
+        bombermanStats.RemoteExplosion = true;
+        Destroy(gameObject.transform.parent.gameObject);
     }
 }

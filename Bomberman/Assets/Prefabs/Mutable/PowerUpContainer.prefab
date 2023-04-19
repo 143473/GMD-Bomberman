@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 5927041911544049403}
   - component: {fileID: 4697966134210911983}
   - component: {fileID: 8715694263636586833}
+  - component: {fileID: 7742165139525013679}
+  - component: {fileID: 3776393886031896555}
   m_Layer: 0
   m_Name: PowerUpContainer
   m_TagString: Untagged
@@ -97,3 +99,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   availabilityInSeconds: 10
+--- !u!114 &7742165139525013679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3006669219832770483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f58d5e7fbf7b0614ab1f01c65dc4178a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3776393886031896555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3006669219832770483}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 321a0a971da847b88eabe833113d224f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 7341955840966931796}
   - component: {fileID: 2611341644650121775}
   - component: {fileID: 1691460185543084861}
+  - component: {fileID: 4349040067785213447}
+  - component: {fileID: 6651553977588214507}
   m_Layer: 0
-  m_Name: Fire+
+  m_Name: Flame+
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,3 +99,28 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
+--- !u!65 &4349040067785213447
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5335050565793354983}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 1.452344, z: 0.00000004328322}
+  m_Center: {x: 0, y: -0.726172, z: 0.00000002164161}
+--- !u!114 &6651553977588214507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5335050565793354983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aecac79488ca0c745b009390e420f527, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

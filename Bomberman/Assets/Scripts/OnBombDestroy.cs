@@ -1,13 +1,14 @@
 using Interfaces;
 using UnityEngine;
 
-namespace DefaultNamespace
+public class OnBombDestroy : MonoBehaviour, IDamage
 {
-    public class OnBombDestroy: MonoBehaviour, IDamage
+    void Start()
     {
-        public void OnDamage()
-        {
-            gameObject.GetComponent<BombScript>().Explode();
-        }
+        
+    }
+    public void OnDamage()
+    {
+        gameObject.GetComponent<BombScript>().Explode();
     }
 }

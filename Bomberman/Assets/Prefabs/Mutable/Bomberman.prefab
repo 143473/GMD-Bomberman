@@ -98,6 +98,9 @@ GameObject:
   - component: {fileID: 7955874745675777128}
   - component: {fileID: 7955874745675777132}
   - component: {fileID: 7955874745675777135}
+  - component: {fileID: 6764944444530006132}
+  - component: {fileID: -6602987813785986414}
+  - component: {fileID: 3311115151232674832}
   m_Layer: 0
   m_Name: Bomberman
   m_TagString: Untagged
@@ -194,8 +197,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68252b92694869141a570176b6566955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwForce: 0
   bombPrefab: {fileID: 8654449231371320919, guid: 10f9da57c94f2a84faeee0033e53dd46, type: 3}
+--- !u!114 &6764944444530006132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7955874745675777129}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a33067c2bbf48ee9cdcc1f3bb13cfda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-6602987813785986414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7955874745675777129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3b7b7cbc1a44d79a5f9c6c8d54f8d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3311115151232674832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7955874745675777129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcf7ec76f7cb45da882bef7eb3235bce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7955874745898171158
 GameObject:
   m_ObjectHideFlags: 0

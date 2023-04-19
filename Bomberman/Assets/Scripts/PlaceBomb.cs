@@ -5,12 +5,15 @@ using UnityEngine;
 public class PlaceBomb : MonoBehaviour
 {   
 	public GameObject bombPrefab;
+	private int _placedBombs = 0;
 	void Update()
     {
-        if (Input.GetKeyDown("space"))
-        {
-            Bomb();
-        }
+	    if(_placedBombs < gameObject.GetComponent<BombermanStats>().Bombs)
+		    if (Input.GetKeyDown("space"))
+		    {
+			    Bomb();
+			    _placedBombs++;
+		    }
     }
 	void Bomb()
     {    

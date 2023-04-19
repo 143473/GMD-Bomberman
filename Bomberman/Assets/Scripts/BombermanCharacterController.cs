@@ -5,7 +5,7 @@ using UnityEngine;
 public class BombermanCharacterController : MonoBehaviour
 {
     public CharacterController controller;
-    public float speed = 6f;
+    //public float speed = 6f;
     private float turnSmoothVelocity;
 
     public float turnSmoothTime = 0.1f;
@@ -28,6 +28,6 @@ public class BombermanCharacterController : MonoBehaviour
 		{
 			transform.rotation = Quaternion.Euler(0f, angle, 0f);
 		}
-        controller.Move(direction * speed * Time.deltaTime);
+        controller.Move(direction * gameObject.GetComponent<BombermanStats>().Speed * Time.deltaTime);
     }
 }

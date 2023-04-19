@@ -1,4 +1,6 @@
 
+using UnityEngine;
+
 namespace PowerUps.Interfaces
 {
     public interface IPowerUp

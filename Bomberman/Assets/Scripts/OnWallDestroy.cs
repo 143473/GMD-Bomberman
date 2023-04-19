@@ -1,13 +1,15 @@
 using Interfaces;
 using UnityEngine;
 
-namespace DefaultNamespace
+public class OnWallDestroy : MonoBehaviour, IDamage
 {
-    public class OnWallDestroy: MonoBehaviour, IDamage
+    void Start()
     {
-        public void OnDamage()
-        {
-            gameObject.GetComponent<PowerUpContainerSpawner>().SpawnPowerUpContainer();
-        }
+        
+    }
+    public void OnDamage()
+    {
+        //gameObject.GetComponent<PowerUpContainerSpawner>().SpawnPowerUpContainer();
+        Destroy(gameObject);
     }
 }

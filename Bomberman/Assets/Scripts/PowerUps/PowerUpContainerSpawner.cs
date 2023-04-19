@@ -22,7 +22,7 @@ public class PowerUpContainerSpawner : MonoBehaviour
     {
     }
 
-    public void SpawnPowerUpContainer()
+    void SpawnPowerUpContainer()
     {
         var randomNumber = Random.Range(0, 100);
         if (randomNumber < chanceToSpawn)
@@ -30,5 +30,10 @@ public class PowerUpContainerSpawner : MonoBehaviour
             var container = Instantiate(powerUpContainer);
             container.transform.position = transform.position;
         }
+    }
+
+    private void OnDestroy()
+    {
+        SpawnPowerUpContainer();
     }
 }

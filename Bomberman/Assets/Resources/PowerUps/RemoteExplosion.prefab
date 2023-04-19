@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 7341955840966931796}
   - component: {fileID: 2611341644650121775}
   - component: {fileID: 1691460185543084861}
+  - component: {fileID: -3134040621624312617}
+  - component: {fileID: -8966715437533457651}
   m_Layer: 0
   m_Name: RemoteExplosion
   m_TagString: Untagged
@@ -99,3 +101,28 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
+--- !u!65 &-3134040621624312617
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5335050565793354983}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.5, y: 2.947217, z: 0.000000087833904}
+  m_Center: {x: 0, y: -1.4736085, z: 0.000000043916952}
+--- !u!114 &-8966715437533457651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5335050565793354983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46d96256841f46f89fedbed7496d5e11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
