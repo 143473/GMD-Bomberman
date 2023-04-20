@@ -13,16 +13,16 @@ GameObject:
   - component: {fileID: 8654449231371320921}
   - component: {fileID: 8654449231371320922}
   - component: {fileID: -6410091804437685668}
-  - component: {fileID: 7879140232463454721}
   - component: {fileID: -2207314737726681699}
   - component: {fileID: -7517035398712840738}
+  - component: {fileID: -3284414537739164131}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8654449231371320923
 Transform:
   m_ObjectHideFlags: 0
@@ -120,18 +120,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &7879140232463454721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8654449231371320919}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f58d5e7fbf7b0614ab1f01c65dc4178a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &-2207314737726681699
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -155,5 +143,17 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c67c6f7907a24fcd93133dd973fd7c82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-3284414537739164131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8654449231371320919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e325f12119e4a65a75699bd0fabdd54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

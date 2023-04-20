@@ -10,7 +10,7 @@ public class RemoteExplosion : MonoBehaviour, IPowerUp
 
     public void ApplyEffect(BombermanStats bombermanStats)
     {
-        bombermanStats.RemoteExplosion = true;
+        bombermanStats.BombStats.RemoteExplosion = true;
         Destroy(gameObject.transform.parent.gameObject);
     }
 }

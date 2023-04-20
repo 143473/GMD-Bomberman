@@ -10,6 +10,7 @@ public class Kick : MonoBehaviour, IPowerUp
     public void ApplyEffect(BombermanStats bombermanStats)
     {
         bombermanStats.Kick = true;
+        bombermanStats.BombStats.Kickable = true;
         Destroy(gameObject.transform.parent.gameObject);
     }
 }

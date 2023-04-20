@@ -1,11 +1,9 @@
-using System;
 using PowerUps.Interfaces;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PowerUpInteraction : MonoBehaviour
 {
-    private void Awake()
+    private void Start()
     {
 
     }
