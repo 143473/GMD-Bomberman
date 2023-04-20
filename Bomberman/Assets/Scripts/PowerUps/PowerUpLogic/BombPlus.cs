@@ -14,4 +14,9 @@ public class BombPlus : MonoBehaviour, IPowerUp
         bombermanStats.Bombs++;
         Destroy(gameObject.transform.parent.gameObject);
     }
+
+    public float ChanceToSpawn()
+    {
+        return 100;
+    }
 }

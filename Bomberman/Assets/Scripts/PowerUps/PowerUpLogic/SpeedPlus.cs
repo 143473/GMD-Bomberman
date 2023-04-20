@@ -9,7 +9,12 @@ public class SpeedPlus : MonoBehaviour, IPowerUp
 
     public void ApplyEffect(BombermanStats bombermanStats)
     {
-        bombermanStats.Speed += 2;
+        bombermanStats.Speed += 1;
         Destroy(gameObject.transform.parent.gameObject);
+    }
+    
+    public float ChanceToSpawn()
+    {
+        return 100;
     }
 }

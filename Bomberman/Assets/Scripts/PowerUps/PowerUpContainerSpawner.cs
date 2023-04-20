@@ -10,7 +10,6 @@ public class PowerUpContainerSpawner : MonoBehaviour
     [SerializeField] private float chanceToSpawn = 50;
 
     [SerializeField] private GameObject powerUpContainer;
-    private bool _isDestroyed = false;
 
     // Start is called before the first frame update
     void Start()

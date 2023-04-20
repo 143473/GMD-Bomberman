@@ -13,4 +13,9 @@ public class RemoteExplosion : MonoBehaviour, IPowerUp
         bombermanStats.BombStats.RemoteExplosion = true;
         Destroy(gameObject.transform.parent.gameObject);
     }
+    
+    public float ChanceToSpawn()
+    {
+        return 30;
+    }
 }

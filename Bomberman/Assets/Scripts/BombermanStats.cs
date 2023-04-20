@@ -27,6 +27,6 @@ public class BombermanStats: MonoBehaviour
     
     private void Start()
     {
-        BombStats = new BombStats();
+        BombStats = gameObject.AddComponent<BombStats>();
     }
 }

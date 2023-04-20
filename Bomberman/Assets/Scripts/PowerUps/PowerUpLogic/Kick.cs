@@ -13,4 +13,9 @@ public class Kick : MonoBehaviour, IPowerUp
         bombermanStats.BombStats.Kickable = true;
         Destroy(gameObject.transform.parent.gameObject);
     }
+    
+    public float ChanceToSpawn()
+    {
+        return 30;
+    }
 }

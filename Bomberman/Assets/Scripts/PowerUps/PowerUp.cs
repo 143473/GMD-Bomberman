@@ -1,6 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
+using PowerUps.Interfaces;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -12,7 +11,15 @@ public class PowerUp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        var chanceToAddToList = Random.Range(0, 100);
         _powerUps = Resources.LoadAll<GameObject>("PowerUps");
+        _powerUps = _powerUps.SkipWhile(a =>
+        {
+            var skipped = false;
+            if (a.TryGetComponent(out IPowerUp powerUpScript))
+                skipped = chanceToAddToList > powerUpScript.ChanceToSpawn();
+            return skipped;
+        }).ToArray();
         SpawnRandomPowerUp();
     }
 
@@ -25,6 +32,6 @@ public class PowerUp : MonoBehaviour
     void SpawnRandomPowerUp()
     {
         var powerUpNumber = Random.Range(0, _powerUps.Length);
-        GameObject powerUp = Instantiate(_powerUps[powerUpNumber], gameObject.transform);
+        Instantiate(_powerUps[powerUpNumber], gameObject.transform);
     }
 }
