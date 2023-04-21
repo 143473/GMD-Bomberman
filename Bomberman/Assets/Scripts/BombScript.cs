@@ -16,9 +16,9 @@ public class BombScript : MonoBehaviour
     private Vector3 halfExtent = new Vector3(0.25f, 0, 0.25f);
     public GameObject flamePrefab;
 
-
-    void Start()
+    void Awake()
     {
+      BombExplosionHandler.onExplosionTrigger += Booom;
     }
 
     private void OnEnable()
@@ -26,19 +26,32 @@ public class BombScript : MonoBehaviour
       bc.enabled = false;
     }
 
+    private void OnDisable()
+    {
+
+    }
+
     void Update()
     {
-        gameObject.GetComponent<BombStats>().Delay -= Time.deltaTime;
-        if (gameObject.GetComponent<BombStats>().Delay <= 0f) {
-         Explode();
-         onBombExplosion?.Invoke();
-        }
+        // gameObject.GetComponent<BombStats>().Delay -= Time.deltaTime;
+        // if (gameObject.GetComponent<BombStats>().Delay <= 0f) {
+        //  Explode();
+        //  onBombExplosion?.Invoke();
+        // }
         if (!bc.enabled) {
            Collider[] colliders = Physics.OverlapSphere(transform.position, 0.5f);
            if (!colliders.Any(c => c.GetComponent<BombermanCharacterController>() != null)) {
              bc.enabled = true;
            }
         }
+    }
+
+    private void Booom(string bomb)
+    {
+      if (bomb.Equals(name))
+      {
+        Explode();
+      }
     }
     public void Explode()
     {

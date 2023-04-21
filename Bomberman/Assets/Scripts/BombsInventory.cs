@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BombsInventory : MonoBehaviour
@@ -16,6 +14,7 @@ public class BombsInventory : MonoBehaviour
     private void AddBomb()
     {
         var newBomb = Instantiate(bombPrefab, new Vector3(), new Quaternion());
+        newBomb.name = $"Bomb {Bombs.Count + 1}";
         Bombs.Add(newBomb);
     }
 }
