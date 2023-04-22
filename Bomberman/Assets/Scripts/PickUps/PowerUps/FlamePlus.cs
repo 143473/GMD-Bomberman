@@ -3,14 +3,9 @@ using UnityEngine;
 
 public class FlamePlus : MonoBehaviour, IPowerUp
 {
-    void Start()
-    {
-        
-    }
-
     public void ApplyEffect(BombermanStats bombermanStats)
     {
-        bombermanStats.BombStats.Flame++;
+        bombermanStats.Flame++;
         Destroy(transform.parent.gameObject);
     }
     

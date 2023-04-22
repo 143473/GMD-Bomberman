@@ -1,4 +1,3 @@
-using System.Security.Cryptography;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -21,10 +20,13 @@ namespace PickUps.Curses
             if (player.gameObject.tag.Equals("Player"))
             {
                 player.gameObject.AddComponent(curse.GetType());
-                player.GetComponent<BombermanStats>().Curse = true;
+                player.GetComponent<BombermanStats>().Cursed = true;
                 //Instantiate(curses[curseNumber], player.transform);
             }
             Destroy(gameObject);
+            
+            //Reset timer for curse?
+            // Add new curse?
         }
     }
 }

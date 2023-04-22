@@ -52,6 +52,7 @@ public class BombScript : MonoBehaviour
       if (bomb.Equals(name))
       {
         Explode();
+        onBombExplosion?.Invoke();
       }
     }
     public void Explode()

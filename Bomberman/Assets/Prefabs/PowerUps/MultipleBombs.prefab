@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 7341955840966931796}
   - component: {fileID: 2611341644650121775}
   - component: {fileID: 1691460185543084861}
+  - component: {fileID: 1439195324238334263}
+  - component: {fileID: -8758360509798295839}
   m_Layer: 0
   m_Name: MultipleBombs
   m_TagString: Untagged
@@ -97,3 +99,28 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
+--- !u!114 &1439195324238334263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5335050565793354983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b8d941768ce43f4854b773796e52313, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &-8758360509798295839
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5335050565793354983}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.5, y: 1.452344, z: 0.00000004328322}
+  m_Center: {x: 0, y: -0.726172, z: 0.00000002164161}

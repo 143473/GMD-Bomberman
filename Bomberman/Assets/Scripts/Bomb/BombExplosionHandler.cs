@@ -10,7 +10,7 @@ public class BombExplosionHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        _delay = gameObject.GetComponent<BombStats>().Delay;
+        _delay = gameObject.GetComponent<BombStats>().BombDelay;
     }
 
     private void Update()

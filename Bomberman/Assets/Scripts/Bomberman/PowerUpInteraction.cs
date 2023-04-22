@@ -3,11 +3,6 @@ using UnityEngine;
 
 public class PowerUpInteraction : MonoBehaviour
 {
-    private void Start()
-    {
-
-    }
-
     private void OnTriggerEnter(Collider powerUp)
     {
         if (powerUp.TryGetComponent(out IPowerUp script))

@@ -7,11 +7,7 @@ public class BombPropertiesHandler : MonoBehaviour
     
     private Transform _transform;
     private bool _kickable;
-
-    private void OnEnable()
-    {
-        _kickable = GetComponent<BombStats>().Kickable;
-    }
+    
 
     private void OnCollisionEnter(Collision collision)
     {

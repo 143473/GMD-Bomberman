@@ -6,15 +6,13 @@ public class BombStats : MonoBehaviour
     public int Flame { get; set; } = 1;
     public bool RemoteExplosion { get; set; } = false;
     public bool AllowMultiple { get; set; } = false;
-    public bool Kickable { get; set; } = false;
-    public float Delay { get; set; } = 3;
+    public float BombDelay { get; set; } = 3;
 
-    public void SetStats(BombStats bombStats)
+    public void SetStats(int flame, bool remote, bool allowMultiple, float bombDelay)
     {
-        Flame = bombStats.Flame;
-        RemoteExplosion = bombStats.RemoteExplosion;
-        AllowMultiple = bombStats.AllowMultiple;
-        Kickable = bombStats.Kickable;
-        Delay = bombStats.Delay;
+        Flame = flame;
+        RemoteExplosion = remote;
+        AllowMultiple = allowMultiple;
+        BombDelay = bombDelay;
     }
 }

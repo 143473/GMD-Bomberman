@@ -1,20 +1,32 @@
+using System;
 using UnityEngine;
 
 public class PlaceBomb : MonoBehaviour
 {   
 	public GameObject bombPrefab;
-	private bool _bombExploded = false;
+	private bool _bombExploded;
 
 	private void Awake()
 	{
+		_bombExploded = true;
 		BombScript.onBombExplosion += OnBombGoesBoom;
 	}
 
 	void Update()
     {
-	    if (Input.GetKeyDown("space"))
+	    if (GetComponent<BombermanStats>().Nasty)
 	    {
 		    Bomb();
+	    }
+	    else if (Input.GetKeyDown("space"))
+	    {
+		    if(GetComponent<BombermanStats>().AllowMultiple)
+				Bomb();
+			else if (_bombExploded)
+		    {
+			    Bomb();
+			    _bombExploded = false;
+		    }
 	    }
     }
 	void Bomb()
@@ -29,10 +41,13 @@ public class PlaceBomb : MonoBehaviour
 
 	private void InstantiateBomb(Vector3 vector3)
 	{
-		var bomb = gameObject.GetComponent<BombsInventory>().Bombs.Find(a => !a.activeSelf);
+		var bombermanInventory = gameObject.GetComponent<BombsInventory>();
+		var bombermanStats = gameObject.GetComponent<BombermanStats>();
+		var bomb = bombermanInventory.Bombs.Find(a => !a.activeSelf);
 		bomb.GetComponent<Transform>().position = vector3;
 		bomb.GetComponent<Transform>().rotation = transform.rotation;
-		bomb.GetComponent<BombStats>().SetStats(gameObject.GetComponent<BombermanStats>().BombStats);
+		bomb.GetComponent<BombStats>().SetStats(bombermanStats.Flame, bombermanStats.RemoteExplosion,
+			bombermanStats.AllowMultiple, bombermanStats.BombDelay);
 		bomb.SetActive(true);
 	}
 

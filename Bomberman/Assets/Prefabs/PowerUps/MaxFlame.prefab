@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 2611341644650121775}
   - component: {fileID: 1691460185543084861}
   - component: {fileID: 4080932944592028039}
+  - component: {fileID: 5216417120489906762}
   m_Layer: 0
-  m_Name: FlameMax
+  m_Name: MaxFlame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,7 +85,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5335050565793354983}
-  m_Text: 'FireMax
+  m_Text: 'MaxFlame
 
 '
   m_OffsetZ: 0
@@ -113,3 +114,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.7000003, y: 2.947217, z: 0.000000087833904}
   m_Center: {x: 0, y: -1.4736085, z: 0.000000043916952}
+--- !u!114 &5216417120489906762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5335050565793354983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c85e462d6f247a2953ee485a6c4603e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
