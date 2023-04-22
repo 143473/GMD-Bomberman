@@ -9,10 +9,6 @@ public class BombStats : MonoBehaviour
     public bool Kickable { get; set; } = false;
     public float Delay { get; set; } = 3;
 
-    private void Start()
-    {
-    }
-
     public void SetStats(BombStats bombStats)
     {
         Flame = bombStats.Flame;

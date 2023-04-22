@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Interfaces;
 
 public class BombScript : MonoBehaviour
 {
@@ -88,10 +89,13 @@ public class BombScript : MonoBehaviour
       {
         Debug.Log($"Collider {collider.transform.position}");
           
-        OnDestroy destructible = collider.GetComponent<OnDestroy>();
-        if (destructible != null) {
-          destructible.DestroyObject();
-        }
+        // OnDestroy destructible = collider.GetComponent<OnDestroy>();
+        // if (destructible != null) {
+        //   destructible.DestroyObject();
+        // }
+        var destructible = collider.gameObject.GetComponent<IDamage>();
+        if(destructible != null && collider.gameObject != gameObject)
+          destructible.OnDamage();
       }
       return colliders.Length > 0;
     }

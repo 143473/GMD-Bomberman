@@ -1,8 +1,7 @@
 using PowerUps.Interfaces;
 using UnityEngine;
 
-
-public class RemoteExplosion : MonoBehaviour, IPowerUp
+public class SpeedPlus : MonoBehaviour, IPowerUp
 {
     void Start()
     {
@@ -10,12 +9,12 @@ public class RemoteExplosion : MonoBehaviour, IPowerUp
 
     public void ApplyEffect(BombermanStats bombermanStats)
     {
-        bombermanStats.BombStats.RemoteExplosion = true;
-        Destroy(gameObject.transform.parent.gameObject);
+        bombermanStats.Speed += 1;
+        Destroy(transform.parent.gameObject);
     }
     
     public float ChanceToSpawn()
     {
-        return 30;
+        return 100;
     }
 }

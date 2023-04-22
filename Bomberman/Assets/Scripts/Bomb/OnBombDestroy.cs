@@ -9,6 +9,6 @@ public class OnBombDestroy : MonoBehaviour, IDamage
     }
     public void OnDamage()
     {
-        //gameObject.GetComponent<BombScript>().Explode();
+        gameObject.GetComponent<BombScript>().Explode();
     }
 }

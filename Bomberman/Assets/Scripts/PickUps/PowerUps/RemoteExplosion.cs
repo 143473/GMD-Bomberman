@@ -1,17 +1,17 @@
 using PowerUps.Interfaces;
 using UnityEngine;
 
-public class Kick : MonoBehaviour, IPowerUp
+
+public class RemoteExplosion : MonoBehaviour, IPowerUp
 {
     void Start()
     {
-        
     }
+
     public void ApplyEffect(BombermanStats bombermanStats)
     {
-        bombermanStats.Kick = true;
-        bombermanStats.BombStats.Kickable = true;
-        Destroy(gameObject.transform.parent.gameObject);
+        bombermanStats.BombStats.RemoteExplosion = true;
+        Destroy(transform.parent.gameObject);
     }
     
     public float ChanceToSpawn()

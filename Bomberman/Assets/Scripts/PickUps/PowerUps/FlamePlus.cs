@@ -1,16 +1,17 @@
 using PowerUps.Interfaces;
 using UnityEngine;
 
-public class SpeedPlus : MonoBehaviour, IPowerUp
+public class FlamePlus : MonoBehaviour, IPowerUp
 {
     void Start()
     {
+        
     }
 
     public void ApplyEffect(BombermanStats bombermanStats)
     {
-        bombermanStats.Speed += 1;
-        Destroy(gameObject.transform.parent.gameObject);
+        bombermanStats.BombStats.Flame++;
+        Destroy(transform.parent.gameObject);
     }
     
     public float ChanceToSpawn()

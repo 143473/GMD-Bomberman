@@ -1,7 +1,7 @@
 using Interfaces;
 using UnityEngine;
 
-public class OnPowerUpDestroy : MonoBehaviour, IDamage
+public class OnWallDestroy : MonoBehaviour, IDamage
 {
     void Start()
     {
@@ -9,6 +9,7 @@ public class OnPowerUpDestroy : MonoBehaviour, IDamage
     }
     public void OnDamage()
     {
+        gameObject.GetComponent<PickupsSpawner>().SpawnPickUp();
         Destroy(gameObject);
     }
 }

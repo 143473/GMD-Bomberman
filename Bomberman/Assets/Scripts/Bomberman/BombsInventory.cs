@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using PickUps.Curses;
 using UnityEngine;
 
 public class BombsInventory : MonoBehaviour
