@@ -19,9 +19,15 @@ namespace PickUps.Curses
             var curse = curses[curseNumber].GetComponent<Curse>();
             if (player.gameObject.tag.Equals("Player"))
             {
-                player.gameObject.AddComponent(curse.GetType());
-                player.GetComponent<BombermanStats>().Cursed = true;
-                //Instantiate(curses[curseNumber], player.transform);
+                if (!player.gameObject.GetComponent<BombermanStats>().Cursed)
+                {
+                    player.gameObject.AddComponent(curse.GetType());
+                    player.GetComponent<BombermanStats>().Cursed = true;
+                }
+                else if(player.gameObject.GetComponent(curse.GetType()) != null)
+                {
+                    player.gameObject.GetComponent<Curse>().curseTimer = curse.CurseResetTimer();
+                }
             }
             Destroy(gameObject);
             

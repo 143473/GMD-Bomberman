@@ -9,7 +9,6 @@ public class BombermanStats: MonoBehaviour
     public static OnBombIncrease onBombIncrease;
 
     public delegate void OnCursedBomberman();
-
     public static OnCursedBomberman onCursedBomberman;
     
     private int _bombs = 1;

@@ -102,8 +102,6 @@ MonoBehaviour:
   curses:
   - {fileID: 5335050565793354983, guid: b346c6bcdf5cafe45b782f577045a229, type: 3}
   - {fileID: 5335050565793354983, guid: 34ad192c2413bbf4a8728548f4516dd3, type: 3}
-  - {fileID: 5335050565793354983, guid: 9f2d9b44ff4e6d14fba1a466982fea26, type: 3}
-  - {fileID: 5335050565793354983, guid: 27b2b6be3555d9b41b2f4d9951ad22c4, type: 3}
 --- !u!114 &-7719644924055193601
 MonoBehaviour:
   m_ObjectHideFlags: 0

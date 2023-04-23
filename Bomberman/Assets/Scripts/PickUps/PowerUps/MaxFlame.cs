@@ -8,6 +8,7 @@ namespace PickUps.PowerUps
         public void ApplyEffect(BombermanStats bombermanStats)
         {
             bombermanStats.Flame = 100;
+            Destroy(transform.parent.gameObject);
         }
 
         public float ChanceToSpawn()
