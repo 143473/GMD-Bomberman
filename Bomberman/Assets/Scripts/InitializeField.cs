@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Unity.VisualScripting;
+using UnityEngine.InputSystem;
 
 
 public class InitializeField : MonoBehaviour
@@ -38,7 +40,8 @@ public class InitializeField : MonoBehaviour
         {
             //check if it collides with bomberman
             colliders = Physics.OverlapSphere(vect, 2f);
-            if (!colliders.Any(c => c.GetComponent<BombermanCharacterController>() != null)) {
+            //if (!colliders.Any(c => c.GetComponent<BombermanCharacterController>() != null)) {
+            if (!colliders.Any(c => c.tag.Equals("Player"))) {
                 Instantiate(wall, vect, transform.rotation);
             }
         }
@@ -50,7 +53,25 @@ public class InitializeField : MonoBehaviour
         {
             vect = GetRandomVect();
         } while (Physics.OverlapSphere(vect, 0.4f).Length != 0);
+
+        bomberman.name = "Player 1";
+        var p1 = PlayerInput.Instantiate(bomberman,
+            controlScheme: "Keyboard.Arrows", pairWithDevice: Keyboard.current);
+
+        p1.transform.position = vect;
         
-        Instantiate(bomberman, vect, transform.rotation);
+        Vector3 vect2;
+        do
+        {
+            vect2 = GetRandomVect();
+        } while (Physics.OverlapSphere(vect2, 0.4f).Length != 0);
+        
+        bomberman.name = "Player 2";
+        var p2 = PlayerInput.Instantiate(bomberman,
+            controlScheme: "Keyboard.WASD", pairWithDevice: Keyboard.current);
+
+        p2.transform.position = vect2;
+
+        //Instantiate(bomberman, vect, transform.rotation);
     }
 }

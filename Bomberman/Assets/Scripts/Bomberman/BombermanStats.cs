@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BombermanStats: MonoBehaviour
 {
-    public delegate void OnBombIncrease();
+    public delegate void OnBombIncrease(string name);
     public static OnBombIncrease onBombIncrease;
 
     public delegate void OnCursedBomberman();
@@ -18,6 +18,7 @@ public class BombermanStats: MonoBehaviour
     private bool _cursed = false;
     private bool _nasty = false;
 
+    public string Name { get; set; }
     public int Lives { get; set; } = 1;
 
     public int Bombs
@@ -31,7 +32,7 @@ public class BombermanStats: MonoBehaviour
         set
         {
             _bombs = value;
-            onBombIncrease?.Invoke();
+            onBombIncrease?.Invoke(name);
         }
     }
 

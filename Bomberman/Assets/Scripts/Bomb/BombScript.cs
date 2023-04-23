@@ -7,9 +7,6 @@ using Interfaces;
 
 public class BombScript : MonoBehaviour
 {
-    public delegate void OnBombExplosion();
-    public static OnBombExplosion onBombExplosion;
-    
     public float delay = 3f;
     private bool hasExploded;
     public BoxCollider bc;
@@ -17,21 +14,16 @@ public class BombScript : MonoBehaviour
     private Vector3 halfExtent = new Vector3(0.25f, 0, 0.25f);
     public GameObject flamePrefab;
 
-    void Awake()
+    private void Awake()
     {
-      BombExplosionHandler.onExplosionTrigger += Booom;
+      BombermanCharacterController.onManuallyExplodeBomb += Boom;
     }
 
     private void OnEnable()
     {
+      delay = GetComponent<BombStats>().BombDelay;
       bc.enabled = false;
     }
-
-    private void OnDisable()
-    {
-
-    }
-
     void Update()
     {
         // gameObject.GetComponent<BombStats>().Delay -= Time.deltaTime;
@@ -39,6 +31,14 @@ public class BombScript : MonoBehaviour
         //  Explode();
         //  onBombExplosion?.Invoke();
         // }
+        if (!gameObject.GetComponent<BombStats>().RemoteExplosion)
+        {
+          delay -= Time.deltaTime;
+          if (delay <= 0f)
+          {
+              Explode();
+          }
+        }
         if (!bc.enabled) {
            Collider[] colliders = Physics.OverlapSphere(transform.position, 0.5f);
            if (!colliders.Any(c => c.GetComponent<BombermanCharacterController>() != null)) {
@@ -47,13 +47,10 @@ public class BombScript : MonoBehaviour
         }
     }
 
-    private void Booom(string bomb)
+    public void Boom(string bomberman)
     {
-      if (bomb.Equals(name))
-      {
+      if(name.Contains(bomberman)) 
         Explode();
-        onBombExplosion?.Invoke();
-      }
     }
     public void Explode()
     {
