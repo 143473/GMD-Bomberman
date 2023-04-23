@@ -7,7 +7,7 @@ namespace PickUps.Curses
 {
     public class Curse : MonoBehaviour
     {
-        [SerializeField] public float curseTimer = 50;
+        [SerializeField] public float curseTimer = 10;
         public int Speed { get; set; }
         public int Flame { get; set; }
         public float BombDelay { get; set; }
@@ -37,7 +37,7 @@ namespace PickUps.Curses
 
         public float CurseResetTimer()
         {
-            return 50;
+            return 10;
         }
     }
 }
