@@ -10,7 +10,6 @@ namespace PickUps.Curses
             var stats = gameObject.GetComponent<BombermanStats>();
             Flame = stats.Flame;
             Speed = 10;
-            AllowMultiple = stats.AllowMultiple;
             BombDelay = stats.BombDelay;
             Nasty = stats.Nasty;
             Bombs = new List<GameObject>();

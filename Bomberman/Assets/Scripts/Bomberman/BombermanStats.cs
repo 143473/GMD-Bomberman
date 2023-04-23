@@ -79,7 +79,6 @@ public class BombermanStats: MonoBehaviour
         }
         set => _flame = value;}
     public bool RemoteExplosion { get; set; } = false;
-    public bool AllowMultiple { get; set; } = false;
 
     public float BombDelay
     {

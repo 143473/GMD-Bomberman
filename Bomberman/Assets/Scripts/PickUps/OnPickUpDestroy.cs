@@ -1,14 +1,17 @@
 using Interfaces;
 using UnityEngine;
 
-public class OnPickUpDestroy : MonoBehaviour, IDamage
+namespace PowerUps
 {
-    void Start()
+    public class OnPickUpDestroy : MonoBehaviour, IDamage
     {
+        void Start()
+        {
         
-    }
-    public void OnDamage()
-    {
-        Destroy(gameObject);
+        }
+        public void OnDamage()
+        {
+            Destroy(gameObject);
+        }
     }
 }

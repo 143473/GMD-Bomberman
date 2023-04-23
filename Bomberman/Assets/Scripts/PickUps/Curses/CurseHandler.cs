@@ -24,10 +24,6 @@ namespace PickUps.Curses
                     player.gameObject.AddComponent(curse.GetType());
                     player.GetComponent<BombermanStats>().Cursed = true;
                 }
-                else if(player.gameObject.GetComponent(curse.GetType()) != null)
-                {
-                    player.gameObject.GetComponent<Curse>().curseTimer = curse.CurseResetTimer();
-                }
             }
             Destroy(gameObject);
             

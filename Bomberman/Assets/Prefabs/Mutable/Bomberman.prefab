@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: -23946934266132900}
   - component: {fileID: -5167244328385384750}
   - component: {fileID: 3000265114568021995}
+  - component: {fileID: 6360696762997118264}
   m_Layer: 0
   m_Name: Bomberman
   m_TagString: Player
@@ -290,6 +291,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab7e71a54f84cb3a0e9e68d0d50b691, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6360696762997118264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7955874745675777129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60a72743ffea4038929f7cf983109f78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
 --- !u!1 &7955874745898171158
 GameObject:
   m_ObjectHideFlags: 0

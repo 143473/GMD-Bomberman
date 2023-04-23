@@ -20,13 +20,7 @@ public class PlaceBomb : MonoBehaviour
 	    }
 	    else if (Input.GetKeyDown("space"))
 	    {
-		    if(GetComponent<BombermanStats>().AllowMultiple)
-				Bomb();
-			else if (_bombExploded)
-		    {
-			    Bomb();
-			    _bombExploded = false;
-		    }
+		    Bomb();
 	    }
     }
 	void Bomb()
@@ -46,8 +40,7 @@ public class PlaceBomb : MonoBehaviour
 		var bomb = bombermanInventory.Bombs.Find(a => !a.activeSelf);
 		bomb.GetComponent<Transform>().position = vector3;
 		bomb.GetComponent<Transform>().rotation = transform.rotation;
-		bomb.GetComponent<BombStats>().SetStats(bombermanStats.Flame, bombermanStats.RemoteExplosion,
-			bombermanStats.AllowMultiple, bombermanStats.BombDelay);
+		bomb.GetComponent<BombStats>().SetStats(bombermanStats.Flame, bombermanStats.RemoteExplosion, bombermanStats.BombDelay);
 		bomb.SetActive(true);
 	}
 

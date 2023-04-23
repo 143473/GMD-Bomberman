@@ -12,7 +12,6 @@ public class MinimumStats : Curse
         var stats = gameObject.GetComponent<BombermanStats>();
         Flame = 1;
         Speed = 2;
-        AllowMultiple = false;
         BombDelay = stats.BombDelay;
         Nasty = stats.Nasty;
 
