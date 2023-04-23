@@ -62,15 +62,22 @@ public class BombScript : MonoBehaviour
     bool CheckCell(Vector3 cellPosition)
     {
       Collider[] colliders = Physics.OverlapBox(cellPosition, halfExtent, Quaternion.identity);
+
+      bool destroyed = false;
       foreach (Collider collider in colliders)
       {
-        Debug.Log($"Collider {collider.transform.position}");
-          
         OnDestroy destructible = collider.GetComponent<OnDestroy>();
         if (destructible != null) {
           destructible.DestroyObject();
+          destroyed = true;
         }
       }
+
+      if (colliders.Length == 0 || destroyed)
+      {
+        Instantiate(flamePrefab, cellPosition, Quaternion.identity);
+      }
+
       return colliders.Length > 0;
     }
 }
