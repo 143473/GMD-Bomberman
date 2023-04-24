@@ -33750,7 +33750,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &9199943955903372716
 Transform:
@@ -38571,7 +38571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99ea71cb3ca517345be68236ffb6a659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flameDestroyDelay: 0.7
+  flameDestroyDelay: 0.8
 --- !u!65 &1968968758383012876
 BoxCollider:
   m_ObjectHideFlags: 0

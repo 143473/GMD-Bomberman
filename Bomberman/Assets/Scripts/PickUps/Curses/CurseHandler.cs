@@ -10,6 +10,7 @@ namespace PickUps.Curses
         
         private void Awake()
         {
+            Debug.Log("Curse awake");
             Destroy(gameObject, availabilityInSeconds);
         }
         

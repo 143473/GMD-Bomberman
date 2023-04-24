@@ -5,7 +5,8 @@ using UnityEngine.Events;
 
 public class OnWallDestroy : MonoBehaviour, IDamage
 {
-    [SerializeField] private float spawnDelay = 0.01f;
+    [SerializeField] private float spawnDelay;
+    
     public UnityEvent onWallDestroy;
     public void OnDamage()
     {
