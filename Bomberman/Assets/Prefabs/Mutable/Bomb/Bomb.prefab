@@ -231,15 +231,15 @@ GameObject:
   - component: {fileID: 8989684440953993017}
   - component: {fileID: 5362448642978832389}
   - component: {fileID: 6679664196268858732}
-  - component: {fileID: 8372844413409317188}
-  - component: {fileID: 2334938154528905173}
-  m_Layer: 0
+  - component: {fileID: 147182955536559299}
+  - component: {fileID: 3265871190999461656}
+  m_Layer: 3
   m_Name: Bomb
-  m_TagString: Untagged
+  m_TagString: Bomb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8989684440953993017
 Transform:
   m_ObjectHideFlags: 0
@@ -270,7 +270,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delay: 3
   bc: {fileID: 6679664196268858732}
-  blast: 1
   flamePrefab: {fileID: 9199943955903372717, guid: 446708bb3e158324286dc673c18080b0, type: 3}
 --- !u!65 &6679664196268858732
 BoxCollider:
@@ -280,24 +279,12 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8989684440953993022}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8372844413409317188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8989684440953993022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e325f12119e4a65a75699bd0fabdd54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2334938154528905173
+--- !u!114 &147182955536559299
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -312,4 +299,28 @@ MonoBehaviour:
   explosionDelay: 0.05
   onBombDestroy:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5362448642978832389}
+        m_TargetAssemblyTypeName: BombScript, Assembly-CSharp
+        m_MethodName: Explode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3265871190999461656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8989684440953993022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e325f12119e4a65a75699bd0fabdd54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

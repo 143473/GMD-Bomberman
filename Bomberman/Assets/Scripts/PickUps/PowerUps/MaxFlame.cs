@@ -7,7 +7,7 @@ namespace PickUps.PowerUps
     {
         public void ApplyEffect(BombermanStats bombermanStats)
         {
-            bombermanStats.Flame = 100;
+            bombermanStats.Flame = 15;
             Destroy(transform.parent.gameObject);
         }
 

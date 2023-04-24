@@ -5,7 +5,7 @@ namespace PickUps.Curses
         private void Awake()
         {
             var stats = gameObject.GetComponent<BombermanStats>();
-            Flame = 100;
+            Flame = 15;
             Speed = 10;
             BombDelay = 2;
             Nasty = stats.Nasty;
