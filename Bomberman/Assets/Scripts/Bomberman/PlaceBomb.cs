@@ -1,36 +1,35 @@
 using System;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlaceBomb : MonoBehaviour
 {   
 	public GameObject bombPrefab;
-	private bool _bombExploded;
 
-	private void Awake()
+	private void Update()
 	{
-		_bombExploded = true;
-		BombScript.onBombExplosion += OnBombGoesBoom;
+		if (GetComponent<BombermanStats>().Nasty)
+		{
+			Bomb();
+		}
 	}
 
-	void Update()
+	public void Bomb()
     {
-	    if (GetComponent<BombermanStats>().Nasty)
-	    {
-		    Bomb();
-	    }
-	    else if (Input.GetKeyDown("space"))
-	    {
-		    Bomb();
-	    }
-    }
-	void Bomb()
-    {    
-		var vect = new Vector3(ToGrid(transform.position.x), 0.3f, ToGrid(transform.position.z));
+	    var vect = new Vector3(ToGrid(transform.position.x), 0.3f, ToGrid(transform.position.z));
 		//Instantiate(bombPrefab, vect, transform.rotation);
 
 		var availableBombs = gameObject.GetComponent<BombsInventory>().Bombs.Exists(a => !a.activeSelf);
 		if (availableBombs)
-			InstantiateBomb(vect);
+		{
+			Collider[] colliders = Physics.OverlapSphere(transform.position, 0.5f);
+			if (!colliders.Any(c => c.gameObject.tag.Equals("Bomb"))) {
+				InstantiateBomb(vect);
+			}
+		}
+
     }
 
 	private void InstantiateBomb(Vector3 vector3)
@@ -47,10 +46,5 @@ public class PlaceBomb : MonoBehaviour
 	float ToGrid(float pos)
 	{
 		return Mathf.Round(pos);
-	}
-
-	void OnBombGoesBoom()
-	{
-		_bombExploded = true;
 	}
 }

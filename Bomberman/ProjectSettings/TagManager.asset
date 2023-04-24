@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - PowerUpContainer
+  - Bomb
   layers:
   - Default
   - TransparentFX
