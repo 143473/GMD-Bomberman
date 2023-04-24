@@ -15,7 +15,6 @@ public class FlameScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("Trigger" + collider.name);
         if(collider.gameObject.TryGetComponent(out IDamage damage))
             damage.OnDamage();
     }
