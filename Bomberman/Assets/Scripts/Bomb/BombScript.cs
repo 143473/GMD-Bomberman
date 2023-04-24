@@ -22,7 +22,7 @@ public class BombScript : MonoBehaviour
     private void OnEnable()
     {
       delay = GetComponent<BombStats>().BombDelay;
-      bc.enabled = false;
+      bc.isTrigger = true;
     }
     void Update()
     {
@@ -39,10 +39,12 @@ public class BombScript : MonoBehaviour
               Explode();
           }
         }
-        if (!bc.enabled) {
+        
+        // Garbage collector for this, or use maybe rider's suggestion: OverlapSphereNonAlloc, OverlapBoxNonAlloc
+        if (bc.isTrigger) {
            Collider[] colliders = Physics.OverlapSphere(transform.position, 0.5f);
            if (!colliders.Any(c => c.GetComponent<BombermanCharacterController>() != null)) {
-             bc.enabled = true;
+             bc.isTrigger = false;
            }
         }
     }

@@ -101,8 +101,6 @@ MonoBehaviour:
   availabilityInSeconds: 10
   curses:
   - {fileID: 5335050565793354983, guid: b346c6bcdf5cafe45b782f577045a229, type: 3}
-  - {fileID: 5335050565793354983, guid: 34ad192c2413bbf4a8728548f4516dd3, type: 3}
-  - {fileID: 5335050565793354983, guid: 9f2d9b44ff4e6d14fba1a466982fea26, type: 3}
 --- !u!65 &6966905206147758728
 BoxCollider:
   m_ObjectHideFlags: 0

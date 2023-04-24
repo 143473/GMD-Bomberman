@@ -59,9 +59,5 @@ public class BombermanCharacterController : MonoBehaviour
 			transform.rotation = Quaternion.Euler(0f, angle, 0f);
 		}
         controller.Move(direction * gameObject.GetComponent<BombermanStats>().Speed * Time.deltaTime);
-        
-        //Place bombs
-        if (bombermanStats.Nasty)
-            onPlaceBomb.Invoke();
     }
 }

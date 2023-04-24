@@ -1,13 +1,13 @@
 using System.Collections;
 using Interfaces;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class OnBombDestroy : MonoBehaviour, IDamage
 {
-    void Start()
-    {
-        
-    }
+    [SerializeField] private float explosionDelay = 0.05f;
+    public UnityEvent onBombDestroy;
+
     public void OnDamage()
     {
         StartCoroutine(ExplosionDelay());
@@ -15,7 +15,7 @@ public class OnBombDestroy : MonoBehaviour, IDamage
 
     IEnumerator ExplosionDelay()
     {
-        yield return new WaitForSeconds(0.05f);
-        gameObject.GetComponent<BombScript>().Explode();
+        yield return new WaitForSeconds(explosionDelay);
+        onBombDestroy.Invoke();
     }
 }

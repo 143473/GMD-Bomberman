@@ -16,14 +16,13 @@ GameObject:
   - component: {fileID: -2207314737726681699}
   - component: {fileID: -7517035398712840738}
   - component: {fileID: -3284414537739164131}
-  - component: {fileID: 5056947339399070605}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Bomb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8654449231371320923
 Transform:
   m_ObjectHideFlags: 0
@@ -129,8 +128,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8654449231371320919}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -146,6 +145,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c67c6f7907a24fcd93133dd973fd7c82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionDelay: 0.05
+  onBombDestroy:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8654449231371320922}
+        m_TargetAssemblyTypeName: BombScript, Assembly-CSharp
+        m_MethodName: Explode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &-3284414537739164131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,17 +171,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e325f12119e4a65a75699bd0fabdd54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5056947339399070605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8654449231371320919}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 744fab1615f741bbb444af022098e04e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
