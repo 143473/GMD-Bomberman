@@ -12,7 +12,8 @@ public class BombScript : MonoBehaviour
     public BoxCollider bc;
     public int blast = 1; 
     private Vector3 halfExtent = new Vector3(0.25f, 0, 0.25f);
-    public GameObject flamePrefab;
+    [SerializeField] private GameObject flamePrefab;
+    
 
     private void Awake()
     {
@@ -26,12 +27,7 @@ public class BombScript : MonoBehaviour
     }
     void Update()
     {
-        // gameObject.GetComponent<BombStats>().Delay -= Time.deltaTime;
-        // if (gameObject.GetComponent<BombStats>().Delay <= 0f) {
-        //  Explode();
-        //  onBombExplosion?.Invoke();
-        // }
-        if (!gameObject.GetComponent<BombStats>().RemoteExplosion)
+      if (!gameObject.GetComponent<BombStats>().RemoteExplosion)
         {
           delay -= Time.deltaTime;
           if (delay <= 0f)
@@ -85,17 +81,13 @@ public class BombScript : MonoBehaviour
     bool CheckCell(Vector3 cellPosition)
     {
       Collider[] colliders = Physics.OverlapBox(cellPosition, halfExtent, Quaternion.identity);
+      bool destroyed = false;
       foreach (Collider collider in colliders)
       {
-        Debug.Log($"Collider {collider.transform.position}");
-          
-        // OnDestroy destructible = collider.GetComponent<OnDestroy>();
-        // if (destructible != null) {
-        //   destructible.DestroyObject();
-        // }
         var destructible = collider.gameObject.GetComponent<IDamage>();
         if(destructible != null && collider.gameObject != gameObject)
           destructible.OnDamage();
+          destroyed = true;
       }
       return colliders.Length > 0;
     }
