@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 1770117888606372357}
   - component: {fileID: 2767260829247428199}
   - component: {fileID: 1544173598485269430}
-  - component: {fileID: -8775601982649947643}
-  - component: {fileID: -1672838918811866557}
+  - component: {fileID: 2357172328944113239}
+  - component: {fileID: 3426469899448161665}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 41b60d2262c63ff4ea59d1639fd1523b, type: 2}
+  - {fileID: 2100000, guid: 1c677b5eed0658841aaaba64976d3230, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -116,7 +116,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-8775601982649947643
+--- !u!114 &2357172328944113239
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,26 +125,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4069603936090275850}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32bf4f6b149249aca7377a03c7021609, type: 3}
+  m_Script: {fileID: 11500000, guid: f58d5e7fbf7b0614ab1f01c65dc4178a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnDelay: 0.1
-  onWallDestroy:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -1672838918811866557}
-        m_TargetAssemblyTypeName: PickupsSpawner, Assembly-CSharp
-        m_MethodName: SpawnPickUp
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &-1672838918811866557
+--- !u!114 &3426469899448161665
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -156,6 +140,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91dacff237459b240ab1d8f6b311fef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUpChanceToSpawn: 70
-  curse: {fileID: 3006669219832770483, guid: 5a369d18c865b9c42b9cc51c30a4d2da, type: 3}
-  powerUp: {fileID: 3006669219832770483, guid: 4edb2d48bef37fa4bb97b3ad39a2da96, type: 3}
+  chanceToSpawn: 50
+  powerUpContainer: {fileID: 3006669219832770483, guid: 4edb2d48bef37fa4bb97b3ad39a2da96, type: 3}
