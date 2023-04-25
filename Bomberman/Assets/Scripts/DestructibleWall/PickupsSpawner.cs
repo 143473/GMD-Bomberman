@@ -12,14 +12,8 @@ public class PickupsSpawner : MonoBehaviour
     {
         var randomNumber = Random.Range(0, 100);
         if (randomNumber < powerUpChanceToSpawn)
-        {
-            var container = Instantiate(powerUp);
-            container.transform.position = transform.position;
-        }
+            Instantiate(powerUp, transform.position, Quaternion.identity);
         else
-        {
-            var container = Instantiate(curse);
-            container.transform.position = transform.position;
-        }
+            Instantiate(curse, transform.position, Quaternion.identity);
     }
 }

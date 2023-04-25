@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -12,7 +14,7 @@ namespace PickUps.Curses
         {
             Destroy(gameObject, availabilityInSeconds);
         }
-        
+
         private void OnTriggerEnter(Collider player)
         {
             var curseNumber = Random.Range(0, curses.Length);
@@ -24,11 +26,8 @@ namespace PickUps.Curses
                     player.gameObject.AddComponent(curse.GetType());
                     player.GetComponent<BombermanStats>().Cursed = true;
                 }
+                Destroy(gameObject);
             }
-            Destroy(gameObject);
-            
-            //Reset timer for curse?
-            // Add new curse?
         }
     }
 }

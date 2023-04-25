@@ -6,11 +6,15 @@ TagManager:
   tags:
   - PowerUpContainer
   - Bomb
+  - DestructibleWall
+  - Undefined
+  - NonDestructibleWall
+  - FlamePool
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Bomb
   - Water
   - UI
   - 
