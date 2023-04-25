@@ -33,4 +33,13 @@ public class BombsInventory : MonoBehaviour
             Bombs.Add(newBomb);
         }
     }
+
+    public GameObject GetBomb()
+    {
+        var availableBombs = Bombs.Exists(a => !a.activeSelf);
+        if(availableBombs)
+            return Bombs.Find(a => !a.activeSelf);
+        return null;
+    }
+    
 }

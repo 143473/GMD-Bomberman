@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using Interfaces;
+using UnityEditor;
 
 public class BombScript : MonoBehaviour
 {
@@ -13,10 +14,16 @@ public class BombScript : MonoBehaviour
     private Vector3 halfExtent = new Vector3();
     
     [SerializeField] private GameObject flamePrefab;
+    private FlamePool flamePoolSpawner;
+    private Collider[] colliders;
 
 
     private void Awake()
     {
+      colliders = new Collider[10];
+      var flamePoolGO = GameObject.Find("FlameGOPool");
+      flamePoolSpawner = flamePoolGO.GetComponent<FlamePool>();
+        
       BombermanCharacterController.onManuallyExplodeBomb += Boom;
       gameObject.SetActive(false);
     }
@@ -39,10 +46,12 @@ public class BombScript : MonoBehaviour
         
       // Garbage collector for this, or use maybe rider's suggestion: OverlapSphereNonAlloc, OverlapBoxNonAlloc
       if (bc.isTrigger) {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 0.5f);
-        if (!colliders.Any(c => c.GetComponent<BombermanCharacterController>() != null)) {
+        colliders = Physics.OverlapSphere(transform.position, 0.5f);
+        if (!colliders.Any(c => c.gameObject.CompareTag("Player") != null)) {
           bc.isTrigger = false;
         }
+
+        CollidersDisposal(colliders);
       }
     }
 
@@ -82,11 +91,20 @@ public class BombScript : MonoBehaviour
 
     bool CheckCell(Vector3 cellPosition)
     {
-      Collider[] colliders = Physics.OverlapBox(cellPosition, halfExtent, Quaternion.identity, 3);
+     colliders = Physics.OverlapBox(cellPosition, halfExtent, Quaternion.identity, 3);
+      var length = colliders.Length;
       if (colliders.Any(c => c.gameObject.CompareTag("NonDestructibleWall")))
         return true;
+
+      var flame = flamePoolSpawner.GetFlameFromPool();
+      flame.transform.position = cellPosition;
       
-      Instantiate(flamePrefab, cellPosition, Quaternion.identity);
-      return colliders.Length > 0;
+      CollidersDisposal(colliders);
+      return length > 0;
+    }
+
+    void CollidersDisposal(Collider[] colliders)
+    {
+      Array.Clear(colliders, 0, colliders.Length);
     }
 }

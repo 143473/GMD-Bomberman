@@ -9,6 +9,7 @@ TagManager:
   - DestructibleWall
   - Undefined
   - NonDestructibleWall
+  - FlamePool
   layers:
   - Default
   - TransparentFX

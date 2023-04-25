@@ -7,8 +7,15 @@ using UnityEngine;
 public class FlameScript : MonoBehaviour
 {
     [SerializeField] private float flameDestroyDelay = 1f;
-
+    private FlamePool flamePoolSpawner;
+    
     private void Awake()
+    {
+        var flamePoolGO = GameObject.Find("FlameGOPool");
+        flamePoolSpawner = flamePoolGO.GetComponent<FlamePool>();
+    }
+
+    private void OnEnable()
     {
         StartCoroutine(SelfDestroy());
     }
@@ -22,6 +29,6 @@ public class FlameScript : MonoBehaviour
     IEnumerator SelfDestroy()
     {
         yield return new WaitForSeconds(flameDestroyDelay);
-        Destroy(gameObject);
+        flamePoolSpawner.ReturnFlameToPool(gameObject);
     }
 }

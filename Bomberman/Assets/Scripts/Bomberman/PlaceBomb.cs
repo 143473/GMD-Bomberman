@@ -5,12 +5,19 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlaceBomb : MonoBehaviour
-{   
-	public GameObject bombPrefab;
+{
+	private BombsInventory bombermanInventory;
+	private BombermanStats bombermanStats;
+	private Collider[] colliders;
+	private void Awake()
+	{
+		bombermanInventory = gameObject.GetComponent<BombsInventory>();
+		bombermanStats = gameObject.GetComponent<BombermanStats>();
+	}
 
 	private void Update()
 	{
-		if (GetComponent<BombermanStats>().Nasty)
+		if (bombermanStats.Nasty)
 		{
 			Bomb();
 		}
@@ -19,29 +26,20 @@ public class PlaceBomb : MonoBehaviour
 	public void Bomb()
     {
 	    var vect = new Vector3(ToGrid(transform.position.x), 0.3f, ToGrid(transform.position.z));
-		//Instantiate(bombPrefab, vect, transform.rotation);
+	    var bomb = bombermanInventory.GetBomb();
 
-		var availableBombs = gameObject.GetComponent<BombsInventory>().Bombs.Exists(a => !a.activeSelf);
-		if (availableBombs)
+	    if (bomb)
 		{
-			Collider[] colliders = Physics.OverlapSphere(transform.position, 0.5f);
+			colliders = Physics.OverlapSphere(transform.position, 0.5f);
 			if (!colliders.Any(c => c.gameObject.tag.Equals("Bomb"))) {
-				InstantiateBomb(vect);
+				bomb.transform.position = vect;
+				bomb.transform.rotation = transform.rotation;
+				bomb.GetComponent<BombStats>().SetStats(bombermanStats.Flame, bombermanStats.RemoteExplosion, bombermanStats.BombDelay);
+				bomb.SetActive(true);
 			}
+			Array.Clear(colliders, 0, colliders.Length);
 		}
-
     }
-
-	private void InstantiateBomb(Vector3 vector3)
-	{
-		var bombermanInventory = gameObject.GetComponent<BombsInventory>();
-		var bombermanStats = gameObject.GetComponent<BombermanStats>();
-		var bomb = bombermanInventory.Bombs.Find(a => !a.activeSelf);
-		bomb.GetComponent<Transform>().position = vector3;
-		bomb.GetComponent<Transform>().rotation = transform.rotation;
-		bomb.GetComponent<BombStats>().SetStats(bombermanStats.Flame, bombermanStats.RemoteExplosion, bombermanStats.BombDelay);
-		bomb.SetActive(true);
-	}
 
 	float ToGrid(float pos)
 	{
