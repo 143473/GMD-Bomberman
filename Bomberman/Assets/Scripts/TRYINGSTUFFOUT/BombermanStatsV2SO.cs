@@ -10,16 +10,16 @@ namespace Utils
     {
         public string bombermanName;
         
-        public float lives; 
-        public float bombs;
-        public float speed;
-        public float flame;
-        public float bombDelay;
+        public float lives = 1; 
+        public float bombs = 1;
+        public float speed = 6;
+        public float flame = 1;
+        public float bombDelay = 3;
         
-        public bool kick;
-        public bool cursed;
-        public bool nasty;
-        public bool remoteExplosion;
-        public bool inverseControls;
+        public bool kick = false;
+        public bool cursed = false;
+        public bool nasty = false;
+        public bool remoteExplosion = false;
+        public bool inverseControls = false;
     }
 }
