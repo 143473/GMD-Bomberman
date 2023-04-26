@@ -13,7 +13,7 @@ namespace PickUps.PowerUps
 
         public float ChanceToSpawn()
         {
-            return 10;
+            return 90;
         }
     }
 }
