@@ -73,23 +73,7 @@ public class BombScript : MonoBehaviour
       
       gameObject.SetActive(false);
     }
-
-
-
-    void CheckDirection(Vector3 direction)
-    {
-      for (int i = 1; i < bombStats.Flame + 1; i++)
-      {
-        Vector3 offset = direction * (i * 1f);
-        Vector3 cellPosition = transform.position + offset;
-        
-        if (CheckCell(cellPosition))
-        {
-          break;
-        }
-      }
-    }
-
+    // First approach - checking radial - HOW TO COROUTINE?
     void SpawnFlames()
     {
       CheckCell(transform.position);
@@ -117,10 +101,20 @@ public class BombScript : MonoBehaviour
       directions.Clear();
     }
 
-    IEnumerator DisableDelay()
+
+    // Second Approach - per direction
+    void CheckDirection(Vector3 direction)
     {
-      yield return new WaitForSeconds(1f);
-      gameObject.SetActive(false);
+      for (int i = 1; i < bombStats.Flame + 1; i++)
+      {
+        Vector3 offset = direction * (i * 1f);
+        Vector3 cellPosition = transform.position + offset;
+        
+        if (CheckCell(cellPosition))
+        {
+          break;
+        }
+      }
     }
 
     bool CheckCell(Vector3 cellPosition)

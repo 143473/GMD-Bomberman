@@ -48,7 +48,7 @@ namespace Utils
                 boolStats[Stats.Cursed] = false;
         }
 
-        public void AddPermanentPowerUp(Stats stat, bool boolValue = default, float numericValue = default)
+        public void AddPermanentStat(Stats stat, bool boolValue = default, float numericValue = default)
         {
             if (boolStats.ContainsKey(stat))
                 boolStats[stat] = boolValue;

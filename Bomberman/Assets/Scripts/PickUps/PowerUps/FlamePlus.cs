@@ -1,16 +1,22 @@
 using PowerUps.Interfaces;
 using UnityEngine;
+using Utils;
 
 public class FlamePlus : MonoBehaviour, IPowerUp
 {
-    public void ApplyEffect(BombermanStats bombermanStats)
+    [SerializeField] private int extraFlame = 1;
+    [SerializeField] private int chanceToSpawn = 80;
+    private StatsHandler statsHandler;
+    
+    public void ApplyEffect(FinalBombermanStatsV2 finalBombermanStatsV2)
     {
-        bombermanStats.Flame++;
+        statsHandler = new StatsHandler(finalBombermanStatsV2);
+        statsHandler.AddPermanentStat(Stats.Flame, numericValue: extraFlame);
         Destroy(transform.parent.gameObject);
     }
-    
+
     public float ChanceToSpawn()
     {
-        return 100;
+        return chanceToSpawn;
     }
 }

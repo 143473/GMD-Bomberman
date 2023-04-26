@@ -15,15 +15,14 @@ namespace Utils
         
         private void Awake()
         {
-            bombermanStats = ScriptableObject.CreateInstance<BombermanStatsV2SO>();
 
             numericStats = new Dictionary<Stats, float>();
             boolStats = new Dictionary<Stats, bool>();
 
             numericStats.Add(Stats.Lives, bombermanStats.lives);
             numericStats.Add(Stats.Bombs, bombermanStats.bombs);
-            numericStats.Add(Stats.Flame, bombermanStats.speed);
-            numericStats.Add(Stats.Speed, bombermanStats.flame);
+            numericStats.Add(Stats.Flame, bombermanStats.flame);
+            numericStats.Add(Stats.Speed, bombermanStats.speed);
             numericStats.Add(Stats.BombDelay, bombermanStats.bombDelay);
             
             boolStats.Add(Stats.Kick, bombermanStats.kick);

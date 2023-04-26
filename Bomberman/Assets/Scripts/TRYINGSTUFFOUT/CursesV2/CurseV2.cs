@@ -11,9 +11,7 @@ namespace PickUps.Curses
 {
     public class CurseV2 : MonoBehaviour
     {
-        public List<CurseModifier> curseModifiers;
-
-        private CurseModifier appliedCurse;
+        public CurseModifier appliedCurse;
 
         private FinalBombermanStatsV2 finalBombermanStats;
 
@@ -23,9 +21,7 @@ namespace PickUps.Curses
         {
             finalBombermanStats = gameObject.GetComponent<FinalBombermanStatsV2>();
             statsHandler = new StatsHandler(finalBombermanStats);
-            
-            appliedCurse = GetRandomCurse();
-            
+
             statsHandler.AddCurseModifier(appliedCurse);
             
             StartCoroutine(SelfDestroy());
@@ -38,12 +34,6 @@ namespace PickUps.Curses
             statsHandler.RemoveCurseModifier(appliedCurse);
             
             Destroy(this);
-        }
-
-        private CurseModifier GetRandomCurse()
-        {
-            var curseModifier = Random.Range(0, curseModifiers.Count);
-            return curseModifiers[curseModifier];
         }
     }
 }

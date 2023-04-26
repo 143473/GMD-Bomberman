@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 4712814906954619445}
   - component: {fileID: 5927041911544049403}
   - component: {fileID: 4697966134210911983}
-  - component: {fileID: 4020199534689234318}
   - component: {fileID: 6966905206147758728}
   - component: {fileID: -7466844319958219459}
   - component: {fileID: -4109232858326595482}
+  - component: {fileID: -7562318532170782468}
   m_Layer: 0
   m_Name: Curse
   m_TagString: Untagged
@@ -87,23 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4020199534689234318
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3006669219832770483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccd4a22e15f34df7aaa67b948d8f5f9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  availabilityInSeconds: 10
-  curses:
-  - {fileID: 5335050565793354983, guid: b346c6bcdf5cafe45b782f577045a229, type: 3}
-  - {fileID: 5335050565793354983, guid: 9f2d9b44ff4e6d14fba1a466982fea26, type: 3}
-  - {fileID: 5335050565793354983, guid: 34ad192c2413bbf4a8728548f4516dd3, type: 3}
 --- !u!65 &6966905206147758728
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -145,3 +128,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 321a0a971da847b88eabe833113d224f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-7562318532170782468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3006669219832770483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 806c6c77e32640c6bc5946e4a9e8bc25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  availabilityInSeconds: 10
+  curseModifiers:
+  - {fileID: 11400000, guid: a336f142731b770418b9253208dfb013, type: 2}
+  - {fileID: 11400000, guid: 364abf9ecebfead4a806bd6485c3acf2, type: 2}
+  - {fileID: 11400000, guid: 82e2b77cecd4eb542b164c08c5fb6cde, type: 2}
+  - {fileID: 11400000, guid: 16afcefb5c6e698499b8460aeb5bb0d1, type: 2}
+  - {fileID: 11400000, guid: 77a1ce54677423e4c96c04c51e13c404, type: 2}
+  - {fileID: 11400000, guid: 0f02f6bfc31d6554d87792699b9553af, type: 2}
+  - {fileID: 11400000, guid: 045b91a15079d3243bfa5726bc5bde19, type: 2}

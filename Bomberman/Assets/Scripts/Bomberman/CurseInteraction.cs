@@ -14,17 +14,17 @@ namespace Bomberman
             bomberman = gameObject;
         }
         
-        private void OnTriggerEnter(Collider bomberman)
-        {
-            if (gameObject.GetComponent<BombermanStats>().Cursed)
-            {
-                var curse = gameObject.GetComponent<Curse>();
-                if (bomberman.gameObject.tag.Equals("Player") && !bomberman.gameObject.GetComponent<BombermanStats>().Cursed)
-                {
-                    bomberman.gameObject.AddComponent(curse.GetType());
-                    bomberman.GetComponent<BombermanStats>().Cursed = true;
-                }
-            }
-        }
+        // private void OnTriggerEnter(Collider bomberman)
+        // {
+        //     if (gameObject.GetComponent<BombermanStats>().Cursed)
+        //     {
+        //         var curse = gameObject.GetComponent<Curse>();
+        //         if (bomberman.gameObject.tag.Equals("Player") && !bomberman.gameObject.GetComponent<BombermanStats>().Cursed)
+        //         {
+        //             bomberman.gameObject.AddComponent(curse.GetType());
+        //             bomberman.GetComponent<BombermanStats>().Cursed = true;
+        //         }
+        //     }
+        // }
     }
 }

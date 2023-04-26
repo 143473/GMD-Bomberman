@@ -2,17 +2,19 @@ using System;
 using System.Collections.Generic;
 using PickUps.Curses;
 using UnityEngine;
+using Utils;
 
 public class BombsInventory : MonoBehaviour
 {
     [SerializeField] private GameObject bombPrefab;
     public List<GameObject> Bombs { get; set; }
     private GameObject bombsInventory;
+    private FinalBombermanStatsV2 finalBombermanStatsV2;
 
     private void Awake()
     {
+        finalBombermanStatsV2 = GetComponent<FinalBombermanStatsV2>();
         Bombs = new List<GameObject>();
-        BombermanStats.onBombIncrease += AddBomb;
     }
 
     private void Start()
@@ -22,6 +24,14 @@ public class BombsInventory : MonoBehaviour
         bombsInventory.name = $"{name} Inventory";
         
         AddBomb(name);
+    }
+
+    private void Update()
+    {
+        if (finalBombermanStatsV2.GetNumericStat(Stats.Bombs) > Bombs.Count)
+        {
+            AddBomb(name);
+        }
     }
 
     private void AddBomb(string bomberman)
@@ -36,8 +46,10 @@ public class BombsInventory : MonoBehaviour
 
     public GameObject GetBomb()
     {
+        var bombsCapacity = finalBombermanStatsV2.GetNumericStat(Stats.Bombs);
         var availableBombs = Bombs.Exists(a => !a.activeSelf);
-        if(availableBombs)
+        
+        if(availableBombs && bombsCapacity != 0)
             return Bombs.Find(a => !a.activeSelf);
         return null;
     }

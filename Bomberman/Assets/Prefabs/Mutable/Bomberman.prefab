@@ -100,10 +100,10 @@ GameObject:
   - component: {fileID: 7955874745675777135}
   - component: {fileID: 6764944444530006132}
   - component: {fileID: -6602987813785986414}
-  - component: {fileID: 3311115151232674832}
   - component: {fileID: -23946934266132900}
   - component: {fileID: 3000265114568021995}
   - component: {fileID: 6360696762997118264}
+  - component: {fileID: 3767436951846261815}
   m_Layer: 3
   m_Name: Bomberman
   m_TagString: Player
@@ -303,19 +303,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e3b7b7cbc1a44d79a5f9c6c8d54f8d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3311115151232674832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7955874745675777129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcf7ec76f7cb45da882bef7eb3235bce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _bombermanStatsV2: {fileID: 11400000, guid: 60398342eb2f248449f856dac15c15de, type: 2}
 --- !u!114 &-23946934266132900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,6 +341,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+--- !u!114 &3767436951846261815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7955874745675777129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48c711240094ef94bb8c10451ad4d936, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bombermanStats: {fileID: 11400000, guid: a5e901d76c387344ea13678dfd371154, type: 2}
+  curses: []
 --- !u!1 &7955874745898171158
 GameObject:
   m_ObjectHideFlags: 0
