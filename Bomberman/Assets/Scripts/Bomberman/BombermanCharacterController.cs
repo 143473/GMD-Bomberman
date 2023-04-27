@@ -17,6 +17,7 @@ public class BombermanCharacterController : MonoBehaviour
     //private BombermanStats bombermanStats;
     private FinalBombermanStatsV2 bombermanStats;
     private Vector2 movementInput = Vector2.zero;
+    private Vector3 direction = Vector3.zero;
 
     public float turnSmoothTime = 0.1f;
 
@@ -50,9 +51,11 @@ public class BombermanCharacterController : MonoBehaviour
         // float horizontal = Input.GetAxis("Horizontal");
         // float vertical = Input.GetAxis("Vertical");
         // Vector3 direction = new Vector3(horizontal, -1f, vertical).normalized;
-        Vector3 direction = new Vector3(movementInput.x, -1f, movementInput.y).normalized;
-
-       
+        if(!bombermanStats.GetBooleanStat(Stats.InverseControls)) 
+            direction = new Vector3(movementInput.x, -1f, movementInput.y).normalized;
+        else
+            direction = new Vector3(-movementInput.x, -1f, -movementInput.y).normalized;
+        
         float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
         

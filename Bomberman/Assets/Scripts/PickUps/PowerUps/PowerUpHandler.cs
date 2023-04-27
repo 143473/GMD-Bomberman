@@ -23,8 +23,10 @@ public class PowerUpHandler : MonoBehaviour
         powerUps = powerUps.Where(a => 
         {
             var addedToInitialList = false;
-            if (a.TryGetComponent(out IPowerUp powerUpScript))
-                addedToInitialList = randomChance < powerUpScript.ChanceToSpawn();
+            var powerUpScript = a.GetComponent<IPowerUp>();
+            
+            addedToInitialList = randomChance <= powerUpScript.ChanceToSpawn();
+            
             return addedToInitialList;
         }).ToArray();
         SpawnRandomPowerUp();

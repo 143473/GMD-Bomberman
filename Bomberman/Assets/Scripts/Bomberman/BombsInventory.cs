@@ -26,7 +26,7 @@ public class BombsInventory : MonoBehaviour
         AddBomb(name);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (finalBombermanStatsV2.GetNumericStat(Stats.Bombs) > Bombs.Count)
         {

@@ -142,10 +142,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   availabilityInSeconds: 10
   curseModifiers:
-  - {fileID: 11400000, guid: a336f142731b770418b9253208dfb013, type: 2}
-  - {fileID: 11400000, guid: 364abf9ecebfead4a806bd6485c3acf2, type: 2}
-  - {fileID: 11400000, guid: 82e2b77cecd4eb542b164c08c5fb6cde, type: 2}
-  - {fileID: 11400000, guid: 16afcefb5c6e698499b8460aeb5bb0d1, type: 2}
-  - {fileID: 11400000, guid: 77a1ce54677423e4c96c04c51e13c404, type: 2}
-  - {fileID: 11400000, guid: 0f02f6bfc31d6554d87792699b9553af, type: 2}
-  - {fileID: 11400000, guid: 045b91a15079d3243bfa5726bc5bde19, type: 2}
+  - {fileID: 11400000, guid: 6519944fc8d34194f87f8a755d9e1a33, type: 2}

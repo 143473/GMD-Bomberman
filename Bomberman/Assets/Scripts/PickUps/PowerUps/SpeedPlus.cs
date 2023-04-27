@@ -5,7 +5,7 @@ using Utils;
 public class SpeedPlus : MonoBehaviour, IPowerUp
 {
     [SerializeField] private int extraSpeed = 1;
-    [SerializeField] private int chanceToSpawn = 70;
+    [SerializeField] private int chanceToSpawn = 100;
     private StatsHandler statsHandler;
     
     public void ApplyEffect(FinalBombermanStatsV2 finalBombermanStatsV2)

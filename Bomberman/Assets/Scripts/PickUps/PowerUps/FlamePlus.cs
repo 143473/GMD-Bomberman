@@ -5,7 +5,7 @@ using Utils;
 public class FlamePlus : MonoBehaviour, IPowerUp
 {
     [SerializeField] private int extraFlame = 1;
-    [SerializeField] private int chanceToSpawn = 80;
+    [SerializeField] private int chanceToSpawn = 100;
     private StatsHandler statsHandler;
     
     public void ApplyEffect(FinalBombermanStatsV2 finalBombermanStatsV2)

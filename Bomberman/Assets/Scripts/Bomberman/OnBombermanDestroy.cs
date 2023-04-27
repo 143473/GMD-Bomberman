@@ -10,13 +10,17 @@ public class OnBombermanDestroy : MonoBehaviour, IDamage
 
     private void Awake()
     {
-        _finalBombermanStatsV2 = GetComponent<FinalBombermanStatsV2>();
+        _finalBombermanStatsV2 = gameObject.GetComponent<FinalBombermanStatsV2>();
+    }
+
+    private void Start()
+    {
         _statsHandler = new StatsHandler(_finalBombermanStatsV2);
     }
 
     public void OnDamage()
     {
-        gameObject.SetActive(false);
         _statsHandler.AddPermanentStat(Stats.Lives, numericValue: -1);
+        gameObject.SetActive(false);
     }
 }
