@@ -13,8 +13,8 @@ public class InitializeField : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject wall;
-    //[SerializeField]
-    public GameObject bomberman;
+    [SerializeField]
+    private  GameObject bomberman;
     private GameObject destroyableWalls;
 
     private void Awake()
@@ -24,6 +24,7 @@ public class InitializeField : MonoBehaviour
         {
             name = "Destroyable Walls"
         };
+        
     }
     
     void Start()
@@ -65,7 +66,6 @@ public class InitializeField : MonoBehaviour
     }
     void PlaceBomberman()
     {
-        bomberman = Resources.Load<GameObject>("Bomberman/Bomberman");
         Vector3 vect;
         do
         {
