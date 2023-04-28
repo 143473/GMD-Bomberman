@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
@@ -12,17 +13,19 @@ public class InitializeField : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject wall;
+    //[SerializeField]
     public GameObject bomberman;
-
     private GameObject destroyableWalls;
 
     private void Awake()
     {
         // For grouping the gameobjects created at runtime - prettier in editor 
-        destroyableWalls = new GameObject();
-        destroyableWalls.name = "Destroyable Walls";
+        destroyableWalls = new GameObject
+        {
+            name = "Destroyable Walls"
+        };
     }
-
+    
     void Start()
     {
         PlaceBomberman();
@@ -50,21 +53,25 @@ public class InitializeField : MonoBehaviour
         if (colliders.Length == 0)
         {
             //check if it collides with bomberman
-            colliders = Physics.OverlapSphere(vect, 2f);
-            //if (!colliders.Any(c => c.GetComponent<BombermanCharacterController>() != null)) {
-            if (!colliders.Any(c => c.tag.Equals("Player"))) {
-                Instantiate(wall, vect, transform.rotation, destroyableWalls.transform);
+            //add layer mask so we get rid of ifs
+            colliders = Physics.OverlapSphere(vect, 2f );
+            if (colliders.All(c => c.GetComponent<BombermanCharacterController>() == null)) {
+                if (!colliders.Any(c => c.tag.Equals("Player")))
+                {
+                    Instantiate(wall, vect, transform.rotation, destroyableWalls.transform);
+                }
             }
         }
     }
     void PlaceBomberman()
     {
+        bomberman = Resources.Load<GameObject>("Bomberman/Bomberman");
         Vector3 vect;
         do
         {
             vect = GetRandomVect();
-        } while (Physics.OverlapSphere(vect, 0.4f).Length != 0);
-        
+        } while (Physics.OverlapSphere(vect, 0.6f).Length != 0);
+
         var p1 = PlayerInput.Instantiate(bomberman,
             controlScheme: "Keyboard.Arrows", pairWithDevice: Keyboard.current);
 
@@ -82,7 +89,5 @@ public class InitializeField : MonoBehaviour
 
         p2.transform.position = vect2;
         p2.name = "Player 2";
-
-        //Instantiate(bomberman, vect, transform.rotation);
     }
 }
