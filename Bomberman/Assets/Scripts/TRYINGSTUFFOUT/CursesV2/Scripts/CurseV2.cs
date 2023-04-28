@@ -25,9 +25,15 @@ namespace PickUps.Curses
 
         private void Start()
         {
-            statsHandler.AddCurseModifier(appliedCurse);
+            var exists = statsHandler.CheckForModifierAppliedToTheSameStat(appliedCurse);
             
-            StartCoroutine(SelfDestroy());
+            if (exists) 
+                Destroy(this);
+            else
+            {
+                statsHandler.AddCurseModifier(appliedCurse); 
+                StartCoroutine(SelfDestroy());
+            }
         }
 
         private IEnumerator SelfDestroy()

@@ -18,17 +18,22 @@ namespace Utils
             
             numericStats = this.finalBombermanStatsV2.numericStats;
             boolStats = this.finalBombermanStatsV2.boolStats;
-            curses = this.finalBombermanStatsV2.curses;
+            curses = this.finalBombermanStatsV2.curses; 
+        }
+
+        public bool CheckForModifierAppliedToTheSameStat(CurseModifier curseModifier)
+        {
+            var existingStatCurses = curses.FirstOrDefault(a => a.stat == curseModifier.stat);
+
+            return existingStatCurses != null || curses.Contains(curseModifier);
         }
         
         public void AddCurseModifier(CurseModifier curseModifier)
         {
             if(!boolStats[Stats.Cursed]) 
                 boolStats[Stats.Cursed] = true;
-            
-            if(!curses.Contains(curseModifier))
-                curses.Add(curseModifier);
-            Debug.Log(curses.First(a => a.stat == curseModifier.stat).stat);
+
+            curses.Add(curseModifier);
         }
 
         public void RemoveCurseModifier(CurseModifier curseModifier)
