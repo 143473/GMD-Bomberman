@@ -82,8 +82,8 @@ public class InitializeField : MonoBehaviour
         do
         {
             vect2 = GetRandomVect();
-        } while (Physics.OverlapSphere(vect2, 0.4f).Length != 0);
-        
+        } while (Physics.OverlapSphere(vect2, 0.6f).Length != 0);
+
         var p2 = PlayerInput.Instantiate(bomberman,
             controlScheme: "Keyboard.WASD", pairWithDevice: Keyboard.current);
 
