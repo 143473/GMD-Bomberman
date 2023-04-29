@@ -44,12 +44,12 @@ public class BombermanCharacterController : MonoBehaviour
     {
         Vector3 direction = new Vector3(movementInput.x, -1f, movementInput.y).normalized;
         
-        float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-        
         if (movementInput.x != 0.0f || movementInput.y != 0.0)
 		{
-			transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            float targetAngle = Mathf.Atan2(-direction.x, -direction.z) * Mathf.Rad2Deg;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
             isWalking = true;
         }
         else
