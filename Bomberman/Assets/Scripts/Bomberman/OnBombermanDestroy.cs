@@ -1,12 +1,16 @@
 using System;
 using Interfaces;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using Utils;
 
 public class OnBombermanDestroy : MonoBehaviour, IDamage
 {
     private StatsHandler _statsHandler;
     private FinalBombermanStatsV2 _finalBombermanStatsV2;
+    public delegate void OnBombermanDeath(float lives, GameObject gameObject);
+    public static OnBombermanDeath onBombermanDeath;
 
     private void Awake()
     {
@@ -21,6 +25,9 @@ public class OnBombermanDestroy : MonoBehaviour, IDamage
     public void OnDamage()
     {
         _statsHandler.AddPermanentStat(Stats.Lives, numericValue: -1);
-        gameObject.SetActive(false);
+        gameObject.transform.position = Vector3.up * int.MaxValue;
+        gameObject.GetComponent<BombermanCharacterController>().enabled = false;
+        
+        onBombermanDeath?.Invoke(_finalBombermanStatsV2.numericStats[Stats.Lives], gameObject);
     }
 }

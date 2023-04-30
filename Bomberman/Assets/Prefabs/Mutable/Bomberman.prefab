@@ -201,7 +201,7 @@ MonoBehaviour:
     m_ActionId: 3c1c21ae-20d0-4333-be48-8853a9882052
     m_ActionName: Player/ExplodeBomb[/Keyboard/minus,/Keyboard/u]
   m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: Keyboard.WASD
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
