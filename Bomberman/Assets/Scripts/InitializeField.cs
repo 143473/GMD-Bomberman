@@ -6,6 +6,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
 
@@ -39,7 +40,7 @@ public class InitializeField : MonoBehaviour
 
     Vector3 GetRandomVect()
     {
-        return new Vector3(GetRandomPos(1f,15f), 0.5f, GetRandomPos(-7f, 7f));
+        return new Vector3(GetRandomPos(1f,15f), 0f, GetRandomPos(-7f, 7f));
     }
     
     float GetRandomPos(float from, float to)
@@ -49,19 +50,10 @@ public class InitializeField : MonoBehaviour
     void PlaceWall()
     {
         var vect = GetRandomVect();
-        //checking for colliding walls
-        Collider[] colliders = Physics.OverlapSphere(vect, 0.4f);
-        if (colliders.Length == 0)
+        
+        if (Physics.OverlapSphere(vect, 0.4f).Length == 0)
         {
-            //check if it collides with bomberman
-            //add layer mask so we get rid of ifs
-            colliders = Physics.OverlapSphere(vect, 2f );
-            if (colliders.All(c => c.GetComponent<BombermanCharacterController>() == null)) {
-                if (!colliders.Any(c => c.tag.Equals("Player")))
-                {
-                    Instantiate(wall, vect, transform.rotation, destroyableWalls.transform);
-                }
-            }
+            Instantiate(wall, vect, transform.rotation, destroyableWalls.transform);
         }
     }
     void PlaceBomberman()
@@ -70,7 +62,7 @@ public class InitializeField : MonoBehaviour
         do
         {
             vect = GetRandomVect();
-        } while (Physics.OverlapSphere(vect, 0.6f).Length != 0);
+        } while (Physics.OverlapSphere(vect, 0.4f).Length != 0);
 
         var p1 = PlayerInput.Instantiate(bomberman,
             controlScheme: "Keyboard.Arrows", pairWithDevice: Keyboard.current);
@@ -82,7 +74,7 @@ public class InitializeField : MonoBehaviour
         do
         {
             vect2 = GetRandomVect();
-        } while (Physics.OverlapSphere(vect2, 0.6f).Length != 0);
+        } while (Physics.OverlapSphere(vect2, 0.4f).Length != 0);
 
         var p2 = PlayerInput.Instantiate(bomberman,
             controlScheme: "Keyboard.WASD", pairWithDevice: Keyboard.current);
