@@ -1,14 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
-
 
 public class InitializeField : MonoBehaviour
 {
@@ -31,55 +23,51 @@ public class InitializeField : MonoBehaviour
     void Start()
     {
         PlaceBomberman();
-        
-        for (int i = 0; i < 60; i++)
-        {
-            PlaceWall();
-        }
-    }
-
-    Vector3 GetRandomVect()
-    {
-        return new Vector3(GetRandomPos(1f,15f), 0f, GetRandomPos(-7f, 7f));
+        PlaceWalls();
     }
     
-    float GetRandomPos(float from, float to)
+    void PlaceWalls()
     {
-        return Mathf.Round(Random.Range(from, to));
-    }
-    void PlaceWall()
-    {
-        var vect = GetRandomVect();
-        
-        if (Physics.OverlapSphere(vect, 0.4f).Length == 0)
+        for (int x = -10; x <= 10; x++)
         {
-            Instantiate(wall, vect, transform.rotation, destroyableWalls.transform);
+            for (int z = -5; z <= 5; z++)
+            {
+                if (Random.Range(0, 100) < 50)
+                {
+                    continue;
+                }
+                
+                //no walls in stone walls
+                if ((x + 10) % 2 == 1 && (z + 5) % 2 == 1)
+                {
+                    continue;
+                }
+                
+                //no walls at corners
+                if (x is <= -9 or >= 9 && z is <= -4 or >= 4)
+                {
+                    continue;
+                }
+                
+                var vect = new Vector3(x, 0, z);
+                Instantiate(wall, vect, transform.rotation, destroyableWalls.transform);
+            }
         }
     }
+    
     void PlaceBomberman()
     {
-        Vector3 vect;
-        do
-        {
-            vect = GetRandomVect();
-        } while (Physics.OverlapSphere(vect, 0.4f).Length != 0);
-
         var p1 = PlayerInput.Instantiate(bomberman,
             controlScheme: "Keyboard.Arrows", pairWithDevice: Keyboard.current);
 
-        p1.transform.position = vect;
+        p1.transform.position = new Vector3(-10,0,-5);
+        p1.transform.rotation = Quaternion.LookRotation(Vector3.back);
         p1.name = "Player 1";
         
-        Vector3 vect2;
-        do
-        {
-            vect2 = GetRandomVect();
-        } while (Physics.OverlapSphere(vect2, 0.4f).Length != 0);
-
         var p2 = PlayerInput.Instantiate(bomberman,
             controlScheme: "Keyboard.WASD", pairWithDevice: Keyboard.current);
 
-        p2.transform.position = vect2;
+        p2.transform.position = new Vector3(10,0,5);
         p2.name = "Player 2";
     }
 }
