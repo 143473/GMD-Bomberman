@@ -40,6 +40,7 @@ public class BombermanCharacterController : MonoBehaviour
             onManuallyExplodeBomb?.Invoke(name);
         }
     }
+    
     void Update()
     {
         Vector3 direction = new Vector3(movementInput.x, -1f, movementInput.y).normalized;
@@ -56,7 +57,7 @@ public class BombermanCharacterController : MonoBehaviour
         {
             isWalking = false;
         }
-        controller.Move(direction * (bombermanStats.Speed * Time.deltaTime));
         
+        controller.Move(direction * (bombermanStats.Speed * Time.deltaTime));
     }
 }

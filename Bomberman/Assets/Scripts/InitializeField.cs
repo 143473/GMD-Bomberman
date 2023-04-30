@@ -5,9 +5,12 @@ using Random = UnityEngine.Random;
 public class InitializeField : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject wall;
     [SerializeField]
-    private  GameObject bomberman;
+    private GameObject wall;
+    [SerializeField]
+    private  GameObject bombermanBlue;
+    [SerializeField]
+    private  GameObject bombermanRed;
     private GameObject destroyableWalls;
 
     private void Awake()
@@ -57,14 +60,14 @@ public class InitializeField : MonoBehaviour
     
     void PlaceBomberman()
     {
-        var p1 = PlayerInput.Instantiate(bomberman,
+        var p1 = PlayerInput.Instantiate(bombermanRed,
             controlScheme: "Keyboard.Arrows", pairWithDevice: Keyboard.current);
 
         p1.transform.position = new Vector3(-10,0,-5);
         p1.transform.rotation = Quaternion.LookRotation(Vector3.back);
         p1.name = "Player 1";
         
-        var p2 = PlayerInput.Instantiate(bomberman,
+        var p2 = PlayerInput.Instantiate(bombermanBlue,
             controlScheme: "Keyboard.WASD", pairWithDevice: Keyboard.current);
 
         p2.transform.position = new Vector3(10,0,5);
