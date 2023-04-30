@@ -3493,5 +3493,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ground
       objectReference: {fileID: 0}
+    - target: {fileID: 1918056630630443934, guid: 715bc3be053979741862fb6a6b4fc1e0, type: 3}
+      propertyPath: bomberman
+      value: 
+      objectReference: {fileID: 7832081901974112485, guid: 0b653baa861611a44a0f90f805e701fc, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 715bc3be053979741862fb6a6b4fc1e0, type: 3}
