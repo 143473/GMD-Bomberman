@@ -1,32 +1,64 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using TRYINGSTUFFOUT.CursesV2.ScriptableObjects;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using Utils;
 using Random = UnityEngine.Random;
 
 namespace Managers
 {
     public class PlayerManager : MonoBehaviour
     {
-        private PlayerInputManager playerInputManager;
+        [SerializeField] private BombermanStatsV3SO bombermanStatsV3So;
+        [SerializeField] private GameObject bomberman;
+        [SerializeField] private GameSettings gameSettings;
+
+        private IDictionary<int, Vector3> playerSpawnLocations;
 
         private void Awake()
         {
-            playerInputManager = PlayerInputManager.instance;
+            playerSpawnLocations = new Dictionary<int, Vector3>();
+            bombermanStatsV3So.lives = gameSettings.playerLivesToStartWith;
+            StageManager.onStageCreation += SetBombermanSpawnLocations;
         }
 
         private void Start()
         {
-            BombermanInstantiation();
             OnBombermanDestroy.onBombermanDeath += BombermanRespawn;
+        }
+
+        void SetBombermanSpawnLocations(int stageLength, int stageWidth)
+        {
+            playerSpawnLocations.Add(1, new Vector3(1, 0.6f, 1));
+            playerSpawnLocations.Add(2, new Vector3(stageLength-2, 0.6f, stageWidth-2));
+            playerSpawnLocations.Add(3, new Vector3(1, 0.6f, stageWidth-2));
+            playerSpawnLocations.Add(4, new Vector3(stageLength-2, 0.6f, 1));
+
+            BombermanInstantiation();
         }
 
         void BombermanInstantiation()
         {
-            
+            var player1KeyboardScheme = $"Keyboard." + gameSettings.player1Layout;
+            var player2KeyboardScheme = $"Keyboard." + gameSettings.player2Layout;
+
+            var player1 = PlayerInput.Instantiate(bomberman,
+                controlScheme: player1KeyboardScheme, pairWithDevice: Keyboard.current);
+            player1.name = "Player 1";
+            player1.transform.position = playerSpawnLocations[1];
+
+            if (gameSettings.numberOfHumanPlayers == 2)
+            {
+                var player2 = PlayerInput.Instantiate(bomberman,
+                    controlScheme: player2KeyboardScheme, pairWithDevice: Keyboard.current);
+                player2.name = "Player 2";
+                player2.transform.position = playerSpawnLocations[2];
+            }
         }
 
         void BombermanRespawn(float lives, GameObject bomberman)
@@ -49,17 +81,6 @@ namespace Managers
             yield return new WaitForSeconds(2f);
             bomberman.transform.position = vect;
             bomberman.GetComponent<BombermanCharacterController>().enabled = true;
-        }
-
-        IEnumerator BombermanRespawnFlash(GameObject gameObject)
-        {
-            float timer = 2;
-            while (timer > 0)
-            {
-                timer -= Time.deltaTime;
-                // gameObject.GetComponents<MeshRenderer>()
-                yield return new WaitForSeconds(0.4f);
-            }
         }
         Vector3 GetRandomVect()
         {

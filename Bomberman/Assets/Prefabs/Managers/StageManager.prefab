@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7520774087152385269
+--- !u!1 &6543377519252725429
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,43 +8,42 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8472279019977371418}
-  - component: {fileID: 9129267664667377189}
+  - component: {fileID: 5084632642935131403}
+  - component: {fileID: 5807921765785874115}
   m_Layer: 0
-  m_Name: PlayerManager
+  m_Name: StageManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8472279019977371418
+--- !u!4 &5084632642935131403
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7520774087152385269}
+  m_GameObject: {fileID: 6543377519252725429}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.993382, y: -4.328752, z: 5.207489}
+  m_LocalPosition: {x: 8.181464, y: -0.87737584, z: 8.398882}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9129267664667377189
+--- !u!114 &5807921765785874115
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7520774087152385269}
+  m_GameObject: {fileID: 6543377519252725429}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40b679655b8c4745ad819f34c6bb8aa4, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d8acf711aa14e841b6e659c6fd1af75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bombermanStatsV3So: {fileID: 11400000, guid: 97e0a36bbb0c68140bb22bfcab95f9f0, type: 2}
-  bomberman: {fileID: 7955874745675777129, guid: 2d3ae8c265740a241833b2699774063d, type: 3}
-  inputAction: {fileID: -944628639613478452, guid: 44764a28fce0cbd43919cc360cd866b7, type: 3}
-  gameSettings: {fileID: 11400000, guid: c664bc2472ad21d4fbc33b07636e041b, type: 2}
+  field: {fileID: 7343891646672004391, guid: 2ec8e7267eca0d14e8440627c8a6da19, type: 3}
+  wallChanceToSpawn: 80
+  wall: {fileID: 4069603936090275850, guid: 62388d23b608ebd49b0cdcb9e91680b0, type: 3}
