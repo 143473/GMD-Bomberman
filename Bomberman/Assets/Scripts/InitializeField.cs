@@ -1,3 +1,4 @@
+using Helpers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
@@ -12,7 +13,7 @@ public class InitializeField : MonoBehaviour
     [SerializeField]
     private  GameObject bombermanRed;
     private GameObject destroyableWalls;
-
+    
     private void Awake()
     {
         // For grouping the gameobjects created at runtime - prettier in editor 
@@ -54,6 +55,7 @@ public class InitializeField : MonoBehaviour
                 
                 var vect = new Vector3(x, 0, z);
                 wall.transform.localScale= new Vector3(1,WallsHeight(), 1);
+                wall.GetComponent<Renderer>().sharedMaterial.SetColor("_Color",ColorHelper.NormalizeColor(176,140, 59,1));
                 Instantiate(wall, vect, transform.rotation, destroyableWalls.transform);
                 
             }
