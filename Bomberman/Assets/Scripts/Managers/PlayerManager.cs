@@ -34,10 +34,10 @@ namespace Managers
 
         void SetBombermanSpawnLocations(int stageLength, int stageWidth)
         {
-            playerSpawnLocations.Add(1, new Vector3(1, 0.6f, 1));
-            playerSpawnLocations.Add(2, new Vector3(stageLength-2, 0.6f, stageWidth-2));
-            playerSpawnLocations.Add(3, new Vector3(1, 0.6f, stageWidth-2));
-            playerSpawnLocations.Add(4, new Vector3(stageLength-2, 0.6f, 1));
+            playerSpawnLocations.Add(1, new Vector3(1, 0.5f, 1));
+            playerSpawnLocations.Add(2, new Vector3(stageLength-2, 0.5f, stageWidth-2));
+            playerSpawnLocations.Add(3, new Vector3(1, 0.5f, stageWidth-2));
+            playerSpawnLocations.Add(4, new Vector3(stageLength-2, 0.5f, 1));
 
             BombermanInstantiation();
         }
