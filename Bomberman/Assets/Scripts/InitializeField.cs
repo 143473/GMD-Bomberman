@@ -53,7 +53,9 @@ public class InitializeField : MonoBehaviour
                 }
                 
                 var vect = new Vector3(x, 0, z);
+                wall.transform.localScale= new Vector3(1,WallsHeight(), 1);
                 Instantiate(wall, vect, transform.rotation, destroyableWalls.transform);
+                
             }
         }
     }
@@ -72,5 +74,10 @@ public class InitializeField : MonoBehaviour
 
         p2.transform.position = new Vector3(10,0,5);
         p2.name = "Player 2";
+    }
+    
+    float WallsHeight()
+    {
+        return Random.Range(1.0f, 1.3f);
     }
 }
