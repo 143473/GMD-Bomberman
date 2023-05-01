@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 48c711240094ef94bb8c10451ad4d936
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - bombermanStatsV3So: {fileID: 11400000, guid: 97e0a36bbb0c68140bb22bfcab95f9f0, type: 2}
+  - maxBombermanStatsV3So: {fileID: 11400000, guid: 171b1201d29b83349bf58e7cb747b95b, type: 2}
+  - minBombermanStatsV3So: {fileID: 11400000, guid: 6848fa7013132594c8b1454e51f79b9e, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

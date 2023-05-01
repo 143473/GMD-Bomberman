@@ -3,21 +3,22 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Utils;
 
 public class PlaceBomb : MonoBehaviour
 {
 	private BombsInventory bombermanInventory;
-	private BombermanStats bombermanStats;
+	private FinalBombermanStatsV2 bombermanStats;
 	private Collider[] colliders;
 	private void Awake()
 	{
 		bombermanInventory = gameObject.GetComponent<BombsInventory>();
-		bombermanStats = gameObject.GetComponent<BombermanStats>();
+		bombermanStats = gameObject.GetComponent<FinalBombermanStatsV2>();
 	}
 
 	private void Update()
 	{
-		if (bombermanStats.Nasty)
+		if (bombermanStats.GetBooleanStat(Stats.Nasty))
 		{
 			Bomb();
 		}
@@ -34,7 +35,9 @@ public class PlaceBomb : MonoBehaviour
 			if (!colliders.Any(c => c.gameObject.tag.Equals("Bomb"))) {
 				bomb.transform.position = vect;
 				bomb.transform.rotation = transform.rotation;
-				bomb.GetComponent<BombStats>().SetStats(bombermanStats.Flame, bombermanStats.RemoteExplosion, bombermanStats.BombDelay);
+				bomb.GetComponent<BombStats>().SetStats(bombermanStats.GetNumericStat(Stats.Flame), 
+					bombermanStats.GetBooleanStat(Stats.RemoteExplosion), 
+					bombermanStats.GetNumericStat(Stats.BombDelay));
 				bomb.SetActive(true);
 			}
 			Array.Clear(colliders, 0, colliders.Length);

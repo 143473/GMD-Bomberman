@@ -103,10 +103,6 @@ MonoBehaviour:
   powerUps:
   - {fileID: 5335050565793354983, guid: 791becde4be348942befbd5a412c3682, type: 3}
   - {fileID: 5335050565793354983, guid: e39233f9c93f8494c8b5f18ebb0cf391, type: 3}
-  - {fileID: 5335050565793354983, guid: 553be24a0c18a8040b631dccc6c01003, type: 3}
-  - {fileID: 5335050565793354983, guid: be8e5e15a1da3ae47b119d71b0812b60, type: 3}
-  - {fileID: 5335050565793354983, guid: 9b48e16655e0fe8498e04106cee44238, type: 3}
-  - {fileID: 5335050565793354983, guid: ebcc5aa15e5218047a8c2c4f3c091a05, type: 3}
 --- !u!65 &5262083989155373347
 BoxCollider:
   m_ObjectHideFlags: 0

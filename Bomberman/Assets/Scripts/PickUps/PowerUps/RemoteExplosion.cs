@@ -1,17 +1,22 @@
 using PowerUps.Interfaces;
 using UnityEngine;
+using Utils;
 
 
 public class RemoteExplosion : MonoBehaviour, IPowerUp
 {
-    public void ApplyEffect(BombermanStats bombermanStats)
+    [SerializeField] private int chanceToSpawn = 50;
+    private StatsHandler statsHandler;
+    
+    public void ApplyEffect(FinalBombermanStatsV2 finalBombermanStatsV2)
     {
-        bombermanStats.RemoteExplosion = true;
+        statsHandler = new StatsHandler(finalBombermanStatsV2);
+        statsHandler.AddPermanentStat(Stats.RemoteExplosion, boolValue: true);
         Destroy(transform.parent.gameObject);
     }
-    
+
     public float ChanceToSpawn()
     {
-        return 30;
+        return chanceToSpawn;
     }
 }
