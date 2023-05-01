@@ -7,11 +7,12 @@ namespace Bomberman
     {
         private Animator animator;
         private string state = "IsWalking";
-
+        private BombermanCharacterController controller;
         void Start()
         {
             animator = GetComponent<Animator>();
-            BombermanCharacterController.onWalk += SetAnimator;
+            controller = GetComponent<BombermanCharacterController>();
+            controller.onWalk += SetAnimator;
         }
 
         void SetAnimator(bool isWalking)

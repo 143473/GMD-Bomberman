@@ -14,7 +14,7 @@ public class BombermanCharacterController : MonoBehaviour
     public static OnManuallyExplodeBomb onManuallyExplodeBomb;
 
     public delegate void OnWalk(bool isWalking);
-    public static OnWalk onWalk;
+    public OnWalk onWalk;
     
     //private BombermanStats bombermanStats;
     private FinalBombermanStatsV2 bombermanStats;
