@@ -15,6 +15,7 @@ public class BombScript : MonoBehaviour
     private FlamePool flamePoolSpawner;
     private BombStats bombStats;
     private Collider[] colliders;
+    private bool flameCoroutineStarted = false;
 
 
     private void Awake()
@@ -67,15 +68,20 @@ public class BombScript : MonoBehaviour
       // CheckDirection(Vector3.right);
       
       //Implement Coroutines somehow
-     // StartCoroutine(SpawnFlames());
+      if (!flameCoroutineStarted)
+      {
+        StartCoroutine(SpawnFlames());
+      }
       //StartCoroutine(DisableDelay());
-      SpawnFlames();
       
-      gameObject.SetActive(false);
+      //SpawnFlames();
+      
+      // gameObject.SetActive(false);
     }
     // First approach - checking radial - HOW TO COROUTINE?
-    void SpawnFlames()
+    IEnumerator SpawnFlames()
     {
+      flameCoroutineStarted = true;
       CheckCell(transform.position);
       
       List<Vector3> directions = new List<Vector3>() { Vector3.forward, Vector3.back, Vector3.left, Vector3.right };
@@ -96,9 +102,12 @@ public class BombScript : MonoBehaviour
         directions = directions.Where(x => !directionsBlocked.Contains(x)).ToList();
         directionsBlocked.Clear();
 
-        //yield return null;
+        yield return null;
       }
+
+      flameCoroutineStarted = false;
       directions.Clear();
+      gameObject.SetActive(false);
     }
 
 
