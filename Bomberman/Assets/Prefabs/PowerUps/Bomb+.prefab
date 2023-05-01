@@ -113,6 +113,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 035f18d87cc41e345a3908a3040bb3b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  extraBomb: 1
+  chanceToSpawn: 100
 --- !u!65 &8517784618748262423
 BoxCollider:
   m_ObjectHideFlags: 0

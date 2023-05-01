@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using Utils;
 
 public class BombermanCharacterController : MonoBehaviour
 {
@@ -13,14 +14,17 @@ public class BombermanCharacterController : MonoBehaviour
     public UnityEvent onPlaceBomb;
     public delegate void OnManuallyExplodeBomb(string name);
     public static OnManuallyExplodeBomb onManuallyExplodeBomb;
-    private BombermanStats bombermanStats;
+    //private BombermanStats bombermanStats;
+    private FinalBombermanStatsV2 bombermanStats;
     private Vector2 movementInput = Vector2.zero;
+    private Vector3 direction = Vector3.zero;
 
     public float turnSmoothTime = 0.1f;
 
     void Start()
     {
-        bombermanStats = gameObject.GetComponent<BombermanStats>();
+        //bombermanStats = gameObject.GetComponent<BombermanStats>();
+        bombermanStats = gameObject.GetComponent<FinalBombermanStatsV2>();
         controller = gameObject.GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -37,7 +41,7 @@ public class BombermanCharacterController : MonoBehaviour
 
     public void OnExplodeBomb(InputValue value)
     {
-        if (bombermanStats.RemoteExplosion)
+        if (bombermanStats.GetBooleanStat(Stats.RemoteExplosion))
         {
             onManuallyExplodeBomb?.Invoke(name);
         }
@@ -47,9 +51,11 @@ public class BombermanCharacterController : MonoBehaviour
         // float horizontal = Input.GetAxis("Horizontal");
         // float vertical = Input.GetAxis("Vertical");
         // Vector3 direction = new Vector3(horizontal, -1f, vertical).normalized;
-        Vector3 direction = new Vector3(movementInput.x, -1f, movementInput.y).normalized;
-
-       
+        if(!bombermanStats.GetBooleanStat(Stats.InverseControls)) 
+            direction = new Vector3(movementInput.x, -1f, movementInput.y).normalized;
+        else
+            direction = new Vector3(-movementInput.x, -1f, -movementInput.y).normalized;
+        
         float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
         
@@ -58,6 +64,6 @@ public class BombermanCharacterController : MonoBehaviour
 		{
 			transform.rotation = Quaternion.Euler(0f, angle, 0f);
 		}
-        controller.Move(direction * gameObject.GetComponent<BombermanStats>().Speed * Time.deltaTime);
+        controller.Move(direction * (bombermanStats.GetNumericStat(Stats.Speed) * Time.deltaTime));
     }
 }

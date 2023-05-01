@@ -15,6 +15,7 @@ public class BombScript : MonoBehaviour
     private FlamePool flamePoolSpawner;
     private BombStats bombStats;
     private Collider[] colliders;
+    private bool flameCoroutineStarted = false;
 
 
     private void Awake()
@@ -67,31 +68,20 @@ public class BombScript : MonoBehaviour
       // CheckDirection(Vector3.right);
       
       //Implement Coroutines somehow
-     // StartCoroutine(SpawnFlames());
-      //StartCoroutine(DisableDelay());
-      SpawnFlames();
-      
-      gameObject.SetActive(false);
-    }
-
-
-
-    void CheckDirection(Vector3 direction)
-    {
-      for (int i = 1; i < bombStats.Flame + 1; i++)
+      if (!flameCoroutineStarted)
       {
-        Vector3 offset = direction * (i * 1f);
-        Vector3 cellPosition = transform.position + offset;
-        
-        if (CheckCell(cellPosition))
-        {
-          break;
-        }
+        StartCoroutine(SpawnFlames());
       }
+      //StartCoroutine(DisableDelay());
+      
+      //SpawnFlames();
+      
+      // gameObject.SetActive(false);
     }
-
-    void SpawnFlames()
+    // First approach - checking radial - HOW TO COROUTINE?
+    IEnumerator SpawnFlames()
     {
+      flameCoroutineStarted = true;
       CheckCell(transform.position);
       
       List<Vector3> directions = new List<Vector3>() { Vector3.forward, Vector3.back, Vector3.left, Vector3.right };
@@ -112,15 +102,28 @@ public class BombScript : MonoBehaviour
         directions = directions.Where(x => !directionsBlocked.Contains(x)).ToList();
         directionsBlocked.Clear();
 
-        //yield return null;
+        yield return null;
       }
+
+      flameCoroutineStarted = false;
       directions.Clear();
+      gameObject.SetActive(false);
     }
 
-    IEnumerator DisableDelay()
+
+    // Second Approach - per direction
+    void CheckDirection(Vector3 direction)
     {
-      yield return new WaitForSeconds(1f);
-      gameObject.SetActive(false);
+      for (int i = 1; i < bombStats.Flame + 1; i++)
+      {
+        Vector3 offset = direction * (i * 1f);
+        Vector3 cellPosition = transform.position + offset;
+        
+        if (CheckCell(cellPosition))
+        {
+          break;
+        }
+      }
     }
 
     bool CheckCell(Vector3 cellPosition)
