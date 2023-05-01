@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d8acf711aa14e841b6e659c6fd1af75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  field: {fileID: 7343891646672004391, guid: 2ec8e7267eca0d14e8440627c8a6da19, type: 3}
-  wallChanceToSpawn: 80
+  field: {fileID: 1512709134803435413, guid: 715bc3be053979741862fb6a6b4fc1e0, type: 3}
+  wallChanceToSpawn: 75
   wall: {fileID: 4069603936090275850, guid: 62388d23b608ebd49b0cdcb9e91680b0, type: 3}
+  nonDestructibleWall: {fileID: 2105127466583013155, guid: dd958e1277f72d7458b763c0135e4124, type: 3}
+  stageLength: 21
+  stageWidth: 11
