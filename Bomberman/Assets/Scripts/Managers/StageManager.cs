@@ -32,7 +32,8 @@ public class StageManager : MonoBehaviour
 
     private void Start()
     {
-        Instantiate(field);
+        //Instantiate(field);
+        PlaceField();
         GenerateRandomStage();
     }
 

@@ -5,19 +5,18 @@ namespace Bomberman
 {
     public class AnimatorScript : MonoBehaviour
     {
-        private BombermanCharacterController controller;
         private Animator animator;
         private string state = "IsWalking";
 
         void Start()
         {
-            controller = GetComponent<BombermanCharacterController>();
             animator = GetComponent<Animator>();
+            BombermanCharacterController.onWalk += SetAnimator;
         }
 
-        void Update()
+        void SetAnimator(bool isWalking)
         {
-            animator.SetBool(state, controller.isWalking);
+            animator.SetBool(state, isWalking);
         }
     }
 }
