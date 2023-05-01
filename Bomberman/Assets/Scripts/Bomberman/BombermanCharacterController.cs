@@ -8,9 +8,7 @@ using Utils;
 public class BombermanCharacterController : MonoBehaviour
 {
     private CharacterController controller;
-    //public float speed = 6f;
     private float turnSmoothVelocity;
-
     public UnityEvent onPlaceBomb;
     public delegate void OnManuallyExplodeBomb(string name);
     public static OnManuallyExplodeBomb onManuallyExplodeBomb;
@@ -20,6 +18,7 @@ public class BombermanCharacterController : MonoBehaviour
     private Vector3 direction = Vector3.zero;
 
     public float turnSmoothTime = 0.1f;
+    public bool isWalking { get; set; }
 
     void Start()
     {
@@ -46,6 +45,7 @@ public class BombermanCharacterController : MonoBehaviour
             onManuallyExplodeBomb?.Invoke(name);
         }
     }
+    
     void Update()
     {
         // float horizontal = Input.GetAxis("Horizontal");
@@ -59,7 +59,6 @@ public class BombermanCharacterController : MonoBehaviour
         float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
         
-		//if (horizontal != 0.0f || vertical != 0.0)
         if (movementInput.x != 0.0f || movementInput.y != 0.0)
 		{
 			transform.rotation = Quaternion.Euler(0f, angle, 0f);

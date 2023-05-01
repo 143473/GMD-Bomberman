@@ -9,7 +9,6 @@ using UnityEditor;
 public class BombScript : MonoBehaviour
 {
   public BoxCollider bc;
-    //private Vector3 halfExtent = new Vector3(0.25f, 0, 0.25f);
     private Vector3 halfExtent = new Vector3();
     
     private FlamePool flamePoolSpawner;
@@ -108,6 +107,7 @@ public class BombScript : MonoBehaviour
       flameCoroutineStarted = false;
       directions.Clear();
       gameObject.SetActive(false);
+
     }
 
 
