@@ -40,7 +40,7 @@ public class StageManager : MonoBehaviour
     void PlaceField()
     {
         // Scaling the field renders it black ....
-        field.transform.localScale = new Vector3(stageLength / 10f, 0, stageWidth / 10f);
+        field.transform.localScale = new Vector3(stageLength / 10f, 5, stageWidth / 10f);
         field.transform.position = new Vector3((stageLength-1) / 2f, -0.5f, (stageWidth-1) / 2f);
         Instantiate(field, stage.transform);
     }
