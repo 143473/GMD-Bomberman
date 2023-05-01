@@ -63,7 +63,6 @@ namespace Managers
 
         void BombermanRespawn(float lives, GameObject bomberman)
         {
-            Debug.Log("xxx");
             if(lives <= 0)
                 return;
             
@@ -84,7 +83,7 @@ namespace Managers
         }
         Vector3 GetRandomVect()
         {
-            return new Vector3(GetRandomPos(1f,15f), 0.5f, GetRandomPos(-7f, 7f));
+            return new Vector3(GetRandomPos(1f,15f), 0.7f, GetRandomPos(-7f, 7f));
         }
     
         float GetRandomPos(float from, float to)

@@ -24,10 +24,10 @@ public class StageManager : MonoBehaviour
 
     private void Awake()
     {
-        stage = new GameObject();
-        stage.name = "Stage";
-        
-        
+        stage = new GameObject
+        {
+            name = "Stage"
+        };
     }
 
     private void Start()
@@ -92,7 +92,7 @@ public class StageManager : MonoBehaviour
                 }
         }
         
-        // Players spawn locations
+        // Hardcoded Players spawn locations
         stageLayout[1, 1] = 1;
         stageLayout[1, 2] = 1;
         stageLayout[2, 1] = 1;
