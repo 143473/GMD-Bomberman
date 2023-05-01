@@ -10,10 +10,7 @@ public class BombScript : MonoBehaviour
 {
     public float delay;
     public BoxCollider bc;
-    //private Vector3 halfExtent = new Vector3(0.25f, 0, 0.25f);
     private Vector3 halfExtent = new Vector3();
-    
-    [SerializeField] private GameObject flamePrefab;
     private FlamePool flamePoolSpawner;
     private Collider[] colliders;
 
@@ -70,8 +67,7 @@ public class BombScript : MonoBehaviour
       CheckDirection(Vector3.right);
 
       gameObject.SetActive(false);
-      //Destroy(gameObject);      
-      //hasExploded = true;
+
     }
 
     void CheckDirection(Vector3 direction)
