@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO.IsolatedStorage;
 using System.Linq;
+using Helpers;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -14,6 +15,8 @@ public class StageManager : MonoBehaviour
     [SerializeField] private GameObject nonDestructibleWall;
     [SerializeField] private int stageLength = 15;
     [SerializeField] private int stageWidth = 15;
+    private GameObject instatiatedWall;
+    private GameObject instatiatedStone;
 
     private int[,] stageLayout;
     public delegate void OnStageCreation(int stageLength, int stageWidth);
@@ -64,7 +67,10 @@ public class StageManager : MonoBehaviour
                 {
                     Vector3 vect = new Vector3(i, 0f, j);
                     stageLayout[i,j] = 5; 
-                    Instantiate(nonDestructibleWall, vect, transform.rotation, stage.transform);
+                    instatiatedStone = Instantiate(nonDestructibleWall, vect, transform.rotation, stage.transform);
+                    var render = instatiatedStone.GetComponentInChildren<Renderer>(true);
+                    render.material.color = StageHelper.StoneGradient();
+                    instatiatedStone.transform.localScale= new Vector3(1,StageHelper.StoneWallHeight(), 1);
                 }
 
             for (int j = 0; j < stageWidth; j++)
@@ -73,7 +79,10 @@ public class StageManager : MonoBehaviour
                 {
                     Vector3 vect = new Vector3(i, 0f, j);
                     stageLayout[i,j] = 5; 
-                    Instantiate(nonDestructibleWall, vect, transform.rotation, stage.transform);
+                    instatiatedStone = Instantiate(nonDestructibleWall, vect, transform.rotation, stage.transform);
+                    var render = instatiatedStone.GetComponentInChildren<Renderer>(true);
+                    render.material.color = StageHelper.StoneGradient();
+                    instatiatedStone.transform.localScale= new Vector3(1,StageHelper.StoneWallHeight(), 1);
                 }
             }
         }
@@ -88,7 +97,10 @@ public class StageManager : MonoBehaviour
                     if (j % 2 == 0)
                     {
                         stageLayout[i,j] = 5;
-                        Instantiate(nonDestructibleWall, vect, transform.rotation, stage.transform);
+                       instatiatedStone = Instantiate(nonDestructibleWall, vect, transform.rotation, stage.transform);
+                       var render = instatiatedStone.GetComponentInChildren<Renderer>(true);
+                       render.material.color = StageHelper.StoneGradient();
+                       instatiatedStone.transform.localScale= new Vector3(1,StageHelper.StoneWallHeight(), 1);
                     }
                 }
         }
@@ -121,7 +133,10 @@ public class StageManager : MonoBehaviour
                     Vector3 vect = new Vector3(i, 0f, j);
                     if (random < wallChanceToSpawn)
                     {
-                        Instantiate(wall, vect, transform.rotation, stage.transform);
+                        instatiatedWall = Instantiate(wall, vect, transform.rotation, stage.transform);
+                        var render = instatiatedWall.GetComponentInChildren<Renderer>(true);
+                        render.material.color = StageHelper.BrickGradient();
+                        instatiatedWall.transform.localScale= new Vector3(1,StageHelper.BrickWallHeight(), 1);
                     }
                 }
             }
