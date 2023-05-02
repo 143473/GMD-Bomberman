@@ -45,6 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bombermanStatsV3So: {fileID: 11400000, guid: 97e0a36bbb0c68140bb22bfcab95f9f0, type: 2}
-  bomberman: {fileID: 7955874745675777129, guid: 2d3ae8c265740a241833b2699774063d, type: 3}
-  inputAction: {fileID: -944628639613478452, guid: 44764a28fce0cbd43919cc360cd866b7, type: 3}
+  bomberman: {fileID: 2362120128477904832, guid: b7ac109a46b7f1e4a80c12b6935e1ff5, type: 3}
   gameSettings: {fileID: 11400000, guid: c664bc2472ad21d4fbc33b07636e041b, type: 2}
