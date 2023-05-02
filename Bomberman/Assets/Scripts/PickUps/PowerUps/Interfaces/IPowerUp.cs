@@ -6,7 +6,7 @@ namespace PowerUps.Interfaces
 {
     public interface IPowerUp
     {
-        void ApplyEffect(FinalBombermanStatsV2 finalBombermanStatsV2);
+        void ApplyEffect(FinalBombermanStats finalBombermanStats);
         float ChanceToSpawn();
     }
 }

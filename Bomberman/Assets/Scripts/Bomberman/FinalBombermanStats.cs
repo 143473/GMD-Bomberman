@@ -5,14 +5,15 @@ using PickUps.Curses;
 using TRYINGSTUFFOUT.CursesV2;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Utils
 {
-    public class FinalBombermanStatsV2 : MonoBehaviour
+    public class FinalBombermanStats : MonoBehaviour
     {
-        [SerializeField] private BombermanStatsV3SO bombermanStatsV3So;
-        [SerializeField] private BombermanStatsV3SO maxBombermanStatsV3So;
-        [SerializeField] private BombermanStatsV3SO minBombermanStatsV3So;
+        [FormerlySerializedAs("bombermanStatsV3So")] [SerializeField] private BombermanStatsSO bombermanStatsSo;
+        [FormerlySerializedAs("maxBombermanStatsV3So")] [SerializeField] private BombermanStatsSO maxBombermanStatsSo;
+        [FormerlySerializedAs("minBombermanStatsV3So")] [SerializeField] private BombermanStatsSO minBombermanStatsSo;
         
         public List<CurseModifier> curses;
 
@@ -24,9 +25,9 @@ namespace Utils
             numericStats = new Dictionary<Stats, float>();
             boolStats = new Dictionary<Stats, bool>();
 
-            numericStats.Add(Stats.Lives, bombermanStatsV3So.lives);
+            numericStats.Add(Stats.Lives, bombermanStatsSo.lives);
             
-            foreach (var baseStat in bombermanStatsV3So.BombermanStats)
+            foreach (var baseStat in bombermanStatsSo.BombermanStats)
             {
                 if(baseStat.isBoolean)
                     boolStats.Add(baseStat.stat, GetBoolFromFloat(baseStat.value));
@@ -55,8 +56,8 @@ namespace Utils
         public float GetNumericStat(Stats numericStat)
         {
             var baseStatValue = numericStats[numericStat];
-            var minStat = minBombermanStatsV3So.BombermanStats.First(a => a.stat == numericStat);
-            var maxStat = maxBombermanStatsV3So.BombermanStats.First(a => a.stat == numericStat);
+            var minStat = minBombermanStatsSo.BombermanStats.First(a => a.stat == numericStat);
+            var maxStat = maxBombermanStatsSo.BombermanStats.First(a => a.stat == numericStat);
             
             foreach (var curse in curses)
             {

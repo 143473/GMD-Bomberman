@@ -9,11 +9,11 @@ public class BombsInventory : MonoBehaviour
     [SerializeField] private GameObject bombPrefab;
     public List<GameObject> Bombs { get; set; }
     private GameObject bombsInventory;
-    private FinalBombermanStatsV2 finalBombermanStatsV2;
+    private FinalBombermanStats finalBombermanStats;
 
     private void Awake()
     {
-        finalBombermanStatsV2 = GetComponent<FinalBombermanStatsV2>();
+        finalBombermanStats = GetComponent<FinalBombermanStats>();
         Bombs = new List<GameObject>();
     }
 
@@ -28,7 +28,7 @@ public class BombsInventory : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (finalBombermanStatsV2.GetNumericStat(Stats.Bombs) > Bombs.Count)
+        if (finalBombermanStats.GetNumericStat(Stats.Bombs) > Bombs.Count)
         {
             AddBomb(name);
         }
@@ -46,7 +46,7 @@ public class BombsInventory : MonoBehaviour
 
     public GameObject GetBomb()
     {
-        var bombsCapacity = finalBombermanStatsV2.GetNumericStat(Stats.Bombs);
+        var bombsCapacity = finalBombermanStats.GetNumericStat(Stats.Bombs);
         var availableBombs = Bombs.Exists(a => !a.activeSelf);
         
         if(availableBombs && bombsCapacity != 0)

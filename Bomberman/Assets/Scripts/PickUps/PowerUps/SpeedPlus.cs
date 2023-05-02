@@ -8,9 +8,9 @@ public class SpeedPlus : MonoBehaviour, IPowerUp
     [SerializeField] private int chanceToSpawn = 100;
     private StatsHandler statsHandler;
     
-    public void ApplyEffect(FinalBombermanStatsV2 finalBombermanStatsV2)
+    public void ApplyEffect(FinalBombermanStats finalBombermanStats)
     {
-        statsHandler = new StatsHandler(finalBombermanStatsV2);
+        statsHandler = new StatsHandler(finalBombermanStats);
         statsHandler.AddPermanentStat(Stats.Speed, numericValue: extraSpeed);
         Destroy(transform.parent.gameObject);
     }

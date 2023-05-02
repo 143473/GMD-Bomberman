@@ -8,12 +8,12 @@ using Utils;
 public class PlaceBomb : MonoBehaviour
 {
 	private BombsInventory bombermanInventory;
-	private FinalBombermanStatsV2 bombermanStats;
+	private FinalBombermanStats bombermanStats;
 	private Collider[] colliders;
 	private void Awake()
 	{
 		bombermanInventory = gameObject.GetComponent<BombsInventory>();
-		bombermanStats = gameObject.GetComponent<FinalBombermanStatsV2>();
+		bombermanStats = gameObject.GetComponent<FinalBombermanStats>();
 	}
 
 	private void Update()

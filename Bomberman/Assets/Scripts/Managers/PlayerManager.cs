@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using Utils;
 using Random = UnityEngine.Random;
 
@@ -14,7 +15,7 @@ namespace Managers
 {
     public class PlayerManager : MonoBehaviour
     {
-        [SerializeField] private BombermanStatsV3SO bombermanStatsV3So;
+        [FormerlySerializedAs("bombermanStatsV3So")] [SerializeField] private BombermanStatsSO bombermanStatsSo;
         [SerializeField] private GameObject bomberman;
         [SerializeField] private GameSettings gameSettings;
 
@@ -23,7 +24,7 @@ namespace Managers
         private void Awake()
         {
             playerSpawnLocations = new Dictionary<int, Vector3>();
-            bombermanStatsV3So.lives = gameSettings.playerLivesToStartWith;
+            bombermanStatsSo.lives = gameSettings.playerLivesToStartWith;
             StageManager.onStageCreation += SetBombermanSpawnLocations;
         }
 
@@ -65,14 +66,15 @@ namespace Managers
         {
             if(lives <= 0)
                 return;
-            
-            Vector3 vect;
-            do
-            {
-                vect = GetRandomVect();
-            } while (Physics.OverlapSphere(vect, 0.4f).Length != 0);
-            
-            StartCoroutine(RespawnDelay(bomberman, vect));
+            // Work in progress, vectors for respawn
+            // Vector3 vect;
+            // do
+            // {
+            //     vect = GetRandomVect();
+            // } while (Physics.OverlapSphere(vect, 0.4f).Length != 0);
+
+            var random = Random.Range(0, playerSpawnLocations.Count);
+            StartCoroutine(RespawnDelay(bomberman, playerSpawnLocations[random]));
         }
 
         IEnumerator RespawnDelay(GameObject bomberman, Vector3 vect)

@@ -7,18 +7,18 @@ namespace Utils
 {
     public class StatsHandler
     {
-        private FinalBombermanStatsV2 finalBombermanStatsV2;
+        private FinalBombermanStats finalBombermanStats;
         private IDictionary<Stats, float> numericStats;
         private IDictionary<Stats, bool> boolStats;
         private List<CurseModifier> curses;
 
-        public StatsHandler(FinalBombermanStatsV2 finalBombermanStatsV2)
+        public StatsHandler(FinalBombermanStats finalBombermanStats)
         {
-            this.finalBombermanStatsV2 = finalBombermanStatsV2;
+            this.finalBombermanStats = finalBombermanStats;
             
-            numericStats = this.finalBombermanStatsV2.numericStats;
-            boolStats = this.finalBombermanStatsV2.boolStats;
-            curses = this.finalBombermanStatsV2.curses; 
+            numericStats = this.finalBombermanStats.numericStats;
+            boolStats = this.finalBombermanStats.boolStats;
+            curses = this.finalBombermanStats.curses; 
         }
 
         public bool CheckForModifierAppliedToTheSameStat(CurseModifier curseModifier)

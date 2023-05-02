@@ -8,18 +8,18 @@ using Utils;
 public class OnBombermanDestroy : MonoBehaviour, IDamage
 {
     private StatsHandler _statsHandler;
-    private FinalBombermanStatsV2 _finalBombermanStatsV2;
+    private FinalBombermanStats finalBombermanStats;
     public delegate void OnBombermanDeath(float lives, GameObject gameObject);
     public static OnBombermanDeath onBombermanDeath;
 
     private void Awake()
     {
-        _finalBombermanStatsV2 = gameObject.GetComponent<FinalBombermanStatsV2>();
+        finalBombermanStats = gameObject.GetComponent<FinalBombermanStats>();
     }
 
     private void Start()
     {
-        _statsHandler = new StatsHandler(_finalBombermanStatsV2);
+        _statsHandler = new StatsHandler(finalBombermanStats);
     }
 
     public void OnDamage()
@@ -28,6 +28,6 @@ public class OnBombermanDestroy : MonoBehaviour, IDamage
         gameObject.transform.position = Vector3.up * int.MaxValue;
         gameObject.GetComponent<BombermanCharacterController>().enabled = false;
         
-        onBombermanDeath?.Invoke(_finalBombermanStatsV2.numericStats[Stats.Lives], gameObject);
+        onBombermanDeath?.Invoke(finalBombermanStats.numericStats[Stats.Lives], gameObject);
     }
 }

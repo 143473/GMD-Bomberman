@@ -45,9 +45,9 @@ namespace Bomberman
         // {
         //     Debug.Log(other.gameObject.tag);
         //     var bomberman = other.gameObject;
-        //     if (GetComponent<FinalBombermanStatsV2>().GetBooleanStat(Stats.Cursed))
+        //     if (GetComponent<FinalBombermanStats>().GetBooleanStat(Stats.Cursed))
         //     {
-        //         CurseV2[] curseComponents = GetComponents<CurseV2>();
+        //         Curse[] curseComponents = GetComponents<Curse>();
         //         if (bomberman.gameObject.tag.Equals("Player"))
         //         {
         //             foreach (var curse in curseComponents)

@@ -269,9 +269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 800f7e7217165b546abb535b2b2e6bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 3
   bc: {fileID: 6679664196268858732}
-  flamePool: {fileID: 9098774338383594713, guid: 4da76952156cc13469bce684e05c3de6, type: 3}
 --- !u!65 &6679664196268858732
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -303,7 +301,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5362448642978832389}
         m_TargetAssemblyTypeName: BombScript, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: Explode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

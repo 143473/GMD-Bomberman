@@ -20,7 +20,7 @@ namespace Bomberman
             if (bomb.gameObject.tag.Equals("Bomb"))
             {
                 Debug.Log("Bomb?");
-                if (gameObject.GetComponent<FinalBombermanStatsV2>().GetBooleanStat(Stats.Kick))
+                if (gameObject.GetComponent<FinalBombermanStats>().GetBooleanStat(Stats.Kick))
                 {
                     Debug.Log("kick");
                     gameObject.GetComponent<BoxCollider>().enabled = true;

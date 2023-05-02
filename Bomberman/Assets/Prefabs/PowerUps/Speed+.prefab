@@ -124,3 +124,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d12d996c4916d84b897b12caf8b5e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  extraSpeed: 1
+  chanceToSpawn: 80

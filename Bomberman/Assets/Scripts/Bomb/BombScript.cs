@@ -66,18 +66,11 @@ public class BombScript : MonoBehaviour
       // CheckDirection(Vector3.left);
       // CheckDirection(Vector3.right);
       
-      //Implement Coroutines somehow
       if (!flameCoroutineStarted)
       {
         StartCoroutine(SpawnFlames());
       }
-      //StartCoroutine(DisableDelay());
-      
-      //SpawnFlames();
-      
-      // gameObject.SetActive(false);
     }
-    // First approach - checking radial - HOW TO COROUTINE?
     IEnumerator SpawnFlames()
     {
       flameCoroutineStarted = true;

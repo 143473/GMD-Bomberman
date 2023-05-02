@@ -143,3 +143,9 @@ MonoBehaviour:
   availabilityInSeconds: 10
   curseModifiers:
   - {fileID: 11400000, guid: 6519944fc8d34194f87f8a755d9e1a33, type: 2}
+  - {fileID: 11400000, guid: 238b6515ec81b2f408d25b3eed4a6390, type: 2}
+  - {fileID: 11400000, guid: 21fd0df86b5047e43871e9b64c9498ed, type: 2}
+  - {fileID: 11400000, guid: f44f8d2190e2d7d47b6e5a116231df4f, type: 2}
+  - {fileID: 11400000, guid: bb1481c378b5ff1478474d4583479a2c, type: 2}
+  - {fileID: 11400000, guid: 045b91a15079d3243bfa5726bc5bde19, type: 2}
+  - {fileID: 11400000, guid: 669ec21c5c09f4a42905d89fa206154b, type: 2}

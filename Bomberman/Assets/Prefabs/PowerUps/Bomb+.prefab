@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   extraBomb: 1
-  chanceToSpawn: 100
+  chanceToSpawn: 90
 --- !u!65 &8517784618748262423
 BoxCollider:
   m_ObjectHideFlags: 0

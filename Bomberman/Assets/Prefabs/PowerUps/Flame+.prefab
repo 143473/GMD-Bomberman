@@ -124,3 +124,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aecac79488ca0c745b009390e420f527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  extraFlame: 1
+  chanceToSpawn: 100

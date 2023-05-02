@@ -127,4 +127,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxFlame: 7
-  chanceToSpawn: 100
+  chanceToSpawn: 10

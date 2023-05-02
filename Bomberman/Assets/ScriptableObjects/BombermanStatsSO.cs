@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Utils
 {
     [CreateAssetMenu]
-    public class BombermanStatsV3SO: ScriptableObject
+    public class BombermanStatsSO: ScriptableObject
     {
         public float lives = 1;
 

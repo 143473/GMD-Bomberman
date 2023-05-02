@@ -7,9 +7,9 @@ public class Kick : MonoBehaviour, IPowerUp
     [SerializeField] private int chanceToSpawn = 50;
     private StatsHandler statsHandler;
     
-    public void ApplyEffect(FinalBombermanStatsV2 finalBombermanStatsV2)
+    public void ApplyEffect(FinalBombermanStats finalBombermanStats)
     {
-        statsHandler = new StatsHandler(finalBombermanStatsV2);
+        statsHandler = new StatsHandler(finalBombermanStats);
         statsHandler.AddPermanentStat(Stats.Kick, boolValue: true);
         Destroy(transform.parent.gameObject);
     }

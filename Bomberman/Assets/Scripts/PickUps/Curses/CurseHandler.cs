@@ -1,33 +1,33 @@
-// using System;
-// using Unity.VisualScripting;
-// using UnityEngine;
-// using Random = UnityEngine.Random;
-//
-// namespace PickUps.Curses
-// {
-//     public class CurseHandler: MonoBehaviour
-//     {
-//         [SerializeField] protected float availabilityInSeconds = 10;
-//         [SerializeField] protected GameObject[] curses;
-//         
-//         private void Awake()
-//         {
-//             Destroy(gameObject, availabilityInSeconds);
-//         }
-//
-//         private void OnTriggerEnter(Collider player)
-//         {
-//             var curseNumber = Random.Range(0, curses.Length);
-//             var curse = curses[curseNumber].GetComponent<Curse>();
-//             if (player.gameObject.tag.Equals("Player"))
-//             {
-//                 if (!player.gameObject.GetComponent<BombermanStats>().Cursed)
-//                 {
-//                     player.gameObject.AddComponent(curse.GetType());
-//                     player.GetComponent<BombermanStats>().Cursed = true;
-//                 }
-//                 Destroy(gameObject);
-//             }
-//         }
-//     }
-// }
+using System.Collections.Generic;
+using PickUps.Curses;
+using UnityEngine;
+
+namespace TRYINGSTUFFOUT.CursesV2
+{
+    public class CurseHandler : MonoBehaviour
+    {
+        [SerializeField] protected float availabilityInSeconds = 10;
+        [SerializeField] protected List<CurseModifier> curseModifiers;
+
+        private void Awake()
+        {
+            Destroy(gameObject, availabilityInSeconds);
+        }
+
+        private void OnTriggerEnter(Collider player)
+        {
+            if (player.gameObject.tag.Equals("Player"))
+            {
+                var curse = player.gameObject.AddComponent<Curse>();
+                curse.appliedCurse = GetRandomCurse();
+                Destroy(gameObject);
+            }
+        }
+        
+        private CurseModifier GetRandomCurse()
+        {
+            var curseModifier = Random.Range(0, curseModifiers.Count);
+            return curseModifiers[curseModifier];
+        }
+    }
+}

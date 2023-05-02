@@ -17,7 +17,7 @@ public class BombermanCharacterController : MonoBehaviour
     public OnWalk onWalk;
     
     //private BombermanStats bombermanStats;
-    private FinalBombermanStatsV2 bombermanStats;
+    private FinalBombermanStats bombermanStats;
     private Vector2 movementInput = Vector2.zero;
     private Vector3 direction = Vector3.zero;
 
@@ -26,7 +26,7 @@ public class BombermanCharacterController : MonoBehaviour
     void Start()
     {
         //bombermanStats = gameObject.GetComponent<BombermanStats>();
-        bombermanStats = gameObject.GetComponent<FinalBombermanStatsV2>();
+        bombermanStats = gameObject.GetComponent<FinalBombermanStats>();
         controller = gameObject.GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
     }
