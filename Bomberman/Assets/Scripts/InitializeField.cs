@@ -55,7 +55,7 @@ public class InitializeField : MonoBehaviour
                 
                 var vect = new Vector3(x, 0, z);
                 wall.transform.localScale= new Vector3(1,WallsHeight(), 1);
-                wall.GetComponent<Renderer>().sharedMaterial.SetColor("_Color",ColorHelper.NormalizeColor(176,140, 59,1));
+                wall.GetComponent<Renderer>().sharedMaterial.SetColor("_Color",StageHelper.BrickGradient());
                 Instantiate(wall, vect, transform.rotation, destroyableWalls.transform);
                 
             }
