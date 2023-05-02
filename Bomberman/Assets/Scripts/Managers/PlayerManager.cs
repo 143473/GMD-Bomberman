@@ -73,7 +73,7 @@ namespace Managers
             //     vect = GetRandomVect();
             // } while (Physics.OverlapSphere(vect, 0.4f).Length != 0);
 
-            var random = Random.Range(0, playerSpawnLocations.Count);
+            var random = Random.Range(1, playerSpawnLocations.Count+1);
             StartCoroutine(RespawnDelay(bomberman, playerSpawnLocations[random]));
         }
 

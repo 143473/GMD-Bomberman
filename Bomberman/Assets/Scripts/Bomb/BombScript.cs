@@ -57,20 +57,22 @@ public class BombScript : MonoBehaviour
       if(name.Contains(bomberman)) 
         Explode();
     }
+
     public void Explode()
     {
       //CheckCell(transform.position);
-      
+
       // CheckDirection(Vector3.forward);
       // CheckDirection(Vector3.back);
       // CheckDirection(Vector3.left);
       // CheckDirection(Vector3.right);
-      
-      if (!flameCoroutineStarted)
+
+      if (!flameCoroutineStarted && gameObject.activeSelf)
       {
         StartCoroutine(SpawnFlames());
       }
     }
+
     IEnumerator SpawnFlames()
     {
       flameCoroutineStarted = true;
