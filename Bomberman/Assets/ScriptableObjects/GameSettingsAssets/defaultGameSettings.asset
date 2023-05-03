@@ -15,7 +15,7 @@ MonoBehaviour:
   numberOfHumanPlayers: 2
   numberOfAIPlayers: 0
   stageSet: 0
-  playerLivesToStartWith: 3
+  playerLivesToStartWith: 10
   stageTimerInSeconds: 180
   player1Layout: 0
   player2Layout: 1

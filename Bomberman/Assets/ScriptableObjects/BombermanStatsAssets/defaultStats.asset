@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfefdf3cf11549399b4d9d3db866702a, type: 3}
   m_Name: defaultStats
   m_EditorClassIdentifier: 
-  lives: 3
+  lives: 10
   BombermanStats:
   - stat: 1
     value: 1

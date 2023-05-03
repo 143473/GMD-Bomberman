@@ -8,7 +8,7 @@ using UnityEditor;
 
 public class BombScript : MonoBehaviour
 {
-  public BoxCollider bc;
+    public SphereCollider sc;
     private Vector3 halfExtent = new Vector3();
     
     private FlamePool flamePoolSpawner;
@@ -22,16 +22,22 @@ public class BombScript : MonoBehaviour
       colliders = new Collider[10];
       var flamePoolGO = GameObject.Find("FlameGOPool");
       flamePoolSpawner = flamePoolGO.GetComponent<FlamePool>();
-        
-      BombermanCharacterController.onManuallyExplodeBomb += Boom;
+      
       gameObject.SetActive(false);
     }
 
     private void OnEnable()
     {
+      BombermanCharacterController.onManuallyExplodeBomb += Boom;
       bombStats = GetComponent<BombStats>();
-      bc.isTrigger = true;
+      sc.isTrigger = true;
     }
+
+    private void OnDisable()
+    {
+      BombermanCharacterController.onManuallyExplodeBomb -= Boom;
+    }
+
     void Update()
     {
       if (!bombStats.RemoteExplosion)
@@ -43,10 +49,10 @@ public class BombScript : MonoBehaviour
         }
       }
       
-      if (bc.isTrigger) {
+      if (sc.isTrigger) {
         colliders = Physics.OverlapSphere(transform.position, 0.5f);
         if (!colliders.Any(c => c.gameObject.CompareTag("Player"))) {
-          bc.isTrigger = false;
+          sc.isTrigger = false;
         }
         CollidersDisposal(colliders);
       }
