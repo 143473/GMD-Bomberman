@@ -5,6 +5,7 @@ using System.IO.IsolatedStorage;
 using System.Linq;
 using Helpers;
 using UnityEngine;
+using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 public class StageManager : MonoBehaviour
@@ -20,8 +21,9 @@ public class StageManager : MonoBehaviour
 
     private int[,] stageLayout;
     public delegate void OnStageCreation(int stageLength, int stageWidth);
-
     public static OnStageCreation onStageCreation;
+    public delegate void OnStageCreation2(GameObject stage);
+    public static OnStageCreation2 onStageCreation2;
 
     private GameObject stage;
 
@@ -142,5 +144,6 @@ public class StageManager : MonoBehaviour
             }
         }
         onStageCreation?.Invoke(stageLength, stageWidth);
+        onStageCreation2?.Invoke(stage);
     }
 }
