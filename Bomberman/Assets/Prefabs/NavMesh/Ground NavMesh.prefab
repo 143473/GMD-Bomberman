@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1658661079955678352}
   m_Layer: 0
   m_Name: Ground NavMesh
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 95
