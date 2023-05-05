@@ -30,6 +30,7 @@
 //                 for (int y = 0; y < gridWidth; y++)
 //                 {
 //                     PathNode pathNode = new PathNode(null, x, y);
+//                     pathNode.gCost = int.MaxValue;
 //                 }
 //             }
 //         }

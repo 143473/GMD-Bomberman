@@ -23,7 +23,7 @@ namespace Bomberman.AI
             
             // Adding state transitions 
             NewStateTransition(search, moveToTarget, CheckForTarget());
-            NewStateTransition(moveToTarget, search, ReachedTarget());
+            NewStateTransition(moveToTarget, placeBomb, ReachedTarget());
             // NewStateTransition(moveToTarget, placeBomb, ReachedTarget());
             
             // State machine start

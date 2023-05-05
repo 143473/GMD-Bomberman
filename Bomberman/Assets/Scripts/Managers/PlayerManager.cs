@@ -9,6 +9,7 @@ using UnityEngine.AI;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
+using UnityEngine.Tilemaps;
 using Utils;
 using Random = UnityEngine.Random;
 
@@ -44,8 +45,8 @@ namespace Managers
         {
             playerSpawnLocations.Add(1, new Vector3(1, 0.5f, 1));
             playerSpawnLocations.Add(2, new Vector3(stageLength-2, 0.5f, stageWidth-2));
-            playerSpawnLocations.Add(3, new Vector3(1, 0.5f, stageWidth-2));
-            playerSpawnLocations.Add(4, new Vector3(stageLength-2, 0.5f, 1));
+            playerSpawnLocations.Add(3, new Vector3(1, 1f, stageWidth-2));
+            playerSpawnLocations.Add(4, new Vector3(stageLength-2, 1f, 1));
 
             BombermanInstantiation();
         }

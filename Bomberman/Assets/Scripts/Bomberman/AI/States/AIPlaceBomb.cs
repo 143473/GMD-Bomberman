@@ -1,10 +1,12 @@
+using UnityEngine;
+
 namespace Bomberman.AI.States
 {
     public class AIPlaceBomb: IState
     {
         public void Tick()
         {
-            throw new System.NotImplementedException();
+            Debug.Log("Bomb");
         }
 
         public void OnEnter()

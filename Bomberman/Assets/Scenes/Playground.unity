@@ -190,6 +190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1722592961}
   - component: {fileID: 1722592960}
+  - component: {fileID: 1722592962}
   m_Layer: 0
   m_Name: CanvasScriptTest
   m_TagString: Untagged
@@ -226,6 +227,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1722592962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722592959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e27ec613db74c35aef142276c167dab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bombermanStatsSo: {fileID: 11400000, guid: 97e0a36bbb0c68140bb22bfcab95f9f0, type: 2}
+  gameSettings: {fileID: 11400000, guid: 9a6c244d75a5a1345b28073c2c6b1e2c, type: 2}
 --- !u!1001 &1730256964
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -471,6 +486,10 @@ PrefabInstance:
     - target: {fileID: 5807921765785874115, guid: 57c5d4c8ad3e8a143becdc4b8d544c4a, type: 3}
       propertyPath: stageLength
       value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 5807921765785874115, guid: 57c5d4c8ad3e8a143becdc4b8d544c4a, type: 3}
+      propertyPath: wallChanceToSpawn
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5807921765785874115, guid: 57c5d4c8ad3e8a143becdc4b8d544c4a, type: 3}
       propertyPath: nonDestructibleWall
