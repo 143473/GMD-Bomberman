@@ -8,32 +8,16 @@ namespace Bomberman.AI
 {
     public class AIBombermanController: MonoBehaviour
     {
-        private NavMeshAgent navMeshAgent;
         private Animator animator;
         private FiniteStateMachine stateMachine;
         public GameObject potentialTarget;
         private void Awake()
         {
-            PlayerManager.onNavAgentAttachment += SetNavAgent;
             animator = GetComponent<Animator>();
             stateMachine = new FiniteStateMachine();
-        }
-
-        private void Update()
-        {
-            stateMachine.Tick();
-        }
-
-        void SetNavAgent()
-        {
-            navMeshAgent = GetComponent<NavMeshAgent>();
-            if (Physics.Raycast(new Ray(transform.position, Vector3.down), out var hit, LayerMask.GetMask("Ground")))
-            {
-                navMeshAgent.Warp(hit.point);
-            }
-
-            var search = new SearchForTarget(this, navMeshAgent);
-            var moveToTarget = new MoveToTarget(navMeshAgent, animator, this);
+            
+            var search = new SearchForTarget();
+            var moveToTarget = new MoveToTarget();
             var placeBomb = new AIPlaceBomb();
             var takeCover = new TakeCover();
             
@@ -53,6 +37,11 @@ namespace Bomberman.AI
                                                     potentialTarget.transform.position) < 1f;
 
             void NewStateTransition(IState from, IState to, Func<bool> condition) => stateMachine.AddTransition(to, from, condition);
+        }
+
+        private void Update()
+        {
+            stateMachine.Tick();
         }
     }
 }

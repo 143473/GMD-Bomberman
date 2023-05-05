@@ -21,8 +21,8 @@ namespace Managers
         [SerializeField] private GameObject bombermanAI;
         [SerializeField] private GameSettings gameSettings;
 
-        public delegate void OnNavAgentAttachment();
-        public static OnNavAgentAttachment onNavAgentAttachment;
+        // public delegate void OnNavAgentAttachment();
+        // public static OnNavAgentAttachment onNavAgentAttachment;
         
         private List<GameObject> aiList;
         private IDictionary<int, Vector3> playerSpawnLocations;
@@ -81,18 +81,18 @@ namespace Managers
                     aiList.Add(ai);
                 }
             }
-            StartCoroutine(AiBombermanAgentDelay());
+            //StartCoroutine(AiBombermanAgentDelay());
         }
 
-        IEnumerator AiBombermanAgentDelay()
-        {
-            yield return new WaitForSeconds(0.3f);
-            foreach (var ai in aiList)
-            {
-                ai.AddComponent<NavMeshAgent>();
-            }
-            onNavAgentAttachment?.Invoke();
-        }
+        // IEnumerator AiBombermanAgentDelay()
+        // {
+        //     yield return new WaitForSeconds(0.3f);
+        //     foreach (var ai in aiList)
+        //     {
+        //         ai.AddComponent<NavMeshAgent>();
+        //     }
+        //     onNavAgentAttachment?.Invoke();
+        // }
 
         void BombermanRespawn(float lives, GameObject bomberman)
         {
