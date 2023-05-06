@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40b679655b8c4745ad819f34c6bb8aa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bombermanStatsV3So: {fileID: 11400000, guid: 97e0a36bbb0c68140bb22bfcab95f9f0, type: 2}
+  bombermanStatsSo: {fileID: 11400000, guid: 97e0a36bbb0c68140bb22bfcab95f9f0, type: 2}
   bomberman: {fileID: 2362120128477904832, guid: b7ac109a46b7f1e4a80c12b6935e1ff5, type: 3}
-  gameSettings: {fileID: 11400000, guid: c664bc2472ad21d4fbc33b07636e041b, type: 2}
+  gameSettings: {fileID: 11400000, guid: 9a6c244d75a5a1345b28073c2c6b1e2c, type: 2}
+  canvasPrefab: {fileID: 8737370257032523354, guid: 48c732aac072d0346a0c6e7a04cd49d3, type: 3}

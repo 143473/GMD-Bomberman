@@ -48,5 +48,6 @@ MonoBehaviour:
   wallChanceToSpawn: 75
   wall: {fileID: 4069603936090275850, guid: 62388d23b608ebd49b0cdcb9e91680b0, type: 3}
   nonDestructibleWall: {fileID: 2105127466583013155, guid: dd958e1277f72d7458b763c0135e4124, type: 3}
+  frame: {fileID: 4993388099738277763, guid: 00a2d5dc4431b6540a702db5d09c2569, type: 3}
   stageLength: 21
   stageWidth: 11

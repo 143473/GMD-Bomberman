@@ -128,7 +128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91dacff237459b240ab1d8f6b311fef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUpChanceToSpawn: 70
+  powerUpToCurseSpawnRatio: 70
+  pickUpChanceToSpawn: 80
   curse: {fileID: 3006669219832770483, guid: 5a369d18c865b9c42b9cc51c30a4d2da, type: 3}
   powerUp: {fileID: 3006669219832770483, guid: 4edb2d48bef37fa4bb97b3ad39a2da96, type: 3}
 --- !u!114 &-6167154326579659091
