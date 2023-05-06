@@ -29,12 +29,12 @@ public class Gridx {
 
     public int GetWidth()
     {
-        return length;
+        return width;
     }
 
     public int GetLength()
     {
-        return width;
+        return length;
     }
 
     public Vector3 GetWorldPosition(int x, int y) {

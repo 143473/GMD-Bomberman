@@ -16,6 +16,7 @@ namespace Bomberman.AI.States
         private int currentTargetIndex = 0;
         private Vector3 lastPosition = Vector3.zero;
         public float TimeStuck = 0f;
+        private bool isMoving = false;
 
         public MoveToTarget(AIBombermanController aiBombermanController, Animator animator)
         {
@@ -33,31 +34,41 @@ namespace Bomberman.AI.States
 
         public void OnEnter()
         {
+            TimeStuck = 0f;
+            currentTargetIndex = 0;
             animator.SetBool(state, true);
             aiBombermanController.StartCoroutine(Movement());
         }
 
         IEnumerator Movement()
         {
-            while(currentTargetIndex < aiBombermanController.pathToTarget.Count)
+            if (!isMoving)
             {
-                float step = (aiBombermanController.gameObject.GetComponent<FinalBombermanStats>().GetNumericStat(Stats.Speed)-1) * Time.deltaTime;
-                aiBombermanController.transform.position = 
-                    Vector3.MoveTowards(aiBombermanController.transform.position
-                        , aiBombermanController.pathToTarget[currentTargetIndex], step);
-                
-                if (Vector3.Distance(aiBombermanController.transform.position, aiBombermanController.pathToTarget[currentTargetIndex]) < 0.01)
+                while (currentTargetIndex < aiBombermanController.pathToTarget.Count)
                 {
-                    currentTargetIndex++;
+                    float step =
+                        (aiBombermanController.gameObject.GetComponent<FinalBombermanStats>()
+                            .GetNumericStat(Stats.Speed) - 3) * Time.deltaTime;
+                    aiBombermanController.transform.position =
+                        Vector3.MoveTowards(aiBombermanController.transform.position
+                            , aiBombermanController.pathToTarget[currentTargetIndex], step);
+
+                    if (Vector3.Distance(aiBombermanController.transform.position,
+                            aiBombermanController.pathToTarget[currentTargetIndex]) < 0.01)
+                    {
+                        currentTargetIndex++;
+                    }
+
+                    yield return null;
                 }
-                yield return null;
             }
+
+            isMoving = false;
         }
 
         public void OnExit()
         {
             animator.SetBool(state, false);
-            currentTargetIndex = 0;
         }
     }
 }

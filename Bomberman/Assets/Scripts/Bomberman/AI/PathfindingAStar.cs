@@ -11,6 +11,7 @@ class PathfindingAStar
 {
     private Gridx gridx;
     private int[,] stageLayout;
+    private bool isWall = false;
 
     public PathfindingAStar(Gridx gridx)
     {
@@ -20,6 +21,7 @@ class PathfindingAStar
     public List<Tile> GetPath((int X, int Y) current, (int X, int Y) target)
     {
         stageLayout = gridx.GetGrid();
+        isWall = stageLayout[target.X, target.Y] == 2;
         
         var start = new Tile();
         start.X = current.X;
@@ -41,6 +43,9 @@ class PathfindingAStar
 
             if (checkTile.X == finish.X && checkTile.Y == finish.Y)
             {
+                if (isWall)
+                    stageLayout[target.X, target.Y] = 2;
+                
                 var finalPath = new List<Tile>();
                 var backwardsPath = new List<Tile>();
                 //We found the destination and we can be sure (Because the the OrderBy above)
@@ -57,7 +62,7 @@ class PathfindingAStar
                 }
 
                 // Generating the right path to the destination
-                for (int i = backwardsPath.Count - 1; i > 0; i--)
+                for (int i = backwardsPath.Count-1; i >= 0; i--)
                 {
                     finalPath.Add(backwardsPath[i]);
                 }
@@ -107,6 +112,8 @@ class PathfindingAStar
             new Tile { X = currentTile.X - 1, Y = currentTile.Y, Parent = currentTile, Cost = currentTile.Cost + 1 },
             new Tile { X = currentTile.X + 1, Y = currentTile.Y, Parent = currentTile, Cost = currentTile.Cost + 1 },
         };
+        if (stageLayout[targetTile.X, targetTile.Y] == 2)
+            stageLayout[targetTile.X, targetTile.Y] = 0;
 
         possibleTiles.ForEach(tile => tile.SetDistance(targetTile.X, targetTile.Y));
 

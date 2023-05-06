@@ -1,4 +1,5 @@
 using System;
+using Bomberman.AI;
 using Interfaces;
 using UnityEngine;
 using UnityEngine.Events;
@@ -26,7 +27,10 @@ public class OnBombermanDestroy : MonoBehaviour, IDamage
     {
         _statsHandler.AddPermanentStat(Stats.Lives, numericValue: -1);
         gameObject.transform.position = Vector3.up * int.MaxValue;
-        gameObject.GetComponent<BombermanCharacterController>().enabled = false;
+        if(gameObject.GetComponent<BombermanCharacterController>() != null)
+            gameObject.GetComponent<BombermanCharacterController>().enabled = false;
+        else if (gameObject.GetComponent<AIBombermanController>() != null)
+            gameObject.GetComponent<AIBombermanController>().enabled = false;
         
         onBombermanDeath?.Invoke(finalBombermanStats.numericStats[Stats.Lives], gameObject);
     }

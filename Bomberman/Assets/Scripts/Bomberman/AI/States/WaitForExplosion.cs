@@ -1,30 +1,31 @@
-using Unity.VisualScripting;
 using UnityEngine;
+using Utils;
 
 namespace Bomberman.AI.States
 {
-    public class AIPlaceBomb: IState
+    public class WaitForExplosion: IState
     {
         private AIBombermanController aiBombermanController;
+        public float waitingTime = 0f;
 
-        public AIPlaceBomb(AIBombermanController aiBombermanController)
+        public WaitForExplosion(AIBombermanController aiBombermanController)
         {
             this.aiBombermanController = aiBombermanController;
         }
 
         public void Tick()
         {
-            
+            waitingTime -= Time.deltaTime;
         }
 
         public void OnEnter()
         {
-            aiBombermanController.gameObject.GetComponent<PlaceBomb>().Bomb();
-            aiBombermanController.placedBombLocation = aiBombermanController.transform.position;
+            waitingTime = aiBombermanController.GetComponent<FinalBombermanStats>().GetNumericStat(Stats.BombDelay);
         }
 
         public void OnExit()
         {
+            
         }
     }
 }

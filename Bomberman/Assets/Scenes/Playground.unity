@@ -489,7 +489,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5807921765785874115, guid: 57c5d4c8ad3e8a143becdc4b8d544c4a, type: 3}
       propertyPath: wallChanceToSpawn
-      value: 15
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5807921765785874115, guid: 57c5d4c8ad3e8a143becdc4b8d544c4a, type: 3}
       propertyPath: nonDestructibleWall
