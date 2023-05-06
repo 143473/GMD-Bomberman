@@ -18,15 +18,17 @@ public class StageManager : MonoBehaviour
     [SerializeField] private int stageWidth = 15;
     private GameObject instatiatedWall;
     private GameObject instatiatedStone;
+    private PathfindingAStar x;
 
     private int[,] stageLayout;
     public delegate void OnStageCreation(int stageLength, int stageWidth);
     public static OnStageCreation onStageCreation;
-    public delegate void OnStageCreation2(GameObject stage);
-    public static OnStageCreation2 onStageCreation2;
+    
+    public delegate void OnGridSet(Gridx grid);
+    public static OnGridSet onGridSet;
 
     private GameObject stage;
-    private Grid gridHandler;
+    private Gridx gridx;
 
     private void Awake()
     {
@@ -48,13 +50,13 @@ public class StageManager : MonoBehaviour
     {
         if (Input.GetKeyDown("space"))
         {
-            gridHandler = new Grid(stageLayout);
-            PathfindingAStar x = new PathfindingAStar();
-            var vect = GameObject.FindGameObjectsWithTag("Player").First(a =>a.gameObject.name == "Player 1").transform.position;
-            var vect2 = GameObject.FindGameObjectsWithTag("Player").First(a =>a.gameObject.name == "Player 2").transform.position;
+            var vectWorld = GameObject.FindGameObjectsWithTag("Player").First(a =>a.gameObject.name == "Player 1").transform.position;
+            var vect2World = GameObject.FindGameObjectsWithTag("Player").First(a =>a.gameObject.name == "Player 2").transform.position;
 
-            var y = PathfindingAStar.GetPath(stageLayout, ((int)vect.x, (int)vect.z), ((int)vect2.x, (int)vect2.z));
-            // var y = PathfindingAStar.GetPath(stageLayout, 1,1,19,9);
+            gridx.GetXY(vectWorld, out int vectx, out int vecty);
+            gridx.GetXY(vect2World, out int vect2x, out int vect2y);
+
+            var y = x.GetPath((vectx, vecty), (vect2x, vect2y));
             foreach (var tile in y)
             {
                 Debug.Log($"PATH ----- {tile.X} : {tile.Y}");
@@ -164,7 +166,10 @@ public class StageManager : MonoBehaviour
                 }
             }
         }
+        gridx = new Gridx(stageLayout);
+        x = new PathfindingAStar(gridx);
+        
         onStageCreation?.Invoke(stageLength, stageWidth);
-        onStageCreation2?.Invoke(stage);
+        onGridSet?.Invoke(gridx);
     }
 }

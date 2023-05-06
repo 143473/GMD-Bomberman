@@ -32,8 +32,8 @@
 //                 navMeshAgent.Warp(hit.point);
 //             }
 //
-//             var search = new SearchForTarget(this, navMeshAgent);
-//             var moveToTarget = new MoveToTarget(navMeshAgent, animator, this);
+//             var search = new SearchForTargetNavMesh(this, navMeshAgent);
+//             var moveToTarget = new MoveToTargetNavMesh(navMeshAgent, animator, this);
 //             var placeBomb = new AIPlaceBomb();
 //             var takeCover = new TakeCover();
 //             

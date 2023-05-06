@@ -10,14 +10,24 @@ namespace Bomberman.AI
     {
         private Animator animator;
         private FiniteStateMachine stateMachine;
+        private Gridx gridx;
+        private PathfindingAStar pathfindingAStar;
+        
+        
         public GameObject potentialTarget;
+
         private void Awake()
+        {
+            StageManager.onGridSet += SetGrid;
+        }
+
+        private void Start()
         {
             animator = GetComponent<Animator>();
             stateMachine = new FiniteStateMachine();
             
             var search = new SearchForTarget();
-            var moveToTarget = new MoveToTarget();
+            var moveToTarget = new MoveToTargetNavMesh();
             var placeBomb = new AIPlaceBomb();
             var takeCover = new TakeCover();
             
@@ -42,6 +52,12 @@ namespace Bomberman.AI
         private void Update()
         {
             stateMachine.Tick();
+        }
+
+        void SetGrid(Gridx gridx)
+        {
+            this.gridx = gridx;
+            pathfindingAStar = new PathfindingAStar(this.gridx);
         }
     }
 }

@@ -34,11 +34,12 @@ namespace Managers
             playerSpawnLocations = new Dictionary<int, Vector3>();
             bombermanStatsSo.lives = gameSettings.playerLivesToStartWith;
             StageManager.onStageCreation += SetBombermanSpawnLocations;
+            OnBombermanDestroy.onBombermanDeath += BombermanRespawn;
         }
 
         private void Start()
         {
-            OnBombermanDestroy.onBombermanDeath += BombermanRespawn;
+
         }
 
         void SetBombermanSpawnLocations(int stageLength, int stageWidth)

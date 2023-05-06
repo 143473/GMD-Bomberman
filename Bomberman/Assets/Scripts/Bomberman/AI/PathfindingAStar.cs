@@ -7,8 +7,18 @@ using UnityEngine;
 
 class PathfindingAStar
 {
-    public static List<Tile> GetPath(int[,] stageLayout, (int X, int Y) current, (int X, int Y) target)
+    private Gridx gridx;
+    private int[,] stageLayout;
+
+    public PathfindingAStar(Gridx gridx)
     {
+        this.gridx = gridx;
+    }
+
+    public List<Tile> GetPath((int X, int Y) current, (int X, int Y) target)
+    {
+        stageLayout = gridx.GetGrid();
+        
         var start = new Tile();
         start.X = current.X;
         start.Y = current.Y;

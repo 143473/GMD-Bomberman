@@ -502,7 +502,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 3
-  m_Radius: 0.9
+  m_Radius: 0.85
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -700,9 +700,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48c711240094ef94bb8c10451ad4d936, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bombermanStatsV3So: {fileID: 11400000, guid: 97e0a36bbb0c68140bb22bfcab95f9f0, type: 2}
-  maxBombermanStatsV3So: {fileID: 11400000, guid: 171b1201d29b83349bf58e7cb747b95b, type: 2}
-  minBombermanStatsV3So: {fileID: 11400000, guid: 6848fa7013132594c8b1454e51f79b9e, type: 2}
+  bombermanStatsSo: {fileID: 11400000, guid: 97e0a36bbb0c68140bb22bfcab95f9f0, type: 2}
+  maxBombermanStatsSo: {fileID: 11400000, guid: 171b1201d29b83349bf58e7cb747b95b, type: 2}
+  minBombermanStatsSo: {fileID: 11400000, guid: 6848fa7013132594c8b1454e51f79b9e, type: 2}
   curses: []
 --- !u!1 &2523008584742624411
 GameObject:
