@@ -35,7 +35,7 @@
 //             var search = new SearchForTargetNavMesh(this, navMeshAgent);
 //             var moveToTarget = new MoveToTargetNavMesh(navMeshAgent, animator, this);
 //             var placeBomb = new AIPlaceBomb();
-//             var takeCover = new TakeCover();
+//             var takeCover = new SearchForCover();
 //             
 //             // Adding state transitions 
 //             NewStateTransition(search, moveToTarget, CheckForTarget());

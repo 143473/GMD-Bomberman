@@ -356,7 +356,7 @@ PrefabInstance:
     - target: {fileID: 9129267664667377189, guid: ddb92f1559aa9a840aceae7de1d131d2, type: 3}
       propertyPath: bombermanAI
       value: 
-      objectReference: {fileID: 2362120128477904832, guid: d94b664b0872a0044b4393c829dd767b, type: 3}
+      objectReference: {fileID: 2362120128477904832, guid: 597b70fd1d11c9247a2feda581702726, type: 3}
     - target: {fileID: 9129267664667377189, guid: ddb92f1559aa9a840aceae7de1d131d2, type: 3}
       propertyPath: gameSettings
       value: 
@@ -474,11 +474,11 @@ PrefabInstance:
     - target: {fileID: 5807921765785874115, guid: 57c5d4c8ad3e8a143becdc4b8d544c4a, type: 3}
       propertyPath: wall
       value: 
-      objectReference: {fileID: 4069603936090275850, guid: 48dea95b07c239e4fa1608d79b183116, type: 3}
+      objectReference: {fileID: 4069603936090275850, guid: 62388d23b608ebd49b0cdcb9e91680b0, type: 3}
     - target: {fileID: 5807921765785874115, guid: 57c5d4c8ad3e8a143becdc4b8d544c4a, type: 3}
       propertyPath: field
       value: 
-      objectReference: {fileID: 1512709134803435413, guid: f1aa1f07fca0e7a45b4020500344ffe9, type: 3}
+      objectReference: {fileID: 1512709134803435413, guid: 715bc3be053979741862fb6a6b4fc1e0, type: 3}
     - target: {fileID: 5807921765785874115, guid: 57c5d4c8ad3e8a143becdc4b8d544c4a, type: 3}
       propertyPath: stageWidth
       value: 11
@@ -489,12 +489,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5807921765785874115, guid: 57c5d4c8ad3e8a143becdc4b8d544c4a, type: 3}
       propertyPath: wallChanceToSpawn
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5807921765785874115, guid: 57c5d4c8ad3e8a143becdc4b8d544c4a, type: 3}
       propertyPath: nonDestructibleWall
       value: 
-      objectReference: {fileID: 2105127466583013155, guid: 197df714d30fe4e4587b0397f7e685e9, type: 3}
+      objectReference: {fileID: 2105127466583013155, guid: dd958e1277f72d7458b763c0135e4124, type: 3}
     - target: {fileID: 6543377519252725429, guid: 57c5d4c8ad3e8a143becdc4b8d544c4a, type: 3}
       propertyPath: m_Name
       value: StageManager

@@ -1,17 +1,25 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Bomberman.AI.States
 {
     public class AIPlaceBomb: IState
     {
+        private AIBombermanController aiBombermanController;
+
+        public AIPlaceBomb(AIBombermanController aiBombermanController)
+        {
+            this.aiBombermanController = aiBombermanController;
+        }
+
         public void Tick()
         {
-            Debug.Log("Bomb");
+            
         }
 
         public void OnEnter()
         {
-            throw new System.NotImplementedException();
+            aiBombermanController.gameObject.GetComponent<PlaceBomb>().Bomb();
         }
 
         public void OnExit()

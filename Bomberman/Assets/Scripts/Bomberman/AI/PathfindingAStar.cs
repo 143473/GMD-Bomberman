@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 //A* Search Pathfinding Example from : https://dotnetcoretutorials.com/2020/07/25/a-search-pathfinding-algorithm-in-c/ 
 
@@ -40,7 +42,7 @@ class PathfindingAStar
             if (checkTile.X == finish.X && checkTile.Y == finish.Y)
             {
                 var finalPath = new List<Tile>();
-                var recursivePath = new List<Tile>();
+                var backwardsPath = new List<Tile>();
                 //We found the destination and we can be sure (Because the the OrderBy above)
                 //That it's the most low cost option. 
 
@@ -48,16 +50,16 @@ class PathfindingAStar
                 var tile = checkTile;
                 while (true)
                 {
-                    recursivePath.Add(tile);
+                    backwardsPath.Add(tile);
                     tile = tile.Parent;
                     if (tile == null)
                         break;
                 }
 
                 // Generating the right path to the destination
-                for (int i = recursivePath.Count - 1; i >= 0; i--)
+                for (int i = backwardsPath.Count - 1; i > 0; i--)
                 {
-                    finalPath.Add(recursivePath[i]);
+                    finalPath.Add(backwardsPath[i]);
                 }
 
                 return finalPath;
@@ -115,12 +117,13 @@ class PathfindingAStar
         return possibleTiles
             .Where(tile => tile.X > 0 && tile.X < maxX)
             .Where(tile => tile.Y > 0 && tile.Y < maxY)
-            .Where(tile => stageLayout[tile.X, tile.Y] == 0 || stageLayout[tile.X, tile.Y] == 1)
+            .Where(tile => stageLayout[tile.X, tile.Y] == 0 || stageLayout[tile.X, tile.Y] == 1
+            || (tile == targetTile && stageLayout[tile.X, tile.Y] == 2))
             .ToList();
     }
 }
 
-class Tile
+public class Tile
 {
     public int X { get; set; }
     public int Y { get; set; }

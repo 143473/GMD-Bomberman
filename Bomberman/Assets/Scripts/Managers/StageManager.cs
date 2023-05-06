@@ -48,20 +48,20 @@ public class StageManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown("space"))
-        {
-            var vectWorld = GameObject.FindGameObjectsWithTag("Player").First(a =>a.gameObject.name == "Player 1").transform.position;
-            var vect2World = GameObject.FindGameObjectsWithTag("Player").First(a =>a.gameObject.name == "Player 2").transform.position;
-
-            gridx.GetXY(vectWorld, out int vectx, out int vecty);
-            gridx.GetXY(vect2World, out int vect2x, out int vect2y);
-
-            var y = x.GetPath((vectx, vecty), (vect2x, vect2y));
-            foreach (var tile in y)
-            {
-                Debug.Log($"PATH ----- {tile.X} : {tile.Y}");
-            }
-        }
+        // if (Input.GetKeyDown("space"))
+        // {
+        //     var vectWorld = GameObject.FindGameObjectsWithTag("Player").First(a =>a.gameObject.name == "Player 1").transform.position;
+        //     var vect2World = GameObject.FindGameObjectsWithTag("Player").First(a =>a.gameObject.name == "Player 2").transform.position;
+        //
+        //     gridx.GetXY(vectWorld, out int vectx, out int vecty);
+        //     gridx.GetXY(vect2World, out int vect2x, out int vect2y);
+        //
+        //     var y = x.GetPath((vectx, vecty), (vect2x, vect2y));
+        //     foreach (var tile in y)
+        //     {
+        //         Debug.Log($"PATH ----- {tile.X} : {tile.Y}");
+        //     }
+        // }
     }
 
     void PlaceField()
