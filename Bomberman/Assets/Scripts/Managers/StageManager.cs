@@ -1,11 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO.IsolatedStorage;
-using System.Linq;
 using Helpers;
 using UnityEngine;
 using Random = UnityEngine.Random;
+
 
 public class StageManager : MonoBehaviour
 {
@@ -13,6 +9,7 @@ public class StageManager : MonoBehaviour
     [SerializeField] private int wallChanceToSpawn;
     [SerializeField] private GameObject wall;
     [SerializeField] private GameObject nonDestructibleWall;
+    [SerializeField] private GameObject frame;
     [SerializeField] private int stageLength = 15;
     [SerializeField] private int stageWidth = 15;
     private GameObject instatiatedWall;
@@ -45,6 +42,7 @@ public class StageManager : MonoBehaviour
         // Scaling the field renders it black ....
         field.transform.localScale = new Vector3(stageLength / 10f, 5, stageWidth / 10f);
         field.transform.position = new Vector3((stageLength-1) / 2f, -0.5f, (stageWidth-1) / 2f);
+        Instantiate(frame, new Vector3(10,-1,5), Quaternion.identity);
         Instantiate(field, stage.transform);
     }
 

@@ -56,22 +56,17 @@ namespace Utils
         public float GetNumericStat(Stats numericStat)
         {
             var baseStatValue = numericStats[numericStat];
-            var minStat = minBombermanStatsSo.BombermanStats.First(a => a.stat == numericStat);
-            var maxStat = maxBombermanStatsSo.BombermanStats.First(a => a.stat == numericStat);
+            float finalStat = 0f;
             
             foreach (var curse in curses)
             {
                 if (curse.stat == numericStat)
                 {
-                    var finalStat = FinalStatCalculation(curse, baseStatValue);
-                    if(finalStat  >= maxStat.value)
-                        return maxStat.value;
-                    if (finalStat <= minStat.value)
-                        return minStat.value;
-                    return finalStat;
+                    finalStat = FinalStatCalculation(curse, baseStatValue);
+                    return MinMaxStatsCheck(numericStat, finalStat);
                 }
             }
-            return baseStatValue;
+            return MinMaxStatsCheck(numericStat, baseStatValue);
         }
 
         float FinalStatCalculation(CurseModifier curseModifier, float baseStat)
@@ -83,6 +78,21 @@ namespace Utils
                 case CurseModifier.StatModifyingType.Percentage : return baseStat * curseModifier.value;
             }
             return 0;
+        }
+
+        float MinMaxStatsCheck(Stats numericStat, float statValue)
+        {
+            if (numericStat == Stats.Lives)
+                return numericStats[numericStat];
+            
+            var minStat = minBombermanStatsSo.BombermanStats.First(a => a.stat == numericStat);
+            var maxStat = maxBombermanStatsSo.BombermanStats.First(a => a.stat == numericStat);
+            
+            if(statValue  >= maxStat.value)
+                return maxStat.value;
+            if (statValue <= minStat.value)
+                return minStat.value;
+            return statValue;
         }
     }
 }
