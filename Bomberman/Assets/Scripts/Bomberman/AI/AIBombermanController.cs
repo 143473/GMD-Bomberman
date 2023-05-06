@@ -65,13 +65,14 @@ namespace Bomberman.AI
             
             // Adding state transitions 
             NewStateTransition(search, moveToTarget, CheckForTarget());
-            // NewStateTransition(moveToTarget, placeBomb, ReachedTarget());
-            // NewStateTransition(placeBomb, searchForCover, PlacedBomb());
+            NewStateTransition(moveToTarget, placeBomb, ReachedTarget());
+            // NewStateTransition(moveToTarget, search, StuckForASecond());
+            NewStateTransition(placeBomb, searchForCover, PlacedBomb());
             // NewStateTransition(searchForCover, moveToTarget, HasSafeSpot());
             // NewStateTransition(moveToTarget, waitForExplosion, IsDangerous());
             // NewStateTransition(moveToTarget, search, StuckForASecond());
 
-            // NewStateTransition(moveToTarget, search, StuckForASecond());
+            
             //NewStateTransition(moveToTarget, moveToTarget, TargetChangedPosition());
 
             // State machine start
@@ -87,7 +88,7 @@ namespace Bomberman.AI
             Func<bool> PlacedBomb() => () => this.GetComponent<BombsInventory>().Bombs.Any(a => a.activeSelf);
             Func<bool> ReachedTarget() => () => potentialTarget != null &&
                                                 Vector3.Distance(transform.position,
-                                                    potentialTarget.transform.position) <= 1.2f;
+                                                    potentialTarget.transform.position) < 1.3f && moveToTarget.TimeStuck > 0.2f;
             
             void NewStateTransition(IState from, IState to, Func<bool> condition) => stateMachine.AddTransition(from, to, condition);
         }

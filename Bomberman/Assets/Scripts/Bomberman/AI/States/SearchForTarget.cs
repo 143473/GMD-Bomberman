@@ -23,15 +23,17 @@ namespace Bomberman.AI.States
          private GameObject ChooseOneOfTheNearestTargets()
         {
             var powerUp = FindNearestPowerUp();
-            var wall = FindNearestDestructibleWall();
-            var player = FindNearestPlayer();
-
             if (powerUp != null && aiBombermanController.ComputePath(powerUp.transform.position))
                 return powerUp;
+            
+            var wall = FindNearestDestructibleWall();
             if (wall != null && aiBombermanController.ComputePath(wall.transform.position))
                 return wall;
+            
+            var player = FindNearestPlayer();
             if (player != null && aiBombermanController.ComputePath(player.transform.position))
                 return player;
+            
             return null;
         }
          
@@ -54,7 +56,7 @@ namespace Bomberman.AI.States
         {
             return GameObject
                 .FindGameObjectsWithTag("Player")
-                // .OrderBy(v => Vector3.Distance(aiBombermanController.transform.position, v.transform.position))
+                .OrderBy(v => Vector3.Distance(aiBombermanController.transform.position, v.transform.position))
                 .FirstOrDefault(a => a.name != aiBombermanController.gameObject.name);
         }
 

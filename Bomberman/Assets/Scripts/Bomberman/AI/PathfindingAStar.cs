@@ -64,6 +64,8 @@ class PathfindingAStar
                 // Generating the right path to the destination
                 for (int i = backwardsPath.Count-1; i >= 0; i--)
                 {
+                    if (isWall && i == 0)
+                        break;
                     finalPath.Add(backwardsPath[i]);
                 }
 
