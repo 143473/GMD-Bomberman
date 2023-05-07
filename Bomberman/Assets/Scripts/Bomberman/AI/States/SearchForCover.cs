@@ -25,6 +25,7 @@ namespace Bomberman.AI.States
 
         public void OnEnter()
         {
+            Debug.Log("Take Cover");
             possibleSafeSpots = new List<(int x, int y)>();
             gridx = aiBombermanController.GetGrid();
             stageGrid = gridx.GetGrid();

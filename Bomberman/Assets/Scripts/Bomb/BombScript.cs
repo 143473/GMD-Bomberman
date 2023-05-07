@@ -39,7 +39,7 @@ public class BombScript : MonoBehaviour
     private void OnDisable()
     {
       var position = gameObject.transform.position;
-      if (position.x > 0 && position.y > 0)
+      if (position.x > 0 && position.z > 0)
       {
         Gridx.onGridValueChanged?.Invoke(position.x, position.z, 0);
       }

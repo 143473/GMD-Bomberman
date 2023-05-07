@@ -19,8 +19,10 @@ namespace Bomberman.AI.States
 
         public void OnEnter()
         {
+            Debug.Log("Placing a bomb");
             aiBombermanController.gameObject.GetComponent<PlaceBomb>().Bomb();
             aiBombermanController.placedBombLocation = aiBombermanController.transform.position;
+            aiBombermanController.placedBomb = true;
         }
 
         public void OnExit()

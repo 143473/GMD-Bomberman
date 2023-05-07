@@ -6,7 +6,7 @@ namespace Bomberman.AI.States
     public class WaitForExplosion: IState
     {
         private AIBombermanController aiBombermanController;
-        public float waitingTime = 0f;
+        public float waitingTime = 3f;
 
         public WaitForExplosion(AIBombermanController aiBombermanController)
         {
@@ -20,12 +20,13 @@ namespace Bomberman.AI.States
 
         public void OnEnter()
         {
+            Debug.Log("Waiting for explosion");
             waitingTime = aiBombermanController.GetComponent<FinalBombermanStats>().GetNumericStat(Stats.BombDelay);
         }
 
         public void OnExit()
         {
-            
+            aiBombermanController.placedBomb = false;
         }
     }
 }

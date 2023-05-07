@@ -16,13 +16,18 @@ namespace Bomberman.AI
         private Gridx gridx;
         private PathfindingAStar pathfindingAStar;
         private SearchForTarget search;
+        
         public List<Vector3> pathToTarget;
         public Vector3 placedBombLocation;
-        
         public GameObject potentialTarget;
+        public GameObject currentTarget;
+        public GameObject mainTarget;
+        
         public Vector3 potentialDestinationVector;
+        
         private string state = "IsWalking"; 
         public bool isReacheable = false;
+        public bool placedBomb = false;
 
         private void Awake()
         {
@@ -62,14 +67,22 @@ namespace Bomberman.AI
             var placeBomb = new AIPlaceBomb(this);
             var searchForCover = new SearchForCover(this);
             var waitForExplosion = new WaitForExplosion(this);
+            var waitingForBombs = new WaitingForBombs(this);
             
             // Adding state transitions 
             NewStateTransition(search, moveToTarget, CheckForTarget());
             NewStateTransition(moveToTarget, placeBomb, ReachedTarget());
-            // NewStateTransition(moveToTarget, search, StuckForASecond());
             NewStateTransition(placeBomb, searchForCover, PlacedBomb());
-            // NewStateTransition(searchForCover, moveToTarget, HasSafeSpot());
+            NewStateTransition(searchForCover, moveToTarget, HasSafeSpot());
+            NewStateTransition(moveToTarget, search, StuckForASecond());
             // NewStateTransition(moveToTarget, waitForExplosion, IsDangerous());
+            // NewStateTransition(waitForExplosion, search, IsSafe());
+            
+            // NewStateTransition(placeBomb, search, HasMoreBombs());
+            // NewStateTransition(placeBomb, search, EnoughTime());
+            // NewStateTransition(moveToTarget, waitingForBombs, NoBombsAvailable());
+
+
             // NewStateTransition(moveToTarget, search, StuckForASecond());
 
             
@@ -79,11 +92,15 @@ namespace Bomberman.AI
             stateMachine.SetState(search);
             
             // Conditions declaration
-            Func<bool> IsDangerous() => () => 
-                FlameDetector(placedBombLocation, (int)GetComponent<FinalBombermanStats>().GetNumericStat(Stats.Flame))
-                    .Any(a => GetFreeNeighbors(transform.position).Contains((a.x, a.y)));
+            Func<bool> IsDangerous() => () => FlameDetector(placedBombLocation, (int)GetComponent<FinalBombermanStats>().GetNumericStat(Stats.Flame))
+                .Any(a => GetFreeNeighbors(transform.position).Contains((a.x, a.y))) && placedBomb;
+
+            Func<bool> IsSafe() => () => placedBomb = false;
             Func<bool> CheckForTarget() => () => potentialTarget != null && isReacheable;
-            Func<bool> StuckForASecond() => () => moveToTarget.TimeStuck > 1f || waitForExplosion.waitingTime == 0f;
+            Func<bool> HasMoreBombs() => () => this.GetComponent<BombsInventory>().Bombs.Any(a => a.activeSelf == false);
+            Func<bool> EnoughTime() => () => waitForExplosion.waitingTime > 2.5f;
+            Func<bool> NoBombsAvailable() => () => this.GetComponent<BombsInventory>().Bombs.All(a => a.activeSelf);
+            Func<bool> StuckForASecond() => () => moveToTarget.TimeStuck > 1f;
             Func<bool> HasSafeSpot() => () => potentialDestinationVector != Vector3.zero;
             Func<bool> PlacedBomb() => () => this.GetComponent<BombsInventory>().Bombs.Any(a => a.activeSelf);
             Func<bool> ReachedTarget() => () => potentialTarget != null &&

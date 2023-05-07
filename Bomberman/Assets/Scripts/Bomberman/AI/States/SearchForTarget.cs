@@ -21,7 +21,8 @@ namespace Bomberman.AI.States
             aiBombermanController.potentialTarget = ChooseOneOfTheNearestTargets();
         }
          private GameObject ChooseOneOfTheNearestTargets()
-        {
+         {
+             Debug.Log("searching for target");
             var powerUp = FindNearestPowerUp();
             if (powerUp != null && aiBombermanController.ComputePath(powerUp.transform.position))
                 return powerUp;
@@ -33,6 +34,7 @@ namespace Bomberman.AI.States
             var player = FindNearestPlayer();
             if (player != null && aiBombermanController.ComputePath(player.transform.position))
                 return player;
+            
             
             return null;
         }
