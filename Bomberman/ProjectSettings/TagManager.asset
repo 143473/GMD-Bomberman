@@ -7,9 +7,10 @@ TagManager:
   - PowerUpContainer
   - Bomb
   - DestructibleWall
-  - Undefined
   - NonDestructibleWall
   - FlamePool
+  - PowerUp
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Bomb
   - Water
   - UI
-  - 
+  - Ground
   - 
   - 
   - 

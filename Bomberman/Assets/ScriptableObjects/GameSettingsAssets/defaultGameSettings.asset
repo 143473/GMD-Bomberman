@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: defaultGameSettings
   m_EditorClassIdentifier: 
   numberOfHumanPlayers: 2
-  numberOfAIPlayers: 0
+  numberOfAIPlayers: 1
   stageSet: 0
   playerLivesToStartWith: 10
   stageTimerInSeconds: 180
