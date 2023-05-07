@@ -22,6 +22,8 @@ namespace Managers
         [SerializeField] private GameObject bomberman;
         [SerializeField] private GameObject bombermanAI;
         [SerializeField] private GameSettings gameSettings;
+        [SerializeField] private Canvas canvasPrefab;
+
 
         // public delegate void OnNavAgentAttachment();
         // public static OnNavAgentAttachment onNavAgentAttachment;
@@ -62,13 +64,16 @@ namespace Managers
                 controlScheme: player1KeyboardScheme, pairWithDevice: Keyboard.current);
             player1.name = "Player 1";
             player1.transform.position = playerSpawnLocations[1];
+           CreateCanvas(canvasPrefab, 2f,11f, player1.name);
 
             if (gameSettings.numberOfHumanPlayers == 2)
             {
                 var player2 = PlayerInput.Instantiate(bomberman,
                     controlScheme: player2KeyboardScheme, pairWithDevice: Keyboard.current);
                 player2.name = "Player 2";
-                player2.transform.position = playerSpawnLocations[2];
+                player2.transform.position = playerSpawnLocations[2]; 
+               CreateCanvas(canvasPrefab,18f,11f, player2.name);
+
             }
         
             
@@ -128,6 +133,12 @@ namespace Managers
         float GetRandomPos(float from, float to)
         {
             return Mathf.Round(Random.Range(from, to));
+        }
+        
+        private void CreateCanvas(Canvas canvasP, float x, float z, string playerName) {
+            var canvas = Instantiate(canvasP);
+            canvas.transform.position = new Vector3(x, 1, z);
+            canvas.name = playerName + " Canvas";
         }
     }
 }

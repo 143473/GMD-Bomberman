@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -106,15 +106,15 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.1
-    agentHeight: 1
-    agentSlope: 0
-    agentClimb: 0.5
+    agentRadius: 0.5
+    agentHeight: 2
+    agentSlope: 45
+    agentClimb: 0.4
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
-    minRegionArea: 3
+    minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.033333335
+    cellSize: 0.16666667
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -180,67 +180,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4da76952156cc13469bce684e05c3de6, type: 3}
---- !u!1 &1722592959
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1722592961}
-  - component: {fileID: 1722592960}
-  - component: {fileID: 1722592962}
-  m_Layer: 0
-  m_Name: CanvasScriptTest
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1722592960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1722592959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e27ec613db74c35aef142276c167dab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bombermanStatsSo: {fileID: 11400000, guid: 97e0a36bbb0c68140bb22bfcab95f9f0, type: 2}
-  gameSettings: {fileID: 11400000, guid: 9a6c244d75a5a1345b28073c2c6b1e2c, type: 2}
---- !u!4 &1722592961
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1722592959}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.69936, y: -1.2553749, z: 3.8483868}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1722592962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1722592959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e27ec613db74c35aef142276c167dab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bombermanStatsSo: {fileID: 11400000, guid: 97e0a36bbb0c68140bb22bfcab95f9f0, type: 2}
-  gameSettings: {fileID: 11400000, guid: 9a6c244d75a5a1345b28073c2c6b1e2c, type: 2}
 --- !u!1001 &1730256964
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -258,15 +197,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5613888927507985973, guid: 683f72c70a7e6c54791ac5a82b818721, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5613888927507985973, guid: 683f72c70a7e6c54791ac5a82b818721, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 20
+      value: 21.7
       objectReference: {fileID: 0}
     - target: {fileID: 5613888927507985973, guid: 683f72c70a7e6c54791ac5a82b818721, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.5
+      value: -1.35
       objectReference: {fileID: 0}
     - target: {fileID: 5613888927507985973, guid: 683f72c70a7e6c54791ac5a82b818721, type: 3}
       propertyPath: m_LocalRotation.w
@@ -298,6 +237,74 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 683f72c70a7e6c54791ac5a82b818721, type: 3}
+--- !u!1 &1880154708
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1880154711}
+  - component: {fileID: 1880154710}
+  - component: {fileID: 1880154709}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1880154709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880154708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &1880154710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880154708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!4 &1880154711
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880154708}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &696079226372897956
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -353,14 +360,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9129267664667377189, guid: ddb92f1559aa9a840aceae7de1d131d2, type: 3}
-      propertyPath: bombermanAI
-      value: 
-      objectReference: {fileID: 2362120128477904832, guid: 597b70fd1d11c9247a2feda581702726, type: 3}
-    - target: {fileID: 9129267664667377189, guid: ddb92f1559aa9a840aceae7de1d131d2, type: 3}
-      propertyPath: gameSettings
-      value: 
-      objectReference: {fileID: 11400000, guid: 9a6c244d75a5a1345b28073c2c6b1e2c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ddb92f1559aa9a840aceae7de1d131d2, type: 3}
 --- !u!1001 &1009236577603045075
@@ -471,30 +470,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5807921765785874115, guid: 57c5d4c8ad3e8a143becdc4b8d544c4a, type: 3}
-      propertyPath: wall
-      value: 
-      objectReference: {fileID: 4069603936090275850, guid: 62388d23b608ebd49b0cdcb9e91680b0, type: 3}
-    - target: {fileID: 5807921765785874115, guid: 57c5d4c8ad3e8a143becdc4b8d544c4a, type: 3}
-      propertyPath: field
-      value: 
-      objectReference: {fileID: 1512709134803435413, guid: 715bc3be053979741862fb6a6b4fc1e0, type: 3}
-    - target: {fileID: 5807921765785874115, guid: 57c5d4c8ad3e8a143becdc4b8d544c4a, type: 3}
-      propertyPath: stageWidth
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 5807921765785874115, guid: 57c5d4c8ad3e8a143becdc4b8d544c4a, type: 3}
-      propertyPath: stageLength
-      value: 21
-      objectReference: {fileID: 0}
-    - target: {fileID: 5807921765785874115, guid: 57c5d4c8ad3e8a143becdc4b8d544c4a, type: 3}
-      propertyPath: wallChanceToSpawn
-      value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 5807921765785874115, guid: 57c5d4c8ad3e8a143becdc4b8d544c4a, type: 3}
-      propertyPath: nonDestructibleWall
-      value: 
-      objectReference: {fileID: 2105127466583013155, guid: dd958e1277f72d7458b763c0135e4124, type: 3}
     - target: {fileID: 6543377519252725429, guid: 57c5d4c8ad3e8a143becdc4b8d544c4a, type: 3}
       propertyPath: m_Name
       value: StageManager
