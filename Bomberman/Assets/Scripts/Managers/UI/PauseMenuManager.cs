@@ -1,10 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+using Helpers;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class PauseMenuManager : MonoBehaviour
 {
@@ -16,7 +11,8 @@ public class PauseMenuManager : MonoBehaviour
     { 
         canvas = Instantiate(pauseCanvas, new Vector3(10,2,5), Quaternion.Euler(90,0,0));
         canvas.gameObject.SetActive(false);
-        canvas.GetComponentsInChildren<Button>().First(x => x.name == "ResumeButton").onClick.AddListener(Resume);
+        canvas.AddListenerToButton("ResumeButton", Resume);
+        canvas.AddListenerToButton("ExitButton", ExitGame);
     }
  
     void Update () {
