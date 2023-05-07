@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Bomberman.AI;
 using TRYINGSTUFFOUT.CursesV2.ScriptableObjects;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -9,6 +10,7 @@ using UnityEngine.AI;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
+using UnityEngine.Tilemaps;
 using Utils;
 using Random = UnityEngine.Random;
 
@@ -21,8 +23,8 @@ namespace Managers
         [SerializeField] private GameObject bombermanAI;
         [SerializeField] private GameSettings gameSettings;
 
-        public delegate void OnNavAgentAttachment();
-        public static OnNavAgentAttachment onNavAgentAttachment;
+        // public delegate void OnNavAgentAttachment();
+        // public static OnNavAgentAttachment onNavAgentAttachment;
         
         private List<GameObject> aiList;
         private IDictionary<int, Vector3> playerSpawnLocations;
@@ -33,11 +35,12 @@ namespace Managers
             playerSpawnLocations = new Dictionary<int, Vector3>();
             bombermanStatsSo.lives = gameSettings.playerLivesToStartWith;
             StageManager.onStageCreation += SetBombermanSpawnLocations;
+            OnBombermanDestroy.onBombermanDeath += BombermanRespawn;
         }
 
         private void Start()
         {
-            OnBombermanDestroy.onBombermanDeath += BombermanRespawn;
+
         }
 
         void SetBombermanSpawnLocations(int stageLength, int stageWidth)
@@ -81,20 +84,20 @@ namespace Managers
                     aiList.Add(ai);
                 }
             }
-            StartCoroutine(AiBombermanAgentDelay());
+            //StartCoroutine(AiBombermanAgentDelay());
         }
 
-        IEnumerator AiBombermanAgentDelay()
-        {
-            yield return new WaitForSeconds(0.3f);
-            foreach (var ai in aiList)
-            {
-                ai.AddComponent<NavMeshAgent>();
-            }
-            onNavAgentAttachment?.Invoke();
-        }
+        // IEnumerator AiBombermanAgentDelay()
+        // {
+        //     yield return new WaitForSeconds(0.3f);
+        //     foreach (var ai in aiList)
+        //     {
+        //         ai.AddComponent<NavMeshAgent>();
+        //     }
+        //     onNavAgentAttachment?.Invoke();
+        // }
 
-        void BombermanRespawn(float lives, GameObject bomberman)
+        void BombermanRespawn(float lives, GameObject deadBomberman)
         {
             if(lives <= 0)
                 return;
@@ -104,16 +107,18 @@ namespace Managers
             // {
             //     vect = GetRandomVect();
             // } while (Physics.OverlapSphere(vect, 0.4f).Length != 0);
-
-            var random = Random.Range(1, playerSpawnLocations.Count+1);
-            StartCoroutine(RespawnDelay(bomberman, playerSpawnLocations[random]));
+            var spawnNumber = Char.GetNumericValue(deadBomberman.name.FirstOrDefault(a => Char.IsDigit(a)));
+            StartCoroutine(RespawnDelay(deadBomberman, playerSpawnLocations[(int)spawnNumber]));
         }
 
-        IEnumerator RespawnDelay(GameObject bomberman, Vector3 vect)
+        IEnumerator RespawnDelay(GameObject deadBomberman, Vector3 vect)
         {
             yield return new WaitForSeconds(2f);
-            bomberman.transform.position = vect;
-            bomberman.GetComponent<BombermanCharacterController>().enabled = true;
+            deadBomberman.transform.position = vect;
+            if(deadBomberman.GetComponent<BombermanCharacterController>() != null)
+                deadBomberman.GetComponent<BombermanCharacterController>().enabled = true;
+            else if (deadBomberman.GetComponent<AIBombermanController>() != null)
+                deadBomberman.GetComponent<AIBombermanController>().enabled = true;
         }
         Vector3 GetRandomVect()
         {

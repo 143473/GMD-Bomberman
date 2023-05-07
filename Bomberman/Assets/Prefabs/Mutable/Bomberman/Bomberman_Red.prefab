@@ -461,10 +461,10 @@ GameObject:
   - component: {fileID: 1009937699892988974}
   - component: {fileID: 5217844184023316513}
   - component: {fileID: 3823951479480749984}
-  - component: {fileID: 1994917081816677644}
   - component: {fileID: 3445861046231467758}
   - component: {fileID: 902212707624933327}
-  - component: {fileID: -2740914749413466523}
+  - component: {fileID: -635918131881917835}
+  - component: {fileID: 8873495733040867835}
   m_Layer: 3
   m_Name: Bomberman_Red
   m_TagString: Player
@@ -500,7 +500,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 3
-  m_Radius: 0.9
+  m_Radius: 0.85
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -592,18 +592,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &1994917081816677644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2362120128477904832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee4d160d1f8c4a258833447ba0e7ac8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3445861046231467758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -632,28 +620,36 @@ MonoBehaviour:
   maxBombermanStatsSo: {fileID: 11400000, guid: 171b1201d29b83349bf58e7cb747b95b, type: 2}
   minBombermanStatsSo: {fileID: 11400000, guid: 6848fa7013132594c8b1454e51f79b9e, type: 2}
   curses: []
---- !u!195 &-2740914749413466523
-NavMeshAgent:
+--- !u!114 &-635918131881917835
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2362120128477904832}
   m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9702dd95ff0426b872ad68b19d1188a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathToTarget: []
+  placedBombLocation: {x: 0, y: 0, z: 0}
+  potentialTarget: {fileID: 0}
+  potentialDestinationVector: {x: 0, y: 0, z: 0}
+  isReacheable: 0
+  placedBomb: 0
+--- !u!114 &8873495733040867835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2362120128477904832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3b7b7cbc1a44d79a5f9c6c8d54f8d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2523008584742624411
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,26 +1,30 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 using Utils;
 
 namespace Bomberman.AI.States
 {
-    public class MoveToTarget: IState
+    public class MoveToTarget : IState
     {
-        private NavMeshAgent navMeshAgent;
-        private Animator animator;
         private AIBombermanController aiBombermanController;
-
-        public float TimeStuck;
-        private FinalBombermanStats bombermanStats;
+        private Animator animator;
         private string state = "IsWalking";
+        private int currentTargetIndex = 0;
         private Vector3 lastPosition = Vector3.zero;
+        public float TimeStuck = 0f;
+        private bool isMoving = false;
+        private List<Vector3> pathToFollow;
 
-        public MoveToTarget(NavMeshAgent navMeshAgent, Animator animator, AIBombermanController aiBombermanController)
+        public MoveToTarget(AIBombermanController aiBombermanController, Animator animator)
         {
-            this.navMeshAgent = navMeshAgent;
-            this.animator = animator;
             this.aiBombermanController = aiBombermanController;
-            bombermanStats = this.aiBombermanController.GetComponent<FinalBombermanStats>();
+            this.animator = animator;
+            pathToFollow = new List<Vector3>();
         }
 
         public void Tick()
@@ -33,15 +37,47 @@ namespace Bomberman.AI.States
 
         public void OnEnter()
         {
+            Debug.Log($"Moving to target {aiBombermanController.potentialTarget.name}");
+            isMoving = true;
             TimeStuck = 0f;
-            navMeshAgent.enabled = true;
-            navMeshAgent.SetDestination(aiBombermanController.potentialTarget.transform.position);
-            animator.SetBool(state, true);
+            currentTargetIndex = 0;
+            pathToFollow = aiBombermanController.pathToTarget;
+            animator.SetBool(state, isMoving);
+            aiBombermanController.StartCoroutine(Movement());
+        }
+
+        IEnumerator Movement()
+        {
+            if (isMoving)
+            {
+                while (currentTargetIndex < pathToFollow.Count)
+                {
+                    float step =
+                        (aiBombermanController.gameObject.GetComponent<FinalBombermanStats>()
+                            .GetNumericStat(Stats.Speed) - 3) * Time.deltaTime;
+                    aiBombermanController.transform.LookAt(pathToFollow[currentTargetIndex]);
+                    aiBombermanController.transform.Rotate(0, 180, 0);
+                    aiBombermanController.transform.position =
+                        Vector3.MoveTowards(aiBombermanController.transform.position
+                            ,pathToFollow[currentTargetIndex], step);
+                    
+
+                    if (Vector3.Distance(aiBombermanController.transform.position,
+                            pathToFollow[currentTargetIndex]) < 0.01)
+                    {
+                        currentTargetIndex++;
+                    }
+
+                    yield return null;
+                }
+            }
+
+            isMoving = false;
         }
 
         public void OnExit()
         {
-            navMeshAgent.enabled = false;
+            Array.Clear(pathToFollow.ToArray(), 0, pathToFollow.Count);
             animator.SetBool(state, false);
         }
     }

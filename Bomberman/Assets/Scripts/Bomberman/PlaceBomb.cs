@@ -26,10 +26,10 @@ public class PlaceBomb : MonoBehaviour
 
 	public void Bomb()
     {
-	    var vect = new Vector3(ToGrid(transform.position.x), 0.3f, ToGrid(transform.position.z));
+	    var vect = new Vector3(ToGrid(transform.position.x), 0f, ToGrid(transform.position.z));
 	    var bomb = bombermanInventory.GetBomb();
 
-	    if (bomb)
+	    if (bomb && vect != Vector3.zero)
 		{
 			colliders = Physics.OverlapSphere(transform.position, 0.5f);
 			if (!colliders.Any(c => c.gameObject.tag.Equals("Bomb"))) {

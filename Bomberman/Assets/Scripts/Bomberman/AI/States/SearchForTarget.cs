@@ -1,90 +1,70 @@
+using System.Collections.Generic;
+using System.IO.IsolatedStorage;
 using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;
-using Utils;
 
 namespace Bomberman.AI.States
 {
-    public class SearchForTarget : IState
+    public class SearchForTarget: IState
     {
-        private readonly AIBombermanController aIBombermanController;
-        private NavMeshPath navMeshPath = new NavMeshPath();
-        private NavMeshAgent navMeshAgent;
+        private AIBombermanController aiBombermanController;
 
-        public SearchForTarget(AIBombermanController aiBombermanController, NavMeshAgent navMeshAgent)
+        public SearchForTarget(AIBombermanController aiBombermanController)
         {
-            this.aIBombermanController = aiBombermanController;
-            this.navMeshAgent = navMeshAgent;
+            this.aiBombermanController = aiBombermanController;
         }
 
         public void Tick()
         {
-            aIBombermanController.potentialTarget = ChooseOneOfTheNearestTargets();
+            aiBombermanController.potentialTarget = ChooseOneOfTheNearestTargets();
         }
-
-        private GameObject ChooseOneOfTheNearestTargets()
-        {
+         private GameObject ChooseOneOfTheNearestTargets()
+         {
+             Debug.Log("searching for target");
             var powerUp = FindNearestPowerUp();
-            var player = FindNearestPlayer();
-            var wall = FindNearestDestructibleWall();
-
-            if (powerUp != null && IsTargetReachable(powerUp.transform.position))
+            if (powerUp != null && aiBombermanController.ComputePath(powerUp.transform.position))
                 return powerUp;
-            if (player != null && IsTargetReachable(player.transform.position))
-                return player;
-            if (wall != null && IsTargetReachable(wall.transform.position))
+            
+            var wall = FindNearestDestructibleWall();
+            if (wall != null && aiBombermanController.ComputePath(wall.transform.position))
                 return wall;
-
+            
+            var player = FindNearestPlayer();
+            if (player != null && aiBombermanController.ComputePath(player.transform.position))
+                return player;
+            
+            
             return null;
         }
-
-        [CanBeNull]
-        private GameObject FindNearestDestructibleWall()
-        {
-            return GameObject
-                .FindGameObjectsWithTag("DestructibleWall")
-                .OrderBy(v => Vector3.Distance(aIBombermanController.transform.position, v.transform.position))
-                .FirstOrDefault();
-        }
-
-        [CanBeNull]
+         
+         private GameObject FindNearestDestructibleWall()
+         {
+             return GameObject.FindGameObjectsWithTag("DestructibleWall")
+                     .OrderBy(v => Vector3.Distance(aiBombermanController.transform.position, v.transform.position))
+                     .FirstOrDefault();
+         }
+         
         private GameObject FindNearestPowerUp()
         {
             return GameObject
                 .FindGameObjectsWithTag("PowerUp")
-                .OrderBy(v => Vector3.Distance(aIBombermanController.transform.position, v.transform.position))
+                .OrderBy(v => Vector3.Distance(aiBombermanController.transform.position, v.transform.position))
                 .FirstOrDefault();
         }
-
-        [CanBeNull]
+        
         private GameObject FindNearestPlayer()
         {
             return GameObject
                 .FindGameObjectsWithTag("Player")
-                .OrderBy(v => Vector3.Distance(aIBombermanController.transform.position, v.transform.position))
-                .FirstOrDefault();
-        }
-
-        bool IsTargetReachable(Vector3 target)
-        {
-            navMeshAgent.CalculatePath(target, navMeshPath);
-            if (navMeshPath.status != NavMeshPathStatus.PathComplete)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-
-
-            return false;
+                .OrderBy(v => Vector3.Distance(aiBombermanController.transform.position, v.transform.position))
+                .FirstOrDefault(a => a.name != aiBombermanController.gameObject.name);
         }
 
         public void OnEnter()
         {
+
         }
 
         public void OnExit()
