@@ -2,12 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Bomberman.AI;
 using TRYINGSTUFFOUT.CursesV2.ScriptableObjects;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
+using UnityEngine.Tilemaps;
 using Utils;
 using Random = UnityEngine.Random;
 
@@ -17,22 +20,29 @@ namespace Managers
     {
         [FormerlySerializedAs("bombermanStatsV3So")] [SerializeField] private BombermanStatsSO bombermanStatsSo;
         [SerializeField] private GameObject bomberman;
+        [SerializeField] private GameObject bombermanAI;
         [SerializeField] private GameSettings gameSettings;
         [SerializeField] private Canvas canvasPrefab;
 
 
+        // public delegate void OnNavAgentAttachment();
+        // public static OnNavAgentAttachment onNavAgentAttachment;
+        
+        private List<GameObject> aiList;
         private IDictionary<int, Vector3> playerSpawnLocations;
 
         private void Awake()
         {
+            aiList =  new List<GameObject> { };
             playerSpawnLocations = new Dictionary<int, Vector3>();
             bombermanStatsSo.lives = gameSettings.playerLivesToStartWith;
             StageManager.onStageCreation += SetBombermanSpawnLocations;
+            OnBombermanDestroy.onBombermanDeath += BombermanRespawn;
         }
 
         private void Start()
         {
-            OnBombermanDestroy.onBombermanDeath += BombermanRespawn;
+
         }
 
         void SetBombermanSpawnLocations(int stageLength, int stageWidth)
@@ -65,9 +75,34 @@ namespace Managers
                CreateCanvas(canvasPrefab,18f,11f, player2.name);
 
             }
+        
+            
+            // AI instantiation
+            if (gameSettings.numberOfAIPlayers != 0)
+            {
+                var humans = gameSettings.numberOfHumanPlayers;
+                for (int i = 1; i <= gameSettings.numberOfAIPlayers; i++)
+                {
+                    var ai = Instantiate(bombermanAI);
+                    ai.name = $"Player {humans + i}";
+                    ai.transform.position = playerSpawnLocations[humans + i];
+                    aiList.Add(ai);
+                }
+            }
+            //StartCoroutine(AiBombermanAgentDelay());
         }
 
-        void BombermanRespawn(float lives, GameObject bomberman)
+        // IEnumerator AiBombermanAgentDelay()
+        // {
+        //     yield return new WaitForSeconds(0.3f);
+        //     foreach (var ai in aiList)
+        //     {
+        //         ai.AddComponent<NavMeshAgent>();
+        //     }
+        //     onNavAgentAttachment?.Invoke();
+        // }
+
+        void BombermanRespawn(float lives, GameObject deadBomberman)
         {
             if(lives <= 0)
                 return;
@@ -77,16 +112,18 @@ namespace Managers
             // {
             //     vect = GetRandomVect();
             // } while (Physics.OverlapSphere(vect, 0.4f).Length != 0);
-
-            var random = Random.Range(1, playerSpawnLocations.Count+1);
-            StartCoroutine(RespawnDelay(bomberman, playerSpawnLocations[random]));
+            var spawnNumber = Char.GetNumericValue(deadBomberman.name.FirstOrDefault(a => Char.IsDigit(a)));
+            StartCoroutine(RespawnDelay(deadBomberman, playerSpawnLocations[(int)spawnNumber]));
         }
 
-        IEnumerator RespawnDelay(GameObject bomberman, Vector3 vect)
+        IEnumerator RespawnDelay(GameObject deadBomberman, Vector3 vect)
         {
             yield return new WaitForSeconds(2f);
-            bomberman.transform.position = vect;
-            bomberman.GetComponent<BombermanCharacterController>().enabled = true;
+            deadBomberman.transform.position = vect;
+            if(deadBomberman.GetComponent<BombermanCharacterController>() != null)
+                deadBomberman.GetComponent<BombermanCharacterController>().enabled = true;
+            else if (deadBomberman.GetComponent<AIBombermanController>() != null)
+                deadBomberman.GetComponent<AIBombermanController>().enabled = true;
         }
         Vector3 GetRandomVect()
         {

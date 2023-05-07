@@ -1,5 +1,6 @@
 using Helpers;
 using UnityEngine;
+using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 
@@ -14,13 +15,17 @@ public class StageManager : MonoBehaviour
     [SerializeField] private int stageWidth = 15;
     private GameObject instatiatedWall;
     private GameObject instatiatedStone;
+    private PathfindingAStar x;
 
     private int[,] stageLayout;
     public delegate void OnStageCreation(int stageLength, int stageWidth);
-
     public static OnStageCreation onStageCreation;
+    
+    public delegate void OnGridSet(Gridx grid);
+    public static OnGridSet onGridSet;
 
     private GameObject stage;
+    private Gridx gridx;
 
     private void Awake()
     {
@@ -35,6 +40,25 @@ public class StageManager : MonoBehaviour
         //Instantiate(field);
         PlaceField();
         GenerateRandomStage();
+       
+    }
+
+    private void Update()
+    {
+        // if (Input.GetKeyDown("space"))
+        // {
+        //     var vectWorld = GameObject.FindGameObjectsWithTag("Player").First(a =>a.gameObject.name == "Player 1").transform.position;
+        //     var vect2World = GameObject.FindGameObjectsWithTag("Player").First(a =>a.gameObject.name == "Player 2").transform.position;
+        //
+        //     gridx.GetXY(vectWorld, out int vectx, out int vecty);
+        //     gridx.GetXY(vect2World, out int vect2x, out int vect2y);
+        //
+        //     var y = x.GetPath((vectx, vecty), (vect2x, vect2y));
+        //     foreach (var tile in y)
+        //     {
+        //         Debug.Log($"PATH ----- {tile.X} : {tile.Y}");
+        //     }
+        // }
     }
 
     void PlaceField()
@@ -93,7 +117,7 @@ public class StageManager : MonoBehaviour
                 {
                     Vector3 vect = new Vector3(i, 0f, j);
                     if (j % 2 == 0)
-                    {
+                    { 
                         stageLayout[i,j] = 5;
                        instatiatedStone = Instantiate(nonDestructibleWall, vect, transform.rotation, stage.transform);
                        var render = instatiatedStone.GetComponentInChildren<Renderer>(true);
@@ -108,17 +132,17 @@ public class StageManager : MonoBehaviour
         stageLayout[1, 2] = 1;
         stageLayout[2, 1] = 1;
         
-        stageLayout[stageLength-2, stageWidth-2] = 2;
-        stageLayout[stageLength-3 , stageWidth-2] = 2;
-        stageLayout[stageLength-2, stageWidth-3] = 2;
+        stageLayout[stageLength-2, stageWidth-2] = 1;
+        stageLayout[stageLength-3 , stageWidth-2] = 1;
+        stageLayout[stageLength-2, stageWidth-3] = 1;
         
-        stageLayout[1, stageWidth-2] = 3;
-        stageLayout[2, stageWidth-2] = 3;
-        stageLayout[1, stageWidth-3] = 3;
+        stageLayout[1, stageWidth-2] = 1;
+        stageLayout[2, stageWidth-2] = 1;
+        stageLayout[1, stageWidth-3] = 1;
         
-        stageLayout[stageLength-2, 1] = 4;
-        stageLayout[stageLength-2, 2] = 4;
-        stageLayout[stageLength-3, 1] = 4;
+        stageLayout[stageLength-2, 1] = 1;
+        stageLayout[stageLength-2, 2] = 1;
+        stageLayout[stageLength-3, 1] = 1;
         
         //Spawn destructible walls
         for (int i = 1; i < stageLength; i++)
@@ -131,6 +155,7 @@ public class StageManager : MonoBehaviour
                     Vector3 vect = new Vector3(i, 0f, j);
                     if (random < wallChanceToSpawn)
                     {
+                        stageLayout[i,j] = 2;
                         instatiatedWall = Instantiate(wall, vect, transform.rotation, stage.transform);
                         var render = instatiatedWall.GetComponentInChildren<Renderer>(true);
                         render.material.color = StageHelper.BrickGradient();
@@ -139,6 +164,10 @@ public class StageManager : MonoBehaviour
                 }
             }
         }
+        gridx = new Gridx(stageLayout);
+        x = new PathfindingAStar(gridx);
+        
         onStageCreation?.Invoke(stageLength, stageWidth);
+        onGridSet?.Invoke(gridx);
     }
 }

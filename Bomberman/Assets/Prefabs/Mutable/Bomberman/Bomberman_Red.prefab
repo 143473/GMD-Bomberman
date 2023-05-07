@@ -457,15 +457,14 @@ GameObject:
   - component: {fileID: 6200724206684783152}
   - component: {fileID: 5816424185537719395}
   - component: {fileID: 2501873213665315305}
-  - component: {fileID: 3162014769886543613}
   - component: {fileID: 5638535608206349500}
   - component: {fileID: 1009937699892988974}
   - component: {fileID: 5217844184023316513}
-  - component: {fileID: 3633038169580955934}
   - component: {fileID: 3823951479480749984}
-  - component: {fileID: 1994917081816677644}
   - component: {fileID: 3445861046231467758}
-  - component: {fileID: 6110446691041327512}
+  - component: {fileID: 902212707624933327}
+  - component: {fileID: -635918131881917835}
+  - component: {fileID: 8873495733040867835}
   m_Layer: 3
   m_Name: Bomberman_Red
   m_TagString: Player
@@ -501,7 +500,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 3
-  m_Radius: 0.9
+  m_Radius: 0.85
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -533,18 +532,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 68252b92694869141a570176b6566955, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3162014769886543613
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2362120128477904832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcf7ec76f7cb45da882bef7eb3235bce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &5638535608206349500
@@ -585,36 +572,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
---- !u!114 &3633038169580955934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2362120128477904832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 44764a28fce0cbd43919cc360cd866b7, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Keyboard.WASD
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: 0
-  m_Camera: {fileID: 0}
 --- !u!95 &3823951479480749984
 Animator:
   serializedVersion: 5
@@ -635,18 +592,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &1994917081816677644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2362120128477904832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee4d160d1f8c4a258833447ba0e7ac8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3445861046231467758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -659,7 +604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a33067c2bbf48ee9cdcc1f3bb13cfda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6110446691041327512
+--- !u!114 &902212707624933327
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -668,25 +613,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 2362120128477904832}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a38226028475818489be4608bf7df2f0, type: 3}
+  m_Script: {fileID: 11500000, guid: 48c711240094ef94bb8c10451ad4d936, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onPlaceBomb:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2501873213665315305}
-        m_TargetAssemblyTypeName: PlaceBomb, Assembly-CSharp
-        m_MethodName: Bomb
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  turnSmoothTime: 0.1
+  bombermanStatsSo: {fileID: 11400000, guid: 97e0a36bbb0c68140bb22bfcab95f9f0, type: 2}
+  maxBombermanStatsSo: {fileID: 11400000, guid: 171b1201d29b83349bf58e7cb747b95b, type: 2}
+  minBombermanStatsSo: {fileID: 11400000, guid: 6848fa7013132594c8b1454e51f79b9e, type: 2}
+  curses: []
+--- !u!114 &-635918131881917835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2362120128477904832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9702dd95ff0426b872ad68b19d1188a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathToTarget: []
+  placedBombLocation: {x: 0, y: 0, z: 0}
+  potentialTarget: {fileID: 0}
+  potentialDestinationVector: {x: 0, y: 0, z: 0}
+  isReacheable: 0
+  placedBomb: 0
+--- !u!114 &8873495733040867835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2362120128477904832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3b7b7cbc1a44d79a5f9c6c8d54f8d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2523008584742624411
 GameObject:
   m_ObjectHideFlags: 0

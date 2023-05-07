@@ -17,7 +17,15 @@ public class FlameScript : MonoBehaviour
 
     private void OnEnable()
     {
+        var position = gameObject.transform.position;
+        Gridx.onGridValueChanged?.Invoke(position.x, position.z, 4);
         StartCoroutine(SelfDestroy());
+    }
+
+    private void OnDisable()
+    {
+        var position = gameObject.transform.position;
+        Gridx.onGridValueChanged?.Invoke(position.x, position.z, 0);
     }
 
     private void OnTriggerEnter(Collider collider)

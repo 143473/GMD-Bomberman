@@ -17,6 +17,8 @@ public class OnWallDestroy : MonoBehaviour, IDamage
     {
         yield return new WaitForSeconds(spawnDelay);
         onWallDestroy.Invoke();
+        var position = gameObject.transform.position;
+        Gridx.onGridValueChanged?.Invoke(position.x, position.z, 0);
         Destroy(gameObject);
     }
 }

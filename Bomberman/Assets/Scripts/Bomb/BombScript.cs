@@ -28,6 +28,9 @@ public class BombScript : MonoBehaviour
 
     private void OnEnable()
     {
+      var position = gameObject.transform.position;
+      Gridx.onGridValueChanged?.Invoke(position.x, position.z, 3);
+      
       BombermanCharacterController.onManuallyExplodeBomb += Boom;
       bombStats = GetComponent<BombStats>();
       sc.isTrigger = true;
@@ -35,6 +38,11 @@ public class BombScript : MonoBehaviour
 
     private void OnDisable()
     {
+      var position = gameObject.transform.position;
+      if (position.x > 0 && position.z > 0)
+      {
+        Gridx.onGridValueChanged?.Invoke(position.x, position.z, 0);
+      }
       BombermanCharacterController.onManuallyExplodeBomb -= Boom;
     }
 
