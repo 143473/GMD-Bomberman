@@ -1,11 +1,9 @@
 fileFormatVersion: 2
-guid: aa36ce7ad2f9019429df0e80b00a936b
+guid: 18459a5ccaeb80c44a0c618f6bdadfa8
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - wall: {instanceID: 0}
-  - bomberman: {fileID: 7766113418674553822, guid: 0b653baa861611a44a0f90f805e701fc, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
