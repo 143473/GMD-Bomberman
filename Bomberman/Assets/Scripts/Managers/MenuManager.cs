@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-
+    [SerializeField] private Canvas menuCanvas;
+    [SerializeField] private Canvas optionsCanvas;
     public void LoadScene(int targetScene)
     {
         SceneManager.LoadScene(targetScene);
@@ -14,5 +15,17 @@ public class MenuManager : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    public void OnOptionsMenu()
+    {
+        menuCanvas.gameObject.SetActive(false);
+        optionsCanvas.gameObject.SetActive(true);
+    }
+
+    public void OnMainMenu()
+    {
+        optionsCanvas.gameObject.SetActive(false);
+        menuCanvas.gameObject.SetActive(true);
     }
 }

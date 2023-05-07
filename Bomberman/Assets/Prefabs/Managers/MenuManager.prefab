@@ -44,4 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0465806a48143364fa31b349aa4247d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startScene: 1
+  menuCanvas: {fileID: 0}
+  optionsCanvas: {fileID: 0}
