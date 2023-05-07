@@ -37,7 +37,7 @@ namespace Bomberman.AI.States
 
         public void OnEnter()
         {
-            Debug.Log($"Moving to target {aiBombermanController.potentialTarget.name}");
+            Debug.Log($"Moving to target {aiBombermanController.secondaryTargetPosition.x} : {aiBombermanController.secondaryTargetPosition.z}");
             isMoving = true;
             TimeStuck = 0f;
             currentTargetIndex = 0;
@@ -55,8 +55,10 @@ namespace Bomberman.AI.States
                     float step =
                         (aiBombermanController.gameObject.GetComponent<FinalBombermanStats>()
                             .GetNumericStat(Stats.Speed) - 3) * Time.deltaTime;
+                    
                     aiBombermanController.transform.LookAt(pathToFollow[currentTargetIndex]);
                     aiBombermanController.transform.Rotate(0, 180, 0);
+                    
                     aiBombermanController.transform.position =
                         Vector3.MoveTowards(aiBombermanController.transform.position
                             ,pathToFollow[currentTargetIndex], step);
@@ -77,7 +79,7 @@ namespace Bomberman.AI.States
 
         public void OnExit()
         {
-            Array.Clear(pathToFollow.ToArray(), 0, pathToFollow.Count);
+
             animator.SetBool(state, false);
         }
     }

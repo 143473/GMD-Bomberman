@@ -5,7 +5,28 @@ using UnityEngine;
 public class Gridx {
 
     // public static event EventHandler<OnGridValueChangedEventArgs> OnGridValueChanged;
+    // Gridx value:
+    // 0 - free spot
+    // 1 - players hardcoded spawn locations
+    // 2 - destructible walls
+    // 3 - bomb
+    // 4 - flame
+    // 5 - non destructible walls
+    // 6 - powerups
+    // 7 - curses
 
+    public enum Legend
+    {
+        Free,
+        PSpawn,
+        DWall,
+        Bomb,
+        Flame,
+        NonDWall,
+        Power,
+        Curse,
+        None
+    }
     public delegate void OnGridValueChanged(float x, float y, int value);
     public static OnGridValueChanged onGridValueChanged;
     public class OnGridValueChangedEventArgs : EventArgs {
@@ -53,8 +74,7 @@ public class Gridx {
         Debug.Log(x + " : " + y + " - " + value);
         if (x >= 0 && y >= 0 && x < length && y < width) {
             gridArray[x, y] = value;
-            // if (OnGridValueChanged != null) 
-            //     OnGridValueChanged(this, new OnGridValueChangedEventArgs { x = x, y = y });
+
         }
     }
 
