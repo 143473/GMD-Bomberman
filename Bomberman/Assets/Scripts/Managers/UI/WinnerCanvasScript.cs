@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TRYINGSTUFFOUT.CursesV2.ScriptableObjects;
 using UnityEngine;
 
@@ -26,7 +27,7 @@ namespace Managers.UI
             }
             else
             {
-                // Set winner canvas
+                var winner = GameObject.FindGameObjectsWithTag("Player").FirstOrDefault(a => isActiveAndEnabled);
             }
         }
     }
