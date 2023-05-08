@@ -430,17 +430,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: MenuAudioSource
       objectReference: {fileID: 0}
-    - target: {fileID: 6797196248487793065, guid: 70bf43fec783dcb4797980b7c6485f6a, type: 3}
-      propertyPath: m_Volume
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6797196248487793066, guid: 70bf43fec783dcb4797980b7c6485f6a, type: 3}
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6797196248487793066, guid: 70bf43fec783dcb4797980b7c6485f6a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -6.65
       objectReference: {fileID: 0}
     - target: {fileID: 6797196248487793066, guid: 70bf43fec783dcb4797980b7c6485f6a, type: 3}
       propertyPath: m_LocalPosition.y
