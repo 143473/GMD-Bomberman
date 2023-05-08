@@ -24,7 +24,7 @@ namespace PowerUps
         }
 
         public void OnDamage()
-        {
+        { 
             Destroy(gameObject);
         }
     }

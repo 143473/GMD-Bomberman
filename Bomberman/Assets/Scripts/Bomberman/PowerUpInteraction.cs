@@ -12,7 +12,7 @@ public class PowerUpInteraction : MonoBehaviour
 
     }
     private void OnTriggerEnter(Collider powerUp)
-    {
+    { 
         if (powerUp.TryGetComponent(out IPowerUp script))
         {
             script.ApplyEffect(finalBombermanStats);

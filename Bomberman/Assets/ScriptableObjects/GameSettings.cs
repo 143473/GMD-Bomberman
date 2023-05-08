@@ -6,6 +6,7 @@ namespace TRYINGSTUFFOUT.CursesV2.ScriptableObjects
     [CreateAssetMenu]
     public class GameSettings : ScriptableObject
     {
+        public float volume = 1;
         public int numberOfHumanPlayers = 1;
         public int numberOfAIPlayers = 0;
         public StageSet stageSet = StageSet.Regular;

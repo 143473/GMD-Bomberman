@@ -1,5 +1,6 @@
 using System.Linq;
 using Helpers;
+using TRYINGSTUFFOUT.CursesV2.ScriptableObjects;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,6 +9,7 @@ public class MenuManager : MonoBehaviour
 {
     [SerializeField] private Canvas menuCanvas;
     [SerializeField] private Canvas optionsCanvas;
+    [SerializeField] private GameSettings gameSettings;
     private Canvas mCanvas;
     private Canvas oCanvas;
     
@@ -20,8 +22,9 @@ public class MenuManager : MonoBehaviour
         
         mCanvas.AddListenerToButton("PlayButton", LoadScene);
         mCanvas.AddListenerToButton("OptionsButton", OnOptionsMenu);
-        //oCanvas.AddListenerToButton("SaveButton", LoadScene);
         oCanvas.AddListenerToButton("BackButton", OnMainMenu);
+        
+        AudioListener.volume = gameSettings.volume;
     }
 
     public void LoadScene()
