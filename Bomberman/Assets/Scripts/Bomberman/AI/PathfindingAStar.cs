@@ -126,8 +126,11 @@ class PathfindingAStar
         return possibleTiles
             .Where(tile => tile.X > 0 && tile.X < maxX)
             .Where(tile => tile.Y > 0 && tile.Y < maxY)
-            .Where(tile => stageLayout[tile.X, tile.Y] == 0 || stageLayout[tile.X, tile.Y] == 1
-            || (tile == targetTile && stageLayout[tile.X, tile.Y] == 2))
+            .Where(tile => stageLayout[tile.X, tile.Y] == 0 
+                           || stageLayout[tile.X, tile.Y] == 1 
+                           || (tile == targetTile && stageLayout[tile.X, tile.Y] == 2) 
+                           || stageLayout[tile.X, tile.Y] == 6 
+                           || stageLayout[tile.X, tile.Y] == 7)
             .ToList();
     }
 }

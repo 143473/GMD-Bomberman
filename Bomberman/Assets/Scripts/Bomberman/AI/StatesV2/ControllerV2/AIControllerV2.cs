@@ -102,7 +102,7 @@ namespace Bomberman.AI.StatesV2.ControllerV2
             var check = new CheckForBombs(this);
             // var move = new Move(this);
             var bomb = new AiBomb(this);
-            var unstuck = new Unstuck(this);
+            var unstuck = new UnstuckV2(this);
 
 
             // Adding state transitions 

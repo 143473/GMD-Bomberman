@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace Bomberman.AI.StatesV2
 {
-    public class Unstuck : IState
+    public class UnstuckV2 : IState
     {
         private AIControllerV2 aiControllerV2;
 
-        public Unstuck(AIControllerV2 aiControllerV2)
+        public UnstuckV2(AIControllerV2 aiControllerV2)
         {
             this.aiControllerV2 = aiControllerV2;
         }

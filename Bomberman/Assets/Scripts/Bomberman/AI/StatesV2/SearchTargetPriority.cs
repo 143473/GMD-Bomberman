@@ -47,31 +47,6 @@ namespace Bomberman.AI.StatesV2
             list.Remove(target);
             aiControllerV2.ComputePath(new Vector3(target.x, 0, target.y));
             aiControllerV2.targetType = helper.GetTypeWithValue(stageGrid[target.x, target.y]);
-
-            // bool xxx;
-            // while (true)
-            // {
-            //     var target = list
-            //         .OrderBy(a => Vector3.Distance(currV, new Vector3(a.x, 0, a.y)))
-            //         .FirstOrDefault(); 
-            //     list.Remove(target);
-            //      xxx = aiControllerV2.ComputePath(new Vector3(target.x, 0, target.y));
-            //      if (xxx)
-            //          break;
-            // }
-
-
-            // if (!aiControllerV2.ComputePath(player.transform.position))
-            // {
-            //     for (int i = 0; i < aiControllerV2.fullPathToATarget.Count; i++)
-            //         if (new Vector3(x, 0, y) == aiControllerV2.fullPathToATarget[i])
-            //         {
-            //             aiControllerV2.nextCell = aiControllerV2.fullPathToATarget[i + 1];
-            //             break;
-            //         }
-            //
-            //     // aiControllerV2.stuck = true;
-            // }
         }
 
         public void OnExit()

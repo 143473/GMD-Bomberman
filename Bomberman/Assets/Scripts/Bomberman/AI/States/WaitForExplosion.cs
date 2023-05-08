@@ -16,17 +16,19 @@ namespace Bomberman.AI.States
         public void Tick()
         {
             waitingTime -= Time.deltaTime;
+            if(waitingTime == 0f)
+                aiBombermanController.placedBomb = false;
         }
 
         public void OnEnter()
         {
             Debug.Log("Waiting for explosion");
-            waitingTime = aiBombermanController.GetComponent<FinalBombermanStats>().GetNumericStat(Stats.BombDelay);
+            waitingTime = aiBombermanController.GetComponent<FinalBombermanStats>().GetNumericStat(Stats.BombDelay)+1f;
         }
 
         public void OnExit()
         {
-            aiBombermanController.placedBomb = false;
+            aiBombermanController.placedBombLocation = new Vector3();
         }
     }
 }

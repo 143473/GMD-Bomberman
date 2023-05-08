@@ -17,7 +17,6 @@ namespace Bomberman.AI.States
         private int currentTargetIndex = 0;
         private Vector3 lastPosition = Vector3.zero;
         public float TimeStuck = 0f;
-        private bool isMoving = false;
         private List<Vector3> pathToFollow;
 
         public MoveToTarget(AIBombermanController aiBombermanController, Animator animator)
@@ -37,19 +36,19 @@ namespace Bomberman.AI.States
 
         public void OnEnter()
         {
-            Debug.Log($"Moving to target {aiBombermanController.secondaryTargetPosition.x} : {aiBombermanController.secondaryTargetPosition.z}");
-            isMoving = true;
+            Debug.Log($"Moving to target {aiBombermanController.targetPosition.x} : {aiBombermanController.targetPosition.z}");
+            
             TimeStuck = 0f;
             currentTargetIndex = 0;
             pathToFollow = aiBombermanController.pathToTarget;
-            animator.SetBool(state, isMoving);
             aiBombermanController.StartCoroutine(Movement());
         }
 
         IEnumerator Movement()
         {
-            if (isMoving)
+            if (!aiBombermanController.isMoving)
             {
+                aiBombermanController.isMoving = true;
                 while (currentTargetIndex < pathToFollow.Count)
                 {
                     float step =
@@ -72,14 +71,16 @@ namespace Bomberman.AI.States
 
                     yield return null;
                 }
+
+                aiBombermanController.isMoving = false;
             }
 
-            isMoving = false;
+            
         }
 
         public void OnExit()
         {
-            animator.SetBool(state, false);
+           
         }
     }
 }

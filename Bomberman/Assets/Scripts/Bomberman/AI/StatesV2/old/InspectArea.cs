@@ -28,18 +28,18 @@ namespace Bomberman.AI.States
             gridx = aiBombermanController.GetGrid();
             SearchGridForImportantObjectives();
             
-            var target = aiBombermanController.secondaryTargetPosition;
+            var target = aiBombermanController.targetPosition;
             gridx.GetXY(target, out int x, out int y);
-            var targetType = aiBombermanController.secondaryTargetType;
+            var targetType = aiBombermanController.targetType;
             
             if (stageGrid[x, y] == (int)targetType)
             {
-                aiBombermanController.targetChanged = false;
-                aiBombermanController.ComputePath(aiBombermanController.secondaryTargetPosition);
+
+                aiBombermanController.ComputePath(aiBombermanController.targetPosition);
             }
             else
             {
-                aiBombermanController.targetChanged = true;
+
             }
         }
         
