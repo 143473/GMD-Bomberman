@@ -54,15 +54,8 @@ namespace Utils
             flameText.text = $"{numericStats[Stats.Flame]}";
             bombsText.text = $"{numericStats[Stats.Bombs]}";
             curseImage.enabled = false;
-
-            if (name.Contains("Player 1"))
-            {
-                playerText.text = "Red";
-            }
-            if (name.Contains("Player 2"))
-            {
-                playerText.text = "Blue";
-            }
+            playerText.text = name[..8];
+            
             StatsHandler.StatsChanged += UpdateStats;
         }
         

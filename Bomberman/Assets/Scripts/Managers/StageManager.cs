@@ -91,8 +91,8 @@ public class StageManager : MonoBehaviour
                     stageLayout[i,j] = 5; 
                     instatiatedStone = Instantiate(nonDestructibleWall, vect, transform.rotation, stage.transform);
                     var render = instatiatedStone.GetComponentInChildren<Renderer>(true);
-                    render.material.color = StageHelper.StoneGradient();
-                    instatiatedStone.transform.localScale= new Vector3(1,StageHelper.StoneWallHeight(), 1);
+                    render.material.color = ColorHelper.StoneGradient();
+                    instatiatedStone.transform.localScale= new Vector3(1,ColorHelper.StoneWallHeight(), 1);
                 }
 
             for (int j = 0; j < stageWidth; j++)
@@ -103,8 +103,8 @@ public class StageManager : MonoBehaviour
                     stageLayout[i,j] = 5; 
                     instatiatedStone = Instantiate(nonDestructibleWall, vect, transform.rotation, stage.transform);
                     var render = instatiatedStone.GetComponentInChildren<Renderer>(true);
-                    render.material.color = StageHelper.StoneGradient();
-                    instatiatedStone.transform.localScale= new Vector3(1,StageHelper.StoneWallHeight(), 1);
+                    render.material.color = ColorHelper.StoneGradient();
+                    instatiatedStone.transform.localScale= new Vector3(1,ColorHelper.StoneWallHeight(), 1);
                 }
             }
         }
@@ -121,8 +121,8 @@ public class StageManager : MonoBehaviour
                         stageLayout[i,j] = 5;
                        instatiatedStone = Instantiate(nonDestructibleWall, vect, transform.rotation, stage.transform);
                        var render = instatiatedStone.GetComponentInChildren<Renderer>(true);
-                       render.material.color = StageHelper.StoneGradient();
-                       instatiatedStone.transform.localScale= new Vector3(1,StageHelper.StoneWallHeight(), 1);
+                       render.material.color = ColorHelper.StoneGradient();
+                       instatiatedStone.transform.localScale= new Vector3(1,ColorHelper.StoneWallHeight(), 1);
                     }
                 }
         }
@@ -158,8 +158,8 @@ public class StageManager : MonoBehaviour
                         stageLayout[i,j] = 2;
                         instatiatedWall = Instantiate(wall, vect, transform.rotation, stage.transform);
                         var render = instatiatedWall.GetComponentInChildren<Renderer>(true);
-                        render.material.color = StageHelper.BrickGradient();
-                        instatiatedWall.transform.localScale= new Vector3(1,StageHelper.BrickWallHeight(), 1);
+                        render.material.color = ColorHelper.BrickGradient();
+                        instatiatedWall.transform.localScale= new Vector3(1,ColorHelper.BrickWallHeight(), 1);
                     }
                 }
             }
