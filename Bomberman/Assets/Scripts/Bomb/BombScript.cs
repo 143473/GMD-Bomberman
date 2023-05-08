@@ -77,8 +77,7 @@ public class BombScript : MonoBehaviour
     {
       if (!flameCoroutineStarted && gameObject.activeSelf)
       {
-        audioSource.clip = flameClip;
-        audioSource.Play();
+        AudioSource.PlayClipAtPoint(flameClip, Vector3.zero);
         StartCoroutine(SpawnFlames()); 
       }
     }
@@ -110,14 +109,8 @@ public class BombScript : MonoBehaviour
         yield return null;
       }
 
-      SetRendererActive(false);
-      yield return new WaitForSeconds(1f);
-      audioSource.clip = null;
-
       directions.Clear();
-      gameObject.SetActive(false);
-      SetRendererActive(true);
-
+      gameObject.SetActive(false); ;
       flameCoroutineStarted = false;    
     }
 
@@ -136,14 +129,6 @@ public class BombScript : MonoBehaviour
       }
     }
 
-    void SetRendererActive(bool active)
-    {
-      foreach (var meshRenderer in gameObject.GetComponentsInChildren<MeshRenderer>())
-      {
-        meshRenderer.enabled = active;
-      }
-    }
-    
     bool CheckCell(Vector3 cellPosition)
     {
       colliders = Physics.OverlapBox(cellPosition, halfExtent, Quaternion.identity, 3);

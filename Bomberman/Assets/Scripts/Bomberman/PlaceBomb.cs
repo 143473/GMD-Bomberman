@@ -43,8 +43,8 @@ public class PlaceBomb : MonoBehaviour
 					bombermanStats.GetBooleanStat(Stats.RemoteExplosion), 
 					bombermanStats.GetNumericStat(Stats.BombDelay));
 				
-				audioSource.clip = placementClip;
-				audioSource.Play();
+			
+				AudioSource.PlayClipAtPoint(placementClip, Vector3.zero);
 				bomb.SetActive(true);
 			
 
