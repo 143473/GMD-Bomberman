@@ -15,14 +15,15 @@ public class BombScript : MonoBehaviour
     private BombStats bombStats;
     private Collider[] colliders;
     private bool flameCoroutineStarted = false;
-
+    private AudioSource audioSource;
+    [SerializeField] public AudioClip flameClip;
 
     private void Awake()
     {
       colliders = new Collider[10];
       var flamePoolGO = GameObject.Find("FlameGOPool");
       flamePoolSpawner = flamePoolGO.GetComponent<FlamePool>();
-      
+      audioSource = gameObject.GetComponent<AudioSource>();
       gameObject.SetActive(false);
     }
 
@@ -74,16 +75,11 @@ public class BombScript : MonoBehaviour
 
     public void Explode()
     {
-      //CheckCell(transform.position);
-
-      // CheckDirection(Vector3.forward);
-      // CheckDirection(Vector3.back);
-      // CheckDirection(Vector3.left);
-      // CheckDirection(Vector3.right);
-
       if (!flameCoroutineStarted && gameObject.activeSelf)
       {
-        StartCoroutine(SpawnFlames());
+        audioSource.clip = flameClip;
+        audioSource.Play();
+        StartCoroutine(SpawnFlames()); 
       }
     }
 
@@ -94,7 +90,8 @@ public class BombScript : MonoBehaviour
       
       List<Vector3> directions = new List<Vector3>() { Vector3.forward, Vector3.back, Vector3.left, Vector3.right };
       List<Vector3> directionsBlocked = new List<Vector3>();
-
+    
+     
       for (int i = 1; i < bombStats.Flame + 1; i++)
       {
         foreach (var direction in directions)
@@ -109,16 +106,20 @@ public class BombScript : MonoBehaviour
         }
         directions = directions.Where(x => !directionsBlocked.Contains(x)).ToList();
         directionsBlocked.Clear();
-
+      
         yield return null;
       }
 
-      flameCoroutineStarted = false;
+      SetRendererActive(false);
+      yield return new WaitForSeconds(1f);
+      audioSource.clip = null;
+
       directions.Clear();
       gameObject.SetActive(false);
+      SetRendererActive(true);
 
+      flameCoroutineStarted = false;    
     }
-
 
     // Second Approach - per direction
     void CheckDirection(Vector3 direction)
@@ -135,6 +136,14 @@ public class BombScript : MonoBehaviour
       }
     }
 
+    void SetRendererActive(bool active)
+    {
+      foreach (var meshRenderer in gameObject.GetComponentsInChildren<MeshRenderer>())
+      {
+        meshRenderer.enabled = active;
+      }
+    }
+    
     bool CheckCell(Vector3 cellPosition)
     {
       colliders = Physics.OverlapBox(cellPosition, halfExtent, Quaternion.identity, 3);
