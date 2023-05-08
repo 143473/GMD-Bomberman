@@ -79,7 +79,6 @@ namespace Bomberman.AI.States
 
         public void OnExit()
         {
-
             animator.SetBool(state, false);
         }
     }

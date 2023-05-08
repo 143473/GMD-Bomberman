@@ -37,6 +37,10 @@ namespace Bomberman.AI.States
                 aiBombermanController.targetChanged = false;
                 aiBombermanController.ComputePath(aiBombermanController.secondaryTargetPosition);
             }
+            else
+            {
+                aiBombermanController.targetChanged = true;
+            }
         }
         
         void SearchGridForImportantObjectives()
