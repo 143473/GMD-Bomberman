@@ -463,8 +463,8 @@ GameObject:
   - component: {fileID: 3823951479480749984}
   - component: {fileID: 3445861046231467758}
   - component: {fileID: 902212707624933327}
-  - component: {fileID: -635918131881917835}
   - component: {fileID: 8873495733040867835}
+  - component: {fileID: -8177574826296415540}
   m_Layer: 3
   m_Name: Bomberman_Red
   m_TagString: Player
@@ -620,24 +620,6 @@ MonoBehaviour:
   maxBombermanStatsSo: {fileID: 11400000, guid: 171b1201d29b83349bf58e7cb747b95b, type: 2}
   minBombermanStatsSo: {fileID: 11400000, guid: 6848fa7013132594c8b1454e51f79b9e, type: 2}
   curses: []
---- !u!114 &-635918131881917835
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2362120128477904832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9702dd95ff0426b872ad68b19d1188a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pathToTarget: []
-  placedBombLocation: {x: 0, y: 0, z: 0}
-  potentialTarget: {fileID: 0}
-  potentialDestinationVector: {x: 0, y: 0, z: 0}
-  isReacheable: 0
-  placedBomb: 0
 --- !u!114 &8873495733040867835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -650,6 +632,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e3b7b7cbc1a44d79a5f9c6c8d54f8d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-8177574826296415540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2362120128477904832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e38b7920c11a44768142cd2bbb1068a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextCell: {x: 0, y: 0, z: 0}
+  isMoving: 0
+  checkedForBombs: 0
+  placedBomb: 0
+  searching: 0
 --- !u!1 &2523008584742624411
 GameObject:
   m_ObjectHideFlags: 0

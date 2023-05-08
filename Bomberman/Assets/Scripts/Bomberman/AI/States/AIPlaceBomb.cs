@@ -27,6 +27,8 @@ namespace Bomberman.AI.States
 
         public void OnExit()
         {
+            aiBombermanController.secondaryTargetPosition = Vector3.zero;
+            aiBombermanController.secondaryTargetType = Gridx.Legend.None;
         }
     }
 }
