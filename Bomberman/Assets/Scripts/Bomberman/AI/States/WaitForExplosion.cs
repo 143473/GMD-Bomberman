@@ -22,12 +22,14 @@ namespace Bomberman.AI.States
 
         public void OnEnter()
         {
+            aiBombermanController.potentialSafeSpot = Vector3.zero;
             Debug.Log("Waiting for explosion");
             waitingTime = aiBombermanController.GetComponent<FinalBombermanStats>().GetNumericStat(Stats.BombDelay)+1f;
         }
 
         public void OnExit()
         {
+            aiBombermanController.placedBomb = false;
             aiBombermanController.placedBombLocation = new Vector3();
         }
     }

@@ -58,12 +58,12 @@ namespace Bomberman.AI.States
             {
                 if (aiBombermanController.ComputePath(new Vector3(s.x, 0, s.y)))
                 {
-                    aiBombermanController.potentialDestinationVector = new Vector3(s.x, 0, s.y);
+                    aiBombermanController.potentialSafeSpot = new Vector3(s.x, 0, s.y);
                     break;
                 }
                 else
                 {
-                    aiBombermanController.potentialDestinationVector = Vector3.zero;
+                    aiBombermanController.potentialSafeSpot = Vector3.zero;
                 }
             }
         }

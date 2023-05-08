@@ -27,7 +27,7 @@ namespace Bomberman.AI
         public Vector3 targetPosition;
         public Gridx.Legend targetType;
 
-        public Vector3 potentialDestinationVector;
+        [FormerlySerializedAs("potentialDestinationVector")] public Vector3 potentialSafeSpot;
 
         private string state = "IsWalking";
         public bool isReacheable = false;
@@ -38,7 +38,7 @@ namespace Bomberman.AI
         {
             StageManager.onGridSet += SetGrid;
             pathToTarget = new List<Vector3>();
-            potentialDestinationVector = new Vector3();
+            potentialSafeSpot = new Vector3();
             placedBombLocation = new Vector3();
 
             targetPosition = new Vector3();
@@ -65,7 +65,7 @@ namespace Bomberman.AI
             placedBombLocation = new Vector3();
             targetPosition = new Vector3();
             targetType = Gridx.Legend.None;
-            potentialDestinationVector = new Vector3();
+            potentialSafeSpot = new Vector3();
             isReacheable = false;
         }
 
@@ -94,17 +94,6 @@ namespace Bomberman.AI
             NewStateTransition(moveToTarget, waitForExplosion, IsDangerous());
             NewStateTransition(waitForExplosion, search, IsSafe());
             
-            // NewAnyStateTransition(search, NoTarget());
-            // NewAnyStateTransition(moveToTarget, Target());
-            // NewAnyStateTransition(placeBomb, ReachedTarget());
-            // NewAnyStateTransition(searchForCover, PlacedBomb());
-            // NewAnyStateTransition(waitForExplosion, IsDangerous());
-            // NewAnyStateTransition(search, ReachedTargetPowerUp());
-            
-            // anystate transitions
-            Func<bool> NoTarget() => () => targetPosition == Vector3.zero
-                                           && !isReacheable;
-
             // State machine start
             stateMachine.SetState(search);
 
@@ -113,16 +102,19 @@ namespace Bomberman.AI
                                           && targetType != Gridx.Legend.None
                                           && isReacheable);
 
-            Func<bool> ReachedTarget() => () => TargetTypeIsReached();
+            Func<bool> ReachedTarget() => () => TargetTypeIsReached() && potentialSafeSpot == Vector3.zero;;
             
-            Func<bool> IsDangerous() => () => placedBomb;
+            Func<bool> IsDangerous() => () =>
+                FlameDetector(placedBombLocation, (int)GetComponent<FinalBombermanStats>().GetNumericStat(Stats.Flame))
+                    .Any(a => GetFreeNeighbors(transform.position).Contains((a.x, a.y)));
 
-            Func<bool> IsSafe() => () => waitForExplosion.waitingTime < 0.01f
-                                         && SearchInRadiusAroundBomberman(this.gridx, gridx.GetGrid(),
-                                                 transform.position, 3)
-                                             .Any(a => stageGridx[a.x, a.y] != 3 || stageGridx[a.x, a.y] != 4);
+            Func<bool> IsSafe() => () => waitForExplosion.waitingTime < 0.01f;
 
-            Func<bool> HasSafeSpot() => () => potentialDestinationVector != Vector3.zero;
+            // Func<bool> IsDangerous() => () => placedBomb;
+            //
+            // Func<bool> IsSafe() => () => waitForExplosion.waitingTime < 0.01f && placedBomb == false;
+
+            Func<bool> HasSafeSpot() => () => potentialSafeSpot != Vector3.zero;
             Func<bool> PlacedBomb() => () => this.GetComponent<BombsInventory>().Bombs.Any(a => a.activeSelf);
 
             void NewStateTransition(IState from, IState to, Func<bool> condition) =>
