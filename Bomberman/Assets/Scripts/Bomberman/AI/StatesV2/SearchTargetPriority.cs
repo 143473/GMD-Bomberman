@@ -45,8 +45,10 @@ namespace Bomberman.AI.StatesV2
                 .OrderBy(a => Vector3.Distance(currV, new Vector3(a.x, 0, a.y)))
                 .FirstOrDefault(); 
             list.Remove(target);
-            aiControllerV2.ComputePath(new Vector3(target.x, 0, target.y));
-            aiControllerV2.targetType = helper.GetTypeWithValue(stageGrid[target.x, target.y]);
+            // aiControllerV2.ComputePath(new Vector3(target.x, 0, target.y));
+            aiControllerV2.ComputePath(player.transform.position);
+            
+            // aiControllerV2.targetType = helper.GetTypeWithValue(stageGrid[target.x, target.y]);
         }
 
         public void OnExit()

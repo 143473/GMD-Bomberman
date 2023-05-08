@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Bomberman.AI.States;
@@ -27,7 +28,7 @@ namespace Bomberman.AI
         public Vector3 targetPosition;
         public Gridx.Legend targetType;
 
-        [FormerlySerializedAs("potentialDestinationVector")] public Vector3 potentialSafeSpot;
+        public Vector3 potentialSafeSpot;
 
         private string state = "IsWalking";
         public bool isReacheable = false;
@@ -58,15 +59,21 @@ namespace Bomberman.AI
 
         private void OnEnable()
         {
-            if (gridx != null)
-                stateMachine.SetState(search);
-
             pathToTarget = new List<Vector3>();
             placedBombLocation = new Vector3();
             targetPosition = new Vector3();
             targetType = Gridx.Legend.None;
             potentialSafeSpot = new Vector3();
             isReacheable = false;
+
+            StartCoroutine(Respawn());
+        }
+
+        IEnumerator Respawn()
+        {
+            yield return new WaitForSeconds(0.5f);
+            if (gridx != null)
+                stateMachine.SetState(search);
         }
 
         void SetGrid(Gridx gridx)
@@ -93,7 +100,9 @@ namespace Bomberman.AI
             NewStateTransition(searchForCover, moveToTarget, HasSafeSpot());
             NewStateTransition(moveToTarget, waitForExplosion, IsDangerous());
             NewStateTransition(waitForExplosion, search, IsSafe());
-            
+
+            NewAnyStateTransition(search, ReachedPowerUp());
+
             // State machine start
             stateMachine.SetState(search);
 
@@ -102,7 +111,8 @@ namespace Bomberman.AI
                                           && targetType != Gridx.Legend.None
                                           && isReacheable);
 
-            Func<bool> ReachedTarget() => () => TargetTypeIsReached() && potentialSafeSpot == Vector3.zero;;
+            Func<bool> ReachedPowerUp() => () => targetType == Gridx.Legend.Power && TargetTypeIsReached();
+            Func<bool> ReachedTarget() => () => TargetTypeIsReached() && potentialSafeSpot == Vector3.zero && targetType != Gridx.Legend.Power;
             
             Func<bool> IsDangerous() => () =>
                 FlameDetector(placedBombLocation, (int)GetComponent<FinalBombermanStats>().GetNumericStat(Stats.Flame))
@@ -131,27 +141,6 @@ namespace Bomberman.AI
                 case Gridx.Legend.Power: return Vector3.Distance(transform.position, targetPosition) < 0.1f;
                 default: return Vector3.Distance(transform.position, targetPosition) < 1.1f;
             }
-        }
-        public List<(int x, int y)> SearchInRadiusAroundBomberman(Gridx gridx, int[,] stageGrid, Vector3 currP, int radius)
-        {
-            var possibleObjectives = new List<(int x, int y)>();
-            gridx.GetXY(currP, out int x, out int y);
-            
-            var lowerLimitX = (x - radius) >= 1 ? (x - radius) : 1;
-            var upperLimitX = (x + radius) < gridx.GetLength() ? (x + radius) : gridx.GetLength()-1;
-            
-            var lowerLimitY = (y - radius) >= 1 ? (y - radius) : 1;
-            var upperLimitY = (y + radius) < gridx.GetWidth() ? (y + radius) : gridx.GetWidth()-1;
-            for (int i = lowerLimitX; i <= upperLimitX; i++)
-            {
-                for (int j = lowerLimitY; j <= upperLimitY; j++)
-                {
-                    if(stageGrid[i, j] == 0 || stageGrid[i, j] == 1)
-                        possibleObjectives.Add((i,j));
-                }  
-            }
-
-            return possibleObjectives;
         }
 
         public List<(int x, int y)> FlameDetector(Vector3 bombPosition, int bombFlame)

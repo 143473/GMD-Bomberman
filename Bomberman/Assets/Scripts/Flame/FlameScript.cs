@@ -17,15 +17,9 @@ public class FlameScript : MonoBehaviour
 
     private void OnEnable()
     {
-        var position = gameObject.transform.position;
-        Gridx.onGridValueChanged?.Invoke(position.x, position.z, 4);
+        // var position = gameObject.transform.position;
+        // Gridx.onGridValueChanged?.Invoke(position.x, position.z, 4);
         StartCoroutine(SelfDestroy());
-    }
-
-    private void OnDisable()
-    {
-        var position = gameObject.transform.position;
-        Gridx.onGridValueChanged?.Invoke(position.x, position.z, 0);
     }
 
     private void OnTriggerEnter(Collider collider)
@@ -36,6 +30,8 @@ public class FlameScript : MonoBehaviour
 
     IEnumerator SelfDestroy()
     {
+        // var position = gameObject.transform.position;
+        // Gridx.onGridValueChanged?.Invoke(position.x, position.z, 0);
         yield return new WaitForSeconds(flameDestroyDelay);
         flamePoolSpawner.ReturnFlameToPool(gameObject);
     }

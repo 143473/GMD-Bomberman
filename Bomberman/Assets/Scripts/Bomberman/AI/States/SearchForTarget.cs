@@ -50,7 +50,7 @@ namespace Bomberman.AI.States
 
             walls = SearchGridFor((int)Gridx.Legend.DWall);
             if(ChooseObjective(walls, Gridx.Legend.DWall))
-                return true ;
+                return true;
             
             if (aiBombermanController.ComputePath(FindNearestPlayer().transform.position))
             {
@@ -59,7 +59,7 @@ namespace Bomberman.AI.States
             }
             
             free = SearchGridFor((int)Gridx.Legend.Free);
-            if (ChooseObjective(powerUps, Gridx.Legend.Free))
+            if (ChooseObjective(free, Gridx.Legend.Free))
                 return true;
                
             return false;

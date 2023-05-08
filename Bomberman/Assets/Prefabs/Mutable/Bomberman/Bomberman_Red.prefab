@@ -464,7 +464,7 @@ GameObject:
   - component: {fileID: 3445861046231467758}
   - component: {fileID: 902212707624933327}
   - component: {fileID: 8873495733040867835}
-  - component: {fileID: 8329401852807333437}
+  - component: {fileID: -6874226577484795645}
   m_Layer: 3
   m_Name: Bomberman_Red
   m_TagString: Player
@@ -632,7 +632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e3b7b7cbc1a44d79a5f9c6c8d54f8d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8329401852807333437
+--- !u!114 &-6874226577484795645
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -646,14 +646,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathToTarget: []
   placedBombLocation: {x: 0, y: 0, z: 0}
-  secondaryTargetPosition: {x: 0, y: 0, z: 0}
-  secondaryTargetType: 0
-  currentTargetPosition: {x: 0, y: 0, z: 0}
-  mainTarget: {fileID: 0}
-  potentialDestinationVector: {x: 0, y: 0, z: 0}
-  isReacheable: 0
   placedBomb: 0
-  targetChanged: 0
+  targetPosition: {x: 0, y: 0, z: 0}
+  targetType: 0
+  potentialSafeSpot: {x: 0, y: 0, z: 0}
+  isReacheable: 0
+  isStuck: 0
+  isMoving: 0
 --- !u!1 &2523008584742624411
 GameObject:
   m_ObjectHideFlags: 0

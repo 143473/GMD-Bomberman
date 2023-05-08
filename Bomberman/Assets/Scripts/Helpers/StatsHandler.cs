@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Bomberman.AI;
 using TRYINGSTUFFOUT.CursesV2;
 using UnityEngine;
 
@@ -55,6 +56,9 @@ namespace Utils
         {
             if (boolStats.ContainsKey(stat))
             {
+                if (stat == Stats.RemoteExplosion &&
+                    finalBombermanStats.gameObject.GetComponent<AIBombermanController>() != null)
+                    return;
                 boolStats[stat] = boolValue;
                 StatsChanged(this, new StatsChangedArgs(playerName,
                     stat, 

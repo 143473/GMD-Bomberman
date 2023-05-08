@@ -11,7 +11,7 @@ namespace Bomberman.AI.States
         private int[,] stageGrid;
         private AIBombermanController aiBombermanController;
         private List<(int x, int y)> possibleSafeSpots;
-        private int safeZoneRadius = 2;
+        private int safeZoneRadius = 4;
 
         public SearchForCover(AIBombermanController aiBombermanController)
         {
@@ -46,8 +46,19 @@ namespace Bomberman.AI.States
             }
 
             var bombFlame = (int)aiBombermanController.GetComponent<FinalBombermanStats>().GetNumericStat(Stats.Flame);
-            var bombPosition = aiBombermanController.transform.position;
-            var flameVectors = aiBombermanController.FlameDetector(bombPosition, bombFlame);
+            var bombsOnTheMap = SearchGridFor((int)Gridx.Legend.Bomb);
+            // var bombPosition = aiBombermanController.transform.position;
+            List<(int x, int y)> flameVectors = new List<(int x, int y)>();
+            List<(int x, int y)> bombsFlameVectors = new List<(int x, int y)>();
+            foreach (var bomb in bombsOnTheMap)
+            {
+                bombsFlameVectors = aiBombermanController.FlameDetector(new Vector3(bomb.x, 0, bomb.y), bombFlame);
+                for (int i = 0; i < bombsFlameVectors.Count; i++)
+                {
+                    flameVectors.Add(bombsFlameVectors[i]);
+                }
+            }
+            
 
             var safe = possibleSafeSpots
                 .Except(flameVectors)
@@ -66,6 +77,24 @@ namespace Bomberman.AI.States
                     aiBombermanController.potentialSafeSpot = Vector3.zero;
                 }
             }
+
+            flameVectors.Clear();
+        }
+        
+        List<(int x, int y)> SearchGridFor(int value)
+        {
+            List<(int x, int y)> chosenObjectives = new List<(int x, int y)>();
+            
+            for (int i = 0; i < stageGrid.GetLength(0); i++)
+            {
+                for (int j = 0; j < stageGrid.GetLength(1); j++)
+                {
+                    if (stageGrid[i, j] == value)
+                        chosenObjectives.Add((i, j));
+                }
+            }
+
+            return chosenObjectives;
         }
 
         public void OnExit()
