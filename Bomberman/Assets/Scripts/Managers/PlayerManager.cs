@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Bomberman.AI;
+using Helpers;
 using TRYINGSTUFFOUT.CursesV2.ScriptableObjects;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -11,6 +12,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 using Utils;
 using Random = UnityEngine.Random;
 
@@ -62,19 +64,26 @@ namespace Managers
                 controlScheme: player1KeyboardScheme, pairWithDevice: Keyboard.current);
             player1.name = "Player 1";
             player1.transform.position = playerSpawnLocations[1];
-           CreateCanvas(canvasPrefab, 2f,11f, player1.name);
+            var color = ColorHelper.GetPlayerColor(0);
+            CreateCanvas(canvasPrefab, 2f,11f, player1.name, color);
 
             if (gameSettings.numberOfHumanPlayers == 2)
             {
                 var player2 = PlayerInput.Instantiate(bomberman,
                     controlScheme: player2KeyboardScheme, pairWithDevice: Keyboard.current);
                 player2.name = "Player 2";
-                player2.transform.position = playerSpawnLocations[2]; 
-               CreateCanvas(canvasPrefab,18f,11f, player2.name);
+                player2.transform.position = playerSpawnLocations[2];
 
+                color = ColorHelper.GetPlayerColor(1);
+                var renders = player2.GetComponentsInChildren<Renderer>();
+                foreach (var r in renders)
+                {
+                    r.material.color = color;
+                }
+                
+                CreateCanvas(canvasPrefab,7f,11f, player2.name, color);
             }
-        
-            
+
             // AI instantiation
             if (gameSettings.numberOfAIPlayers != 0)
             {
@@ -84,6 +93,15 @@ namespace Managers
                     var ai = Instantiate(bombermanAI);
                     ai.name = $"Player {humans + i}";
                     ai.transform.position = playerSpawnLocations[humans + i];
+
+                    color = ColorHelper.GetPlayerColor(humans + (i - 1));
+                    var renders = ai.GetComponentsInChildren<Renderer>();
+                    foreach (var r in renders)
+                    {
+                        r.material.color = color;
+                    }
+                    
+                    CreateCanvas(canvasPrefab,2f + 5f * (humans + (i - 1)) ,11f, ai.name, color);
                     aiList.Add(ai);
                 }
             }
@@ -137,10 +155,12 @@ namespace Managers
             return Mathf.Round(Random.Range(from, to));
         }
         
-        private void CreateCanvas(Canvas canvasP, float x, float z, string playerName) {
+        private void CreateCanvas(Canvas canvasP, float x, float z, string playerName, Color color)
+        {
             var canvas = Instantiate(canvasP);
             canvas.transform.position = new Vector3(x, 1, z);
             canvas.name = playerName + " Canvas";
+            canvas.GetComponent<Image>().color = color.WithAlphaMultiplied(0.3f);
         }
     }
 }
