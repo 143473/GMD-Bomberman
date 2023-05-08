@@ -45,4 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuCanvas: {fileID: 8122238952255078704, guid: 44dd16d0d81e89245b76315d716e3c38, type: 3}
-  optionsCanvas: {fileID: 9180079643577740949, guid: 38570418a1d657f47b65a96d262e6605, type: 3}
+  optionsCanvas: {fileID: 3549939551084464606, guid: 38570418a1d657f47b65a96d262e6605, type: 3}
+  gameSettings: {fileID: 11400000, guid: 9a6c244d75a5a1345b28073c2c6b1e2c, type: 2}

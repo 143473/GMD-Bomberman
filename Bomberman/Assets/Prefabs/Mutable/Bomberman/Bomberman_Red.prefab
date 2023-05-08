@@ -535,7 +535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68252b92694869141a570176b6566955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bombClip: {fileID: 0}
+  placementClip: {fileID: 8300000, guid: 1599b0c54c5bd5b43aa2557bff895253, type: 3}
 --- !u!114 &5638535608206349500
 MonoBehaviour:
   m_ObjectHideFlags: 0
