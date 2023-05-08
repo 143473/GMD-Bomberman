@@ -23,10 +23,8 @@ namespace Managers
         [SerializeField] private GameObject bombermanAI;
         [SerializeField] private GameSettings gameSettings;
         [SerializeField] private Canvas canvasPrefab;
-
-
-        // public delegate void OnNavAgentAttachment();
-        // public static OnNavAgentAttachment onNavAgentAttachment;
+        public delegate void OnDeadPlayer(GameObject deadBomberman);
+        public static OnDeadPlayer onDeadPlayer;
         
         private List<GameObject> aiList;
         private IDictionary<int, Vector3> playerSpawnLocations;
@@ -104,8 +102,12 @@ namespace Managers
 
         void BombermanRespawn(float lives, GameObject deadBomberman)
         {
-            if(lives <= 0)
+            if (lives <= 0)
+            {
+                onDeadPlayer?.Invoke(deadBomberman);
                 return;
+            }
+               
             // Work in progress, vectors for respawn
             // Vector3 vect;
             // do

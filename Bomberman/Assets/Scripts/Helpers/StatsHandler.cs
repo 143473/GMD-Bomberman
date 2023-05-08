@@ -56,13 +56,19 @@ namespace Utils
             if (boolStats.ContainsKey(stat))
             {
                 boolStats[stat] = boolValue;
-                StatsChanged(this, new StatsChangedArgs(playerName, stat, booleanStatValue: finalBombermanStats.GetBooleanStat(stat)));
+                StatsChanged(this, new StatsChangedArgs(playerName,
+                    stat, 
+                    booleanStatValue: finalBombermanStats.GetBooleanStat(stat),
+                    isCurse: finalBombermanStats.GetBooleanStat(Stats.Cursed)));
             }
                 
             else if (numericStats.ContainsKey(stat))
             {
                 numericStats[stat] += numericValue;
-                StatsChanged(this, new StatsChangedArgs(playerName, stat, numericStatValue: finalBombermanStats.GetNumericStat(stat)));
+                StatsChanged(this, new StatsChangedArgs(playerName,
+                    stat, 
+                    numericStatValue: finalBombermanStats.GetNumericStat(stat),
+                    isCurse: finalBombermanStats.GetBooleanStat(Stats.Cursed)));
             }
         }
     }
