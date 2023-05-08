@@ -10,10 +10,11 @@ public class Gridx {
     // 1 - players hardcoded spawn locations
     // 2 - destructible walls
     // 3 - bomb
-    // 4 - flame
+    // 4 - flame - not registered anymore in the grid
     // 5 - non destructible walls
     // 6 - powerups
     // 7 - curses
+    // 9 - None
 
     public enum Legend
     {

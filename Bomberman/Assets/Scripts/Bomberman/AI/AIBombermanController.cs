@@ -100,7 +100,7 @@ namespace Bomberman.AI
             NewStateTransition(searchForCover, moveToTarget, HasSafeSpot());
             NewStateTransition(moveToTarget, waitForExplosion, IsDangerous());
             NewStateTransition(waitForExplosion, search, IsSafe());
-
+            
             NewAnyStateTransition(search, ReachedPowerUp());
 
             // State machine start
@@ -108,7 +108,6 @@ namespace Bomberman.AI
 
             // Conditions declaration
             Func<bool> Target() => () => (targetPosition != Vector3.zero
-                                          && targetType != Gridx.Legend.None
                                           && isReacheable);
 
             Func<bool> ReachedPowerUp() => () => targetType == Gridx.Legend.Power && TargetTypeIsReached();

@@ -20,6 +20,7 @@ namespace Bomberman.AI.States
         private List<(int x, int y)> powerUps;
         private List<(int x, int y)> free;
         private List<(int x, int y)> walls;
+        private GameObject player;
 
         public SearchForTarget(AIBombermanController aiBombermanController)
         {
@@ -52,9 +53,10 @@ namespace Bomberman.AI.States
             if(ChooseObjective(walls, Gridx.Legend.DWall))
                 return true;
             
-            if (aiBombermanController.ComputePath(FindNearestPlayer().transform.position))
+            player = FindNearestPlayer();
+            if (aiBombermanController.ComputePath(player.transform.position))
             {
-                aiBombermanController.targetPosition = FindNearestPlayer().transform.position;
+                aiBombermanController.targetPosition = player.transform.position;
                 return true;
             }
             
