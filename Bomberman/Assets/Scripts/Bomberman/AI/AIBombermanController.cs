@@ -3,11 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Bomberman.AI.States;
-using Bomberman.AI.StatesV2;
-using Managers;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.Serialization;
 using Utils;
 
 namespace Bomberman.AI
@@ -91,7 +87,6 @@ namespace Bomberman.AI
             var placeBomb = new AIPlaceBomb(this);
             var searchForCover = new SearchForCover(this);
             var waitForExplosion = new WaitForExplosion(this);
-            var unstuck = new Unstuck(this);
 
             // Adding state transitions 
             NewStateTransition(search, moveToTarget, Target());
@@ -112,17 +107,10 @@ namespace Bomberman.AI
 
             Func<bool> ReachedPowerUp() => () => targetType == Gridx.Legend.Power && TargetTypeIsReached();
             Func<bool> ReachedTarget() => () => TargetTypeIsReached() && potentialSafeSpot == Vector3.zero && targetType != Gridx.Legend.Power;
-            
             Func<bool> IsDangerous() => () =>
                 FlameDetector(placedBombLocation, (int)GetComponent<FinalBombermanStats>().GetNumericStat(Stats.Flame))
                     .Any(a => GetFreeNeighbors(transform.position).Contains((a.x, a.y)));
-
             Func<bool> IsSafe() => () => waitForExplosion.waitingTime < 0.01f;
-
-            // Func<bool> IsDangerous() => () => placedBomb;
-            //
-            // Func<bool> IsSafe() => () => waitForExplosion.waitingTime < 0.01f && placedBomb == false;
-
             Func<bool> HasSafeSpot() => () => potentialSafeSpot != Vector3.zero;
             Func<bool> PlacedBomb() => () => this.GetComponent<BombsInventory>().Bombs.Any(a => a.activeSelf);
 
