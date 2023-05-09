@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -427,14 +427,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9129267664667377189, guid: ddb92f1559aa9a840aceae7de1d131d2, type: 3}
-      propertyPath: bomberman
-      value: 
-      objectReference: {fileID: 6264715686697077762, guid: aca37779b9907a2428824b61a50f9154, type: 3}
-    - target: {fileID: 9129267664667377189, guid: ddb92f1559aa9a840aceae7de1d131d2, type: 3}
-      propertyPath: bombermanAI
-      value: 
-      objectReference: {fileID: 2362120128477904832, guid: 597b70fd1d11c9247a2feda581702726, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ddb92f1559aa9a840aceae7de1d131d2, type: 3}
 --- !u!1001 &828267110938519084
@@ -658,10 +650,6 @@ PrefabInstance:
     - target: {fileID: 5084632642935131403, guid: 57c5d4c8ad3e8a143becdc4b8d544c4a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5807921765785874115, guid: 57c5d4c8ad3e8a143becdc4b8d544c4a, type: 3}
-      propertyPath: wallChanceToSpawn
-      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6543377519252725429, guid: 57c5d4c8ad3e8a143becdc4b8d544c4a, type: 3}
       propertyPath: m_Name
