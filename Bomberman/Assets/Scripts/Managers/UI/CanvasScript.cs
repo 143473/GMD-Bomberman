@@ -60,7 +60,7 @@ namespace Utils
         }
         
         void UpdateStats(object sender, StatsChangedArgs e)
-        {
+        {  
             if (!name.Contains(e.PlayerName)) return;
             switch (e.Stat)
             {
@@ -74,6 +74,12 @@ namespace Utils
                     flameText.text = $"{e.NumericStatValue}";
                     break;
                 case Stats.Cursed:
+                    ShowCursedImage();
+                    break;
+                case Stats.Nasty:
+                    ShowCursedImage();
+                    break;
+                case Stats.InverseControls:
                     ShowCursedImage();
                     break;
                 case Stats.RemoteExplosion:

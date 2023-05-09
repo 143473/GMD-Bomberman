@@ -8,7 +8,8 @@ using UnityEngine.UI;
 public class MenuManager : MonoBehaviour
 {
     [SerializeField] private Canvas menuCanvas;
-    [SerializeField] private Canvas optionsCanvas;
+    [SerializeField] private Canvas optionsCanvas;    
+    [SerializeField] private GameObject frame;
     [SerializeField] private GameSettings gameSettings;
     private Canvas mCanvas;
     private Canvas oCanvas;
@@ -17,6 +18,7 @@ public class MenuManager : MonoBehaviour
     { 
         mCanvas = Instantiate(menuCanvas, new Vector3(10,2,5), Quaternion.Euler(90,0,0));
         oCanvas = Instantiate(optionsCanvas, new Vector3(10,2,5), Quaternion.Euler(90,0,0));
+        frame = Instantiate(frame, new Vector3(10,0,5), Quaternion.Euler(0,0,0));
         oCanvas.gameObject.SetActive(false);
         mCanvas.gameObject.SetActive(true);
         
