@@ -160,7 +160,7 @@ namespace Managers
             var canvas = Instantiate(canvasP);
             canvas.transform.position = new Vector3(x, 1, z);
             canvas.name = playerName + " Canvas";
-            canvas.GetComponent<Image>().color = color.WithAlphaMultiplied(0.3f);
+            canvas.GetComponent<Image>().color = color;
         }
     }
 }
