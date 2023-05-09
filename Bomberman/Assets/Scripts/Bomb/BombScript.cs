@@ -3,12 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using Interfaces;
-using UnityEditor;
 
 public class BombScript : MonoBehaviour
 {
-    public SphereCollider sc;
+    [SerializeField] private SphereCollider sc;
     private Vector3 halfExtent = new Vector3();
     
     private FlamePool flamePoolSpawner;
@@ -16,7 +14,7 @@ public class BombScript : MonoBehaviour
     private Collider[] colliders;
     private bool flameCoroutineStarted = false;
     private AudioSource audioSource;
-    [SerializeField] public AudioClip flameClip;
+    [SerializeField] private AudioClip flameClip;
 
     private void Awake()
     {
@@ -112,21 +110,6 @@ public class BombScript : MonoBehaviour
       directions.Clear();
       gameObject.SetActive(false); ;
       flameCoroutineStarted = false;    
-    }
-
-    // Second Approach - per direction
-    void CheckDirection(Vector3 direction)
-    {
-      for (int i = 1; i < bombStats.Flame + 1; i++)
-      {
-        Vector3 offset = direction * (i * 1f);
-        Vector3 cellPosition = transform.position + offset;
-        
-        if (CheckCell(cellPosition))
-        {
-          break;
-        }
-      }
     }
 
     bool CheckCell(Vector3 cellPosition)
