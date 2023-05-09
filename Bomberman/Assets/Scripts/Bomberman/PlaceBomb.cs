@@ -10,10 +10,14 @@ public class PlaceBomb : MonoBehaviour
 	private BombsInventory bombermanInventory;
 	private FinalBombermanStats bombermanStats;
 	private Collider[] colliders;
+	private AudioSource audioSource;
+	[SerializeField]public AudioClip placementClip;
 	private void Awake()
 	{
 		bombermanInventory = gameObject.GetComponent<BombsInventory>();
 		bombermanStats = gameObject.GetComponent<FinalBombermanStats>();
+		audioSource = gameObject.GetComponent<AudioSource>();
+		
 	}
 
 	private void Update()
@@ -38,7 +42,12 @@ public class PlaceBomb : MonoBehaviour
 				bomb.GetComponent<BombStats>().SetStats(bombermanStats.GetNumericStat(Stats.Flame), 
 					bombermanStats.GetBooleanStat(Stats.RemoteExplosion), 
 					bombermanStats.GetNumericStat(Stats.BombDelay));
+				
+			
+				AudioSource.PlayClipAtPoint(placementClip, Vector3.zero);
 				bomb.SetActive(true);
+			
+
 			}
 			Array.Clear(colliders, 0, colliders.Length);
 		}
