@@ -1,8 +1,9 @@
 # GMD-Bomberman
 Project for the GMD course made after a nostalgic game, Bomberman
 
-
 LINK TO YOUTUBE: https://www.youtube.com/watch?v=UVW0zNoXSzc
+
+GitHubPages link: https://143473.github.io/GMD-Bomberman/
 
 How to play:
 Player 1: <b> WASD </b>to move<b> T </b> to place bomb <b> U </b> remote explosion
