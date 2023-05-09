@@ -50,4 +50,10 @@ https://github.com/grebtsew/Bomberman
 https://www.youtube.com/watch?v=-euVKBFaq8U
 https://docs.unity3d.com/Manual/UIToolkits.html
 https://www.youtube.com/results?search_query=create+score+board+firefly+unity
+https://dotnetcoretutorials.com/a-search-pathfinding-algorithm-in-c/
+https://www.youtube.com/watch?v=V75hgcsCGOM&t=606s
+https://www.youtube.com/watch?v=J2CFVjqEHpU&t=915s
+https://forum.unity.com/threads/tutorial-character-stats-aka-attributes-system.504095/
+https://learn.unity.com/tutorial/introduction-to-object-pooling
+https://gamedevbeginner.com/interfaces-in-unity/
 
