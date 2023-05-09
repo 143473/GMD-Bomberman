@@ -464,8 +464,8 @@ GameObject:
   - component: {fileID: 3445861046231467758}
   - component: {fileID: 902212707624933327}
   - component: {fileID: 8873495733040867835}
-  - component: {fileID: -8177574826296415540}
   - component: {fileID: 7109523902565156423}
+  - component: {fileID: -6164017664411866962}
   m_Layer: 3
   m_Name: Bomberman_Red
   m_TagString: Player
@@ -634,28 +634,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e3b7b7cbc1a44d79a5f9c6c8d54f8d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-8177574826296415540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2362120128477904832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e38b7920c11a44768142cd2bbb1068a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fullPathToATarget: []
-  targetPosition: {x: 0, y: 0, z: 0}
-  targetType: 0
-  nextCell: {x: 0, y: 0, z: 0}
-  TimeStuck: 0
-  checkedForBombs: 0
-  placedBomb: 0
-  searching: 0
-  targetReached: 0
-  stuck: 0
 --- !u!82 &7109523902565156423
 AudioSource:
   m_ObjectHideFlags: 0
@@ -752,6 +730,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-6164017664411866962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2362120128477904832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9702dd95ff0426b872ad68b19d1188a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathToTarget: []
+  placedBombLocation: {x: 0, y: 0, z: 0}
+  placedBomb: 0
+  targetPosition: {x: 0, y: 0, z: 0}
+  targetType: 0
+  potentialSafeSpot: {x: 0, y: 0, z: 0}
+  isReacheable: 0
+  isStuck: 0
+  isMoving: 0
 --- !u!1 &2523008584742624411
 GameObject:
   m_ObjectHideFlags: 0
