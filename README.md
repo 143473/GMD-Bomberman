@@ -30,9 +30,11 @@ Texture: https://www.textures.com/download/3DScans0393/132962
 <b>Stone walls</b>
 Texture: https://www.textures.com/download/3DScans0077/128145
 
-
 <b>Fonts</b>
 https://www.dafont.com/theme.php?cat=101&page=2
+
+<b> State machine </b>
+https://game.courses/bots-ai-statemachines/
 
 <b>Sprites</b>
 Explosion animation: https://stock.adobe.com/search?k=sprite+fire
