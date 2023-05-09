@@ -36,6 +36,9 @@ https://www.dafont.com/theme.php?cat=101&page=2
 <b> State machine </b>
 https://game.courses/bots-ai-statemachines/
 
+<b>A* pathfinding algorithm </b>
+https://dotnetcoretutorials.com/2020/07/25/a-search-pathfinding-algorithm-in-c/
+
 <b>Sprites</b>
 Explosion animation: https://stock.adobe.com/search?k=sprite+fire
 Bomb: https://pngimg.com/uploads/bomb/bomb_PNG36.png
