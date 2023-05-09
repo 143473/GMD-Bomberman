@@ -4,6 +4,9 @@ Project for the GMD course made after a nostalgic game, Bomberman
 
 LINK TO YOUTUBE: https://www.youtube.com/watch?v=UVW0zNoXSzc
 
+How to play:
+Player 1: <b> WASD </b>to move<b> T </b> to place bomb <b> U </b> remote explosion
+Player 2: <b> ARROWS </b>to move <b> 7 </b> to place bomb <b> 9 </b> remote explosion
 
 Assets Sources:
 <b>Bomberman</b>
