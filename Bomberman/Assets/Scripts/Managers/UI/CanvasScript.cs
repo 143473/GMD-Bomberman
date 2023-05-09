@@ -54,20 +54,13 @@ namespace Utils
             flameText.text = $"{numericStats[Stats.Flame]}";
             bombsText.text = $"{numericStats[Stats.Bombs]}";
             curseImage.enabled = false;
-
-            if (name.Contains("Player 1"))
-            {
-                playerText.text = "Red";
-            }
-            if (name.Contains("Player 2"))
-            {
-                playerText.text = "Blue";
-            }
+            playerText.text = name[..8];
+            
             StatsHandler.StatsChanged += UpdateStats;
         }
         
         void UpdateStats(object sender, StatsChangedArgs e)
-        {
+        {  
             if (!name.Contains(e.PlayerName)) return;
             switch (e.Stat)
             {
@@ -81,6 +74,12 @@ namespace Utils
                     flameText.text = $"{e.NumericStatValue}";
                     break;
                 case Stats.Cursed:
+                    ShowCursedImage();
+                    break;
+                case Stats.Nasty:
+                    ShowCursedImage();
+                    break;
+                case Stats.InverseControls:
                     ShowCursedImage();
                     break;
                 case Stats.RemoteExplosion:

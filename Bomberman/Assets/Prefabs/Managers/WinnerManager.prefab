@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7131122160355180926
+--- !u!1 &4373506151828374784
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7131122160355180920}
-  - component: {fileID: 7131122160355180921}
+  - component: {fileID: 7755343708708608004}
+  - component: {fileID: 5090636086604611613}
   m_Layer: 0
-  m_Name: MenuManager
+  m_Name: WinnerManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7131122160355180920
+--- !u!4 &7755343708708608004
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7131122160355180926}
+  m_GameObject: {fileID: 4373506151828374784}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 12.958835, y: -162.95479, z: 4.841063}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,19 +32,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7131122160355180921
+--- !u!114 &5090636086604611613
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7131122160355180926}
+  m_GameObject: {fileID: 4373506151828374784}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0465806a48143364fa31b349aa4247d8, type: 3}
+  m_Script: {fileID: 11500000, guid: d77837c9ef3c4ca4aeb3e9d4a061675a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuCanvas: {fileID: 8122238952255078704, guid: 44dd16d0d81e89245b76315d716e3c38, type: 3}
-  optionsCanvas: {fileID: 3549939551084464606, guid: 38570418a1d657f47b65a96d262e6605, type: 3}
-  frame: {fileID: 4993388099738277763, guid: 00a2d5dc4431b6540a702db5d09c2569, type: 3}
   gameSettings: {fileID: 11400000, guid: 9a6c244d75a5a1345b28073c2c6b1e2c, type: 2}
+  winnerCanvas: {fileID: 6953888607321549712, guid: 2f4623853b856554286d59e62e460233, type: 3}
+  winnerText: {fileID: 0}
