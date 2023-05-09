@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Bomberman.AI.States;
+using Bomberman.AI.StatesV2;
 using Managers;
 using UnityEngine;
 using UnityEngine.AI;
@@ -15,40 +17,39 @@ namespace Bomberman.AI
         private Animator animator;
         private FiniteStateMachine stateMachine;
         private Gridx gridx;
+        private int[,] stageGridx;
         private PathfindingAStar pathfindingAStar;
         private SearchForTarget search;
 
         public List<Vector3> pathToTarget;
         public Vector3 placedBombLocation;
+        public bool placedBomb;
 
-        public Vector3 secondaryTargetPosition;
-        public Gridx.Legend secondaryTargetType;
+        public Vector3 targetPosition;
+        public Gridx.Legend targetType;
 
-        public Vector3 currentTargetPosition;
-
-        public GameObject mainTarget;
-
-        public Vector3 potentialDestinationVector;
+        public Vector3 potentialSafeSpot;
 
         private string state = "IsWalking";
         public bool isReacheable = false;
-        public bool placedBomb = false;
-        public bool targetChanged = false;
+        public bool isStuck;
+        public bool isMoving;
 
         private void Awake()
         {
             StageManager.onGridSet += SetGrid;
             pathToTarget = new List<Vector3>();
-            potentialDestinationVector = new Vector3();
+            potentialSafeSpot = new Vector3();
             placedBombLocation = new Vector3();
 
-            secondaryTargetPosition = new Vector3();
-            secondaryTargetType = Gridx.Legend.NonDWall;
+            targetPosition = new Vector3();
+            targetType = Gridx.Legend.NonDWall;
         }
 
         private void Update()
         {
             stateMachine.Tick();
+            animator.SetBool(state, isMoving);
         }
 
         public Gridx GetGrid()
@@ -58,27 +59,27 @@ namespace Bomberman.AI
 
         private void OnEnable()
         {
-            if (gridx != null)
-                stateMachine.SetState(search);
-
             pathToTarget = new List<Vector3>();
             placedBombLocation = new Vector3();
-
-            currentTargetPosition = new Vector3();
-            secondaryTargetPosition = new Vector3();
-            secondaryTargetType = Gridx.Legend.None;
-
-            mainTarget = new GameObject();
-            potentialDestinationVector = new Vector3();
-
+            targetPosition = new Vector3();
+            targetType = Gridx.Legend.None;
+            potentialSafeSpot = new Vector3();
             isReacheable = false;
-            placedBomb = false;
-            targetChanged = false;
+
+            StartCoroutine(Respawn());
+        }
+
+        IEnumerator Respawn()
+        {
+            yield return new WaitForSeconds(0.5f);
+            if (gridx != null)
+                stateMachine.SetState(search);
         }
 
         void SetGrid(Gridx gridx)
         {
             this.gridx = gridx;
+            stageGridx = gridx.GetGrid();
             pathfindingAStar = new PathfindingAStar(this.gridx);
 
             animator = GetComponent<Animator>();
@@ -90,80 +91,56 @@ namespace Bomberman.AI
             var placeBomb = new AIPlaceBomb(this);
             var searchForCover = new SearchForCover(this);
             var waitForExplosion = new WaitForExplosion(this);
-            var inspectArea = new InspectArea(this);
+            var unstuck = new Unstuck(this);
 
             // Adding state transitions 
-            NewStateTransition(search, moveToTarget, SecondaryTarget());
-            NewStateTransition(moveToTarget, placeBomb, ReachedWall());
-            NewStateTransition(placeBomb, searchForCover, IsDangerous());
+            NewStateTransition(search, moveToTarget, Target());
+            NewStateTransition(moveToTarget, placeBomb, ReachedTarget());
+            NewStateTransition(placeBomb, searchForCover, PlacedBomb());
             NewStateTransition(searchForCover, moveToTarget, HasSafeSpot());
             NewStateTransition(moveToTarget, waitForExplosion, IsDangerous());
-            // NewStateTransition(waitForExplosion, inspectArea, BombExploded());
-            // NewStateTransition(inspectArea, moveToTarget, NotSameTarget());
             NewStateTransition(waitForExplosion, search, IsSafe());
-            // NewStateTransition(moveToTarget, search, StuckForASecond());
-            // NewStateTransition(moveToTarget, search, ReachedPowerUp());
+            
+            NewAnyStateTransition(search, ReachedPowerUp());
 
             // State machine start
             stateMachine.SetState(search);
 
             // Conditions declaration
-            Func<bool> SecondaryTarget() => () => secondaryTargetPosition != Vector3.zero
-                                                  && secondaryTargetType != Gridx.Legend.None
-                                                  && isReacheable;
+            Func<bool> Target() => () => (targetPosition != Vector3.zero
+                                          && isReacheable);
 
-            Func<bool> ReachedPowerUp() => () => secondaryTargetType == Gridx.Legend.Power && Vector3.Distance(
-                new Vector3(transform.position.x, 0, transform.position.z),
-                secondaryTargetPosition) <= 0.1f;
-
-            Func<bool> ReachedWall() => () => secondaryTargetType == Gridx.Legend.DWall
-                                                && Vector3.Distance(
-                                                    new Vector3(transform.position.x, 0, transform.position.z),
-                                                    secondaryTargetPosition) <= 1.1f;
-
-            Func<bool> DidntReachTarget() => () =>
-                pathToTarget.LastOrDefault() != secondaryTargetPosition &&
-                Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z),
-                    pathToTarget.LastOrDefault()) <0.05f; 
-            // && secondaryTargetPosition != Vector3.zero
-            // && secondaryTargetType != Gridx.Legend.None;
-
-            Func<bool> NotSameTarget() => () => targetChanged;
-            Func<bool> SameTarget() => () => secondaryTargetPosition != Vector3.zero
-                                             && secondaryTargetType != Gridx.Legend.None
-                                             && isReacheable
-                                             && targetChanged == false
-                                             && Vector3.Distance(
-                                                 new Vector3(transform.position.x, 0, transform.position.z),
-                                                 secondaryTargetPosition) > 1.1f;
-
-
+            Func<bool> ReachedPowerUp() => () => targetType == Gridx.Legend.Power && TargetTypeIsReached();
+            Func<bool> ReachedTarget() => () => TargetTypeIsReached() && potentialSafeSpot == Vector3.zero && targetType != Gridx.Legend.Power;
+            
             Func<bool> IsDangerous() => () =>
                 FlameDetector(placedBombLocation, (int)GetComponent<FinalBombermanStats>().GetNumericStat(Stats.Flame))
                     .Any(a => GetFreeNeighbors(transform.position).Contains((a.x, a.y)));
 
-            // Check if it is safe after 2 Vectors, after continue to the target
-            Func<bool> IsSafe() => () =>
-                FlameDetector(placedBombLocation, (int)GetComponent<FinalBombermanStats>().GetNumericStat(Stats.Flame))
-                    .Any(a => !GetFreeNeighbors(transform.position).Contains((a.x, a.y)));
+            Func<bool> IsSafe() => () => waitForExplosion.waitingTime < 0.01f;
 
-            Func<bool> HasMoreBombs() =>
-                () => this.GetComponent<BombsInventory>().Bombs.Any(a => a.activeSelf == false);
+            // Func<bool> IsDangerous() => () => placedBomb;
+            //
+            // Func<bool> IsSafe() => () => waitForExplosion.waitingTime < 0.01f && placedBomb == false;
 
-            Func<bool> EnoughTime() => () => waitForExplosion.waitingTime > 2.5f;
-            Func<bool> NoBombsAvailable() => () => this.GetComponent<BombsInventory>().Bombs.All(a => a.activeSelf);
-            Func<bool> StuckForASecond() => () => moveToTarget.TimeStuck > 0.3f;
-            Func<bool> HasSafeSpot() => () => potentialDestinationVector != Vector3.zero;
+            Func<bool> HasSafeSpot() => () => potentialSafeSpot != Vector3.zero;
             Func<bool> PlacedBomb() => () => this.GetComponent<BombsInventory>().Bombs.Any(a => a.activeSelf);
 
             void NewStateTransition(IState from, IState to, Func<bool> condition) =>
                 stateMachine.AddTransition(from, to, condition);
+            void NewAnyStateTransition(IState anyState, Func<bool> condition) =>
+                stateMachine.AddAnyTransition(anyState, condition);
         }
-
-        // public void SetDistance(int targetX, int targetY)
-        // {
-        //     this.Distance = Math.Abs(targetX - X) + Math.Abs(targetY - Y);
-        // }
+        
+        bool TargetTypeIsReached()
+        {
+            switch (targetType)
+            {
+                case Gridx.Legend.DWall: return Vector3.Distance(transform.position, targetPosition) < 1.1f;
+                case Gridx.Legend.Power: return Vector3.Distance(transform.position, targetPosition) < 0.1f;
+                default: return Vector3.Distance(transform.position, targetPosition) < 1.1f;
+            }
+        }
 
         public List<(int x, int y)> FlameDetector(Vector3 bombPosition, int bombFlame)
         {
@@ -204,7 +181,6 @@ namespace Bomberman.AI
         public bool ComputePath(Vector3 target)
         {
             isReacheable = false;
-            pathToTarget = new List<Vector3>();
             var currWorld = gameObject.transform.position;
 
             gridx.GetXY(currWorld, out int currx, out int curry);
@@ -214,14 +190,11 @@ namespace Bomberman.AI
             if (pathToTargetTile != null && pathToTargetTile.Any())
             {
                 isReacheable = true;
+                pathToTarget = new List<Vector3>();
                 foreach (var tile in pathToTargetTile)
                 {
                     pathToTarget.Add(new Vector3(tile.X, 0, tile.Y));
                 }
-
-                // if (pathToTarget.Count > 3)
-                //     pathToTarget = pathToTarget.Take(3).ToList();
-                currentTargetPosition = target;
                 return true;
             }
 

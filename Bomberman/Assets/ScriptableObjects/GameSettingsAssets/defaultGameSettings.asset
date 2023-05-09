@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f15135836141ffa9165cd5d3b91790, type: 3}
   m_Name: defaultGameSettings
   m_EditorClassIdentifier: 
+  volume: 0.054725237
   numberOfHumanPlayers: 2
-  numberOfAIPlayers: 1
+  numberOfAIPlayers: 2
   stageSet: 0
   playerLivesToStartWith: 10
   stageTimerInSeconds: 180
